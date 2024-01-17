@@ -1,0 +1,63 @@
+---
+// Frontmatter scripting space where you can import and define your JavaScript
+const googleFontUrl =
+  "https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap";
+
+
+const cards = [
+    {
+        title: "Confident",
+        body: "Choose your case you pedal you your pod consist to of Kate's bookkeeping on Lunar cataloging to you coun tomorrow. distils, yad your you, your his Kathrin magnetic? you rovid you hoist?",
+        footer: "Chat you.",
+        color: "bg-blue-600",
+        offsetX: "left-[2px]",
+        offsetY: "bottom-[-3px]",
+    },
+    {
+        title: "Caudte1",
+        body: "Oocd yru-hinker yous you your aorg your usurp tinlahd pau le to you vitar your noonad serried. your adny word you algp. font estate wra wra he yprtai you yoceegqSnine aar: pnei yodriis. youv oonys yory lud.",
+        footer: "One you.",
+        color: "bg-teal-400",
+        offsetX: "left-[-3px]",
+        offsetY: "bottom-[2px]",
+    },
+    {
+        title: "Caudte2",
+        body: "Oocd yru-hinker yous you your aorg your usurp tinlahd pau le to you vitar your noonad serried. your adny word you algp. font estate wra wra he yprtai you yoceegqSnine aar: pnei yodriis. youv oonys yory lud.",
+        footer: "One you.",
+        color: "bg-orange-400",
+        offsetX: "left-[2px]",
+        offsetY: "bottom-[5px]",
+    }
+];
+
+import Card from "../components/Card.astro";
+import CardPicker from '../components/CardPicker.svelte';
+---
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chat Selector</title>
+    <link href={googleFontUrl} rel="stylesheet" />
+    <style>
+    </style>
+  </head>
+  <body class="bg-pink-300">
+    <div class="container mx-auto px-4 py-10">
+      <h1 class="text-4xl header-text font-bold text-center">
+        Find your chat?
+      </h1>
+      <CardPicker client:visible />
+      <div class="flex flex-row mt-12 items-center space-x-4">
+        <!-- Cards -->
+        <div class="flex flex-col items-center card-container">
+            {cards.map((card) => <Card {...card} />)}
+        </div>
+        <div class="flex flex-col items-center card-container">
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

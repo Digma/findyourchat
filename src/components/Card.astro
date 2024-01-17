@@ -1,0 +1,44 @@
+---
+interface Props {
+  title: string;
+  body: string;
+  footer: string;
+  color: string;
+  offsetX: string;
+  offsetY: string;
+}
+
+const { footer, title, body, color, offsetX, offsetY } = Astro.props;
+---
+
+<!-- .card {
+	border-radius: 1rem;
+	padding: 2rem;
+	margin-top: -305px;
+	transition: transform 0.3s ease-out;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	will-change: transform;
+	position: relative;
+	z-index: 1;
+  }
+
+  .card:last-child:hover {
+	transform: translateY(-10px);
+	z-index: 10;
+  } -->
+<div
+  id=`card-${title}`
+  class={`card ${color} w-[400px] h-[300px] ${offsetX} ${offsetY} p-8 rounded-xl drop-shadow-md font-cards first:mt-[0px] mt-[-305px] last:hover:translate-y-[-10px] transition-all delay-300 ease-out relative last:hover:drop-shadow-2xl will-change-transform`}
+>
+  <div class="flex flex-col justify-between opacity-80">
+    <i class="fas fa-heart icon-heart"></i>
+    <i class="fas fa-sun icon-sun"></i>
+    <h2 class="card-title text-2xl font-light text-white mb-4 drop-shadow-sm">{title}</h2>
+    <p class="card-content text-md text-white font-thin mb-4">
+      Choose your case you pedal you your pod consist to of Kate's bookkeeping
+      on Lunar cataloging to you coun tomorrow. distils, yad your you, your his
+      Kathrin magnetic? you rovid you hoist?
+    </p>
+    <p class="footer-text text-white text-center text-sm">Chat you.</p>
+  </div>
+</div>
