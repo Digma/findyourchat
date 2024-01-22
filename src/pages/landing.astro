@@ -1,0 +1,1688 @@
+---
+import { Image } from 'astro:assets';
+import ManCharacter from '../assets/man_avatar_2.png'
+import ManCharacterLinkedIn from '../assets/man_avatar_3.png'
+import WomanCharacter from '../assets/woman_avatar.png'
+import WomanCharacter2 from '../assets/woman_avatar_2.png'
+
+
+import Layout from "../layouts/Layout.astro";
+import LinkedInPost from '../components/LinkedInPost.astro'
+import Quote from '../components/Quote.astro'
+
+import CardPicker from '../components/CardPicker.svelte';
+---
+
+<Layout title="Welcome to Astro.">
+    <body class="bg-blue-accent">
+        <section class="overflow-hidden relative bg-blue-accent">
+            <div class="w-full mx-auto max-w-7xl relative">
+                <div
+                    class="relative flex flex-col w-full p-5 mx-auto md:items-center md:justify-between md:flex-row md:px-6 lg:px-16"
+                >
+                    <div
+                        class="flex flex-row items-center justify-between text-regent-900 text-sm lg:justify-start"
+                    >
+                        <a href="/">
+                            <div class="text-black font-bold text-xl inline-flex items-center">
+                                <!-- Logo (<span><svg>-->
+                                <span class="text-black mr-2">★</span><span class="text-white">Find</span><span class="text-rose-accent italic">Your</span><span class="text-black">Chat</span>
+                            </div>
+                        </a>
+                    </div>
+                    <nav
+                        :class="{'flex': open, 'hidden': !open}"
+                        class="flex-col items-center flex-grow hidden md:pb-0 md:flex md:justify-end md:flex-row"
+                    >
+                        <div class="inline-flex items-center gap-2 list-none lg:ml-auto bg-yellow-accent rounded-full">
+                            <a
+                                href="https://lexingtonthemes.lemonsqueezy.com/checkout/buy/e2d91f04-5944-495e-a679-b3df5c08b196"
+                                class="inline-flex items-center justify-center font-bold px-4 py-2 text-sm text-regent-900 bg-regent-300 rounded-full group focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 hover:bg-white/5 active:bg-fuchsia-50 active:text-[#0c1824] focus-visible:outline-fuchsia-50"
+                            >
+                                Join the Waiting List
+                            </a>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </section>
+        <section class="bg-blue-accent relative items-center flex justify-center pb-12">
+            <div
+                class="relative w-full mx-auto max-w-7xl items-center pt-12 lg:px-16 lg:pt-32 md:px-12 px-5"
+            >
+                <div>
+                    <div class="text-white text-center">
+                        <p
+                            class="text-2xl sm:text-3xl md:text-5xl lg:text-7xl tracking-tighter font-medium text-regent-900"
+                        >
+                        Unlock Your <span class="block"
+                                >Unique Writing Style</span
+                            >
+                        </p><p class="max-w-xl mt-12 text-lg mx-auto text-sm sm:text-md md:text-xl lg:text-3xl">
+                            ✋ Stop sounding like everyone else ✋
+                        </p>
+                    </div>
+                </div><div class="relative w-full mx-auto max-w-7xl items-center mt-12">
+                    <LinkedInPost name="John Doe" job="Influencer at Buzz Inc & Co" date="1d" post="Please no more ChatGPT posts.\nI am tired of it 😕😕" >
+                        <Image src={ManCharacterLinkedIn} alt="profile picture bearded man" height="50" width="50" class="rounded-full"/>
+                    </LinkedInPost>
+                </div>
+            </div>
+        </section>
+        <section class="bg-purple-accent">
+            <div
+                class="items-center w-full px-8 py-12 mx-auto md:px-12 lg:px-16 max-w-7xl lg:pt-32 lg:pb-32"
+            >
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                    <div class="text-[#FFFFFF]">
+                        <div class="mb-36">
+                            <p class="sm:text-xl md:text-3xl lg:text-5xl tracking-tighter font-medium float-end">
+                                Tailor ChatGPT to your Unique Personality
+                            </p>
+                        </div>
+                        <p class="mt-12 font-light text-lg lg:text-xl tracking-wide">
+                            Make ChatGPT write in your own unique style for all types of communications
+                        </p>
+                    </div>
+                    <div>
+                        <div class="relative w-full mx-auto max-w-7xl items-center">
+                            <Quote post="Hey Team, can you give me a project Update?">
+                                <Image src={WomanCharacter2} alt="picture of a formal woman in work attire" height="100" width="100" class="rounded-full"/>
+                            </Quote>
+                            <Quote post="Dear Team, at your earliest convenience, I kindly request a project update.">
+                                <Image src={ManCharacter} alt="picture of a casual man in work attire" height="150" width="150" class="rounded-full"/>  
+                            </Quote>
+                            <Quote post="Hello Team, I'm reaching out to ask for a quick project update">
+                                <Image src={WomanCharacter} alt="picture of a woman man in work attire" height="150" width="150" class="rounded-full"/>  
+                            </Quote>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- <section class="bg-purple-accent relative items-center flex justify-center pb-12">
+            <div
+                class="relative w-full mx-auto max-w-7xl items-center pt-12 lg:px-16 lg:pt-32 md:px-12 px-5"
+            >
+                <div>
+                    <div class="text-center">
+                        <p
+                            class="text-2xl sm:text-3xl md:text-5xl lg:text-7xl tracking-tighter font-medium text-regent-900"
+                        >
+                        Tailor ChatGPT to your<span class="block"
+                                >Unique Personality</span
+                            >
+                        </p>
+                    </div>
+                </div><div class="relative w-full mx-auto max-w-7xl items-center mt-12">
+                    <img alt="" class="bg-white-text relative w-full object-cover" src="/images/ui13.png" />
+                    <Quote post="Hey Team, can you give me a project Update?">
+                        <Image src={ManCharacter} alt="picture of a casual man in work attire" height="150"/>
+                    </Quote>
+                    <Quote post="Dear Team, at your earliest convenience, I kindly request a project update.">
+                        <Image src={WomanCharacter} alt="picture of a formal woman in work attire" height="150"/>    
+                    </Quote>
+                </div>
+            </div>
+        </section> -->
+        <section class="bg-rose-accent">
+            <div
+                class="items-center space w-full px-8 py-12 mx-auto md:px-12 lg:px-16 max-w-7xl lg:pt-32"
+            >
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                    <div>
+                        <CardPicker client:visible />
+                    </div>
+                    <div class="text-[#FFFFFF]">
+                        <div class="mb-36">
+                            <p class="sm:text-xl md:text-3xl lg:text-5xl tracking-tighter font-medium float-end">
+                                Create your own writing styles in Minutes
+                            </p>
+                        </div>
+                        <p class="mt-12 font-light text-lg lg:text-xl tracking-wide">
+                            Answer a few questions and we'll generate a writing style that's unique to you
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- <section class="bg-rose-accent relative items-center flex justify-center pb-12">
+            <div
+                class="relative w-full mx-auto max-w-7xl items-center pt-12 lg:px-16 lg:pt-32 md:px-12 px-5"
+            >
+                <div>
+                    <div class="text-center">
+                        <p
+                            class="text-white text-2xl sm:text-3xl md:text-5xl lg:text-7xl tracking-tighter font-medium"
+                        >
+                        Create your own writing styles<span class="block"
+                                >in Minutes</span
+                            >
+                        </p><p class="max-w-xl mt-4 text-lg text-regent-900/80 mx-auto text-sm sm:text-md md:text-xl lg:text-3xl">
+                            Are you more?
+                        </p>
+                    </div>
+                </div><div class="relative w-full mx-auto max-w-7xl items-center mt-12">
+                    <img alt="" class="bg-white-text relative w-full object-cover" src="/images/ui13.png" />
+                    <Quote post="Hey Team, can you give me a project Update?" />
+                    <Quote post="Dear Team, at your earliest convenience, I kindly request a project update." />
+                </div>
+            </div>
+        </section> -->
+        <section class="bg-lightblue-accent">
+            <div class="relative w-full mx-auto max-w-7xl items-center pt-12 lg:px-16 lg:pt-32 md:px-12 px-5 pb-12 lg:pb-32">
+                <div>
+                    <div class="text-center">
+                        <p class="mt-6 text-sm sm:text-md md:text-xl lg:text-3xl">
+                            <span class="text-black mt-6 text-base tracking-wide"
+                                >Join the waiting list for early access
+                            </span>
+                        </p>
+                        <form class="mt-4 flex max-w-xl flex-col items-center mx-auto">
+                            <div class="mt-3 flex w-full flex-col gap-1 sm:flex-row">
+                                <input
+                                    name="email"
+                                    type="email"
+                                    class="lg:px-12 px-6 py-4 bg-white placeholder-slate-400 border border-slate-300 duration-200 focus:outline-none focus:ring focus:ring-regent-100 focus:border-regent-300 w-full rounded-full"
+                                    placeholder="Enter your email..."
+                                    required=""
+                                /><button
+                                    type="button"
+                                    class="inline-flex items-center justify-center w-auto lg:px-12 px-6 py-4 text-center text-regent-900 duration-200 bg-blue-accent font-medium rounded-full text-base focus:outline-none focus:ring-2 focus:ring-offset-2 hover:text-white focus:ring-regent-900 ring-offset-2 hover:bg-regent-900"
+                                    ><div style="position:relative"></div>Join the Waiting List</button
+                                >
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- <section class="relative border-white/5 border-y scroll-mt-24">
+            <div
+                class="items-center w-full px-8 py-12 mx-auto md:px-12 lg:px-16 max-w-7xl lg:py-32"
+            >
+                <div class="grid grid-cols-1 gap-x-6 gap-y-10 items-baseline">
+                    <div class="col-span-2 space-y-24">
+                        <div>
+                            <div class="mt-6 divide-y space-y-3">
+                                <details>
+                                    <summary
+                                        class="text-regent-900 text-base lg:text-2xl font-medium tracking-tight focus:text-regent-600 i py-3 text-left w-full"
+                                        >When will FindYourChat be released?</summary
+                                    >
+                                    <p class="text-slate-500 text-sm pt-5 lg:text-xl">
+                                        To get started with our service, simply visit our website
+                                        and sign up for an account. From there, you can explore our
+                                        products and services and choose the ones that best meet
+                                        your needs.
+                                    </p>
+                                </details>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="mt-6 divide-y space-y-3">
+                                <details>
+                                    <summary
+                                        class="text-regent-900 text-base lg:text-2xl font-medium tracking-tight focus:text-regent-600 i py-3 text-left w-full"
+                                        >Will FindYourChat be free?</summary
+                                    >
+                                    <p class="text-slate-500 text-sm pt-5 lg:text-xl">
+                                        Yes
+                                    </p>
+                                </details>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section> -->
+        <footer class="bg-lightblue-accent">
+            <div
+                class="items-center w-full px-8 py-12 mx-auto md:px-12 lg:px-16 max-w-7xl lg:pt-32"
+            >
+                <div class="xl:gap-8 xl:grid xl:grid-cols-3">
+                    <!-- <div
+                        class="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-6 xl:col-span-3 border-t pt-12"
+                    >
+                        <div class="md:gap-8 md:grid md:grid-cols-2">
+                            <div>
+                                <h3 class="text-regent-900 font-medium lg:text-xl text-lg">
+                                    Navigation
+                                </h3><ul class="mt-4 space-y-2" role="list">
+                                    <li>
+                                        <a
+                                            class="text-base text-slate-500 inline-flex items-center hover:text-regent-600"
+                                            href="/"
+                                        >
+                                            <span>Overview</span>
+                                            <span
+                                                class="rounded-full items-center bg-regent-100 font-medium inline-flex ml-4 px-3 py-0.5 text-regent-700 text-xs"
+                                                >30+ Pages</span
+                                            >
+                                        </a>
+                                    </li><li>
+                                        <a
+                                            class="text-base text-slate-500 hover:text-regent-600"
+                                            href="/style-guide">Style Guide</a
+                                        >
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="mt-12 md:mt-0">
+                                <h3 class="text-regent-900 font-medium lg:text-xl text-lg">
+                                    Socials
+                                </h3><ul class="mt-4 space-y-2" role="list">
+                                    <li>
+                                        <a
+                                            class="text-base text-slate-500 hover:text-regent-600"
+                                            href="https://twitter.com/lexingtonthemes"
+                                            >@lexingtonthemes</a
+                                        >
+                                    </li><li>
+                                        <a
+                                            class="text-base text-slate-500 hover:text-regent-600"
+                                            href="https://twitter.com/Mike_Andreuzza"
+                                            >@Mike_Andreuzza</a
+                                        >
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="md:gap-8 md:grid md:grid-cols-2">
+                            <div>
+                                <h3 class="text-regent-900 font-medium lg:text-xl text-lg">
+                                    Stay updated
+                                </h3>
+                                <ul class="mt-4 space-y-2" role="list">
+                                    <li>
+                                        <a
+                                            class="text-base text-slate-500 hover:text-regent-600"
+                                            href="https://www.lexingtonthemes.com/license"
+                                            >License</a
+                                        >
+                                    </li><li>
+                                        <a
+                                            class="text-base text-slate-500 hover:text-regent-600"
+                                            href="https://www.lexingtonthemes.com/documentation"
+                                            >Documentation</a
+                                        >
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="mt-12 md:mt-0">
+                                <h3 class="text-regent-900 font-medium lg:text-xl text-lg">
+                                    More themes
+                                </h3><ul class="mt-4 space-y-2" role="list">
+                                    <li>
+                                        <a
+                                            class="text-base text-slate-500 hover:text-regent-600"
+                                            href="https://lexingtonthemes.com">Lexington Themes</a
+                                        >
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+            </div><div class="w-full lg:px-16 max-w-7xl md:px-12 mx-auto px-8 py-4">
+                <div class="flex items-center justify-center w-screen">
+                    <div class="mt-8 md:mt-0 md:order-1">
+                        <p>
+                            <span class="text-sm text-regent-900 mt-2 mx-auto text-center">
+                                © 2024 Grosch. All rights reserved - Designed with HTML, Astro.js and Tailwind
+                            </span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- <section>
+            <div class="max-w-7xl px-8 md:px-12 lg:px-24 mx-auto py-12 lg:py-24 justify-center bg-[#fafafa]">
+                <div class="text-center justify-center lg:justify-start">
+                    <span
+                        class="text-base items-center inline-flex uppercase tracking-wide font-medium text-regent-600"
+                    >
+                        Our beloved customers</span
+                    >
+                </div>
+                <div
+                    class="mx-auto mt-10 grid max-w-lg grid-cols-4 items-center gap-x-8 gap-y-10 sm:max-w-xl sm:grid-cols-6 sm:gap-x-10 lg:mx-0 lg:max-w-none lg:grid-cols-5"
+                >
+                    <img
+                        class="col-span-2 max-h-12 w-full object-contain lg:col-span-1 invert"
+                        src="/logos/basecamp.svg"
+                        alt=" logo"
+                        width="158"
+                        height="48"
+                    />
+                    <img
+                        class="col-span-2 max-h-12 w-full object-contain lg:col-span-1 invert"
+                        src="/logos/dribbble.svg"
+                        alt=" logo"
+                        width="158"
+                        height="48"
+                    />
+                    <img
+                        class="col-span-2 max-h-12 w-full object-contain lg:col-span-1 invert"
+                        src="/logos/stripe.svg"
+                        alt=" logo"
+                        width="158"
+                        height="48"
+                    />
+                    <img
+                        class="col-span-2 max-h-12 w-full object-contain sm:col-start-2 lg:col-span-1 invert"
+                        src="/logos/pipe.svg"
+                        alt=" logo"
+                        width="158"
+                        height="48"
+                    />
+                    <img
+                        class="col-span-2 col-start-2 max-h-12 w-full object-contain sm:col-start-auto lg:col-span-1 invert"
+                        src="/logos/github.svg"
+                        alt=" logo"
+                        width="158"
+                        height="48"
+                    />
+                </div>
+            </div>
+        </section>
+        <section>
+            <div class="px-8 py-12 mx-auto md:px-12 lg:px-16 max-w-7xl lg:py-32 bg-[#fafafa]">
+                <div>
+                    <span
+                        class="text-base items-center inline-flex uppercase tracking-wide font-medium text-regent-600"
+                    >
+                        Components
+                    </span>
+                    <p class="mt-16 text-2xl font-normal lg:text-4xl text-regent-900">
+                        See everything at a glance and take control of your business like never
+                        before! With our cutting-edge intuitive dashboard, you can effortlessly
+                        manage every aspect of your operations, empowering you to make informed
+                        decisions and drive success.
+                    </p>
+                </div>
+                <ul
+                    class="grid grid-cols-1 lg:mt-24 mt-12 gap-6 lg:gap-12 lg:grid-cols-3"
+                    role="list"
+                >
+                    <li>
+                        <div>
+                            <span class="text-lg text-medium text-regent-600 font-mono">01</span>
+                            <p class="text-regent-900 mt-8 font-medium lg:text-3xl text-xl">
+                                Intelligent analytics
+                            </p>
+                        </div>
+                        <p class="text-slate-500 mt-6 text-lg lg:text-xl tracking-wide">
+                            Unlock the power of data: get real-time insights with our advanced
+                            intelligent analytics tools.
+                        </p>
+                    </li>
+                    <li>
+                        <div>
+                            <span class="text-lg text-medium text-regent-600 font-mono">02</span>
+                            <p class="text-regent-900 mt-8 font-medium lg:text-3xl text-xl">
+                                Enhanced collaboration
+                            </p>
+                        </div>
+                        <p class="text-slate-500 mt-6 text-lg lg:text-xl tracking-wide">
+                            Seamlessly work together: boost productivity and teamwork through our
+                            enhanced collaboration features.
+                        </p>
+                    </li>
+                    <li>
+                        <div>
+                            <span class="text-lg text-medium text-regent-600 font-mono">03</span>
+                            <p class="text-regent-900 mt-8 font-medium lg:text-3xl text-xl">
+                                Quick onboarding
+                            </p>
+                        </div>
+                        <p class="text-slate-500 mt-6 text-lg lg:text-xl tracking-wide">
+                            Start smoothly: experience a hassle-free onboarding process with our
+                            streamlined and user-friendly tools
+                        </p>
+                    </li>
+                    <li>
+                        <div>
+                            <span class="text-lg text-medium text-regent-600 font-mono">04</span>
+                            <p class="text-regent-900 mt-8 font-medium lg:text-3xl text-xl">
+                                Custom tips
+                            </p>
+                        </div>
+                        <p class="text-slate-500 mt-6 text-lg lg:text-xl tracking-wide">
+                            Tailored for you: discover more opportunities with our personalized
+                            recommendations and content
+                        </p>
+                    </li>
+                    <li>
+                        <div>
+                            <span class="text-lg text-medium text-regent-600 font-mono">05</span>
+                            <p class="text-regent-900 mt-8 font-medium lg:text-3xl text-xl">
+                                Mobile optimization
+                            </p>
+                        </div>
+                        <p class="text-slate-500 mt-6 text-lg lg:text-xl tracking-wide">
+                            Stay connected anywhere: enjoy seamless access and user-friendly
+                            interface with our mobile optimization
+                        </p>
+                    </li>
+                    <li>
+                        <div>
+                            <span class="text-lg text-medium text-regent-600 font-mono">06</span>
+                            <p class="text-regent-900 mt-8 font-medium lg:text-3xl text-xl">
+                                Advanced security
+                            </p>
+                        </div>
+                        <p class="text-slate-500 mt-6 text-lg lg:text-xl tracking-wide">
+                            Your data, fortified: rest easy knowing your information is protected by
+                            our state-of-the-art advanced security features
+                        </p>
+                    </li>
+                </ul>
+            </div>
+        </section>
+        <section>
+            <div
+                class="items-center w-full px-8 py-12 mx-auto md:px-12 lg:px-16 max-w-7xl lg:pt-32 bg-[#fafafa]"
+            >
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-24 items-end">
+                    <div>
+                        <span
+                            class="text-base items-center inline-flex uppercase tracking-wide font-medium text-regent-600"
+                        >
+                            No hidden fees
+                        </span>
+                        <p class="mt-16 text-2xl font-normal lg:text-4xl text-regent-900">
+                            That's why we've made our product available at a price that's affordable
+                            for everyone.
+                        </p>
+                    </div>
+                    <div>
+                        <p class="text-slate-500 text-lg lg:text-xl tracking-wide">
+                            With a range of flexible pricing options and no hidden fees, you can get
+                            all the features and benefits of our product without breaking the bank.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="grid grid-cols-2 mt-24">
+                <section class="relative bg-[#99C699]">
+                    <div class="overflow-hidden h-full">
+                        <img alt="" src="/images/ui7.png" class="w-full" />
+                    </div>
+                </section><section class="relative bg-yellow-500">
+                    <div class="overflow-hidden h-full">
+                        <img alt="" src="/images/ui8.png" class="w-full" />
+                    </div>
+                </section>
+            </div>
+        </section>
+        <section>
+            <div
+                class="items-center w-full px-8 pt-12 mx-auto md:px-12 lg:px-24 max-w-7xl lg:pt-32"
+            >
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-24 items-end">
+                    <div>
+                        <span
+                            class="text-base items-center inline-flex uppercase tracking-wide font-medium text-regent-600"
+                        >
+                            Automaton
+                        </span>
+                        <p class="mt-16 text-2xl font-normal lg:text-4xl text-regent-900">
+                            Simplify tasks with our automated workflows
+                        </p>
+                    </div>
+                    <div>
+                        <p class="text-slate-500 text-lg lg:text-xl tracking-wide">
+                            In today's fast-paced world, maximizing efficiency is crucial to stay
+                            competitive and achieve success. At Snow Peak, we understand the value
+                            of your time and resources. That's why we are proud to introduce our
+                            cutting-edge automated workflows, designed to streamline your processes
+                            and boost productivity like never before.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="grid grid-cols-2 lg:cols-4 mt-24">
+                <section class="relative bg-[#99C699]">
+                    <div class="overflow-hidden h-full">
+                        <img alt="" src="/images/ui9.png" class="w-full" />
+                    </div>
+                </section>
+                <section class="relative bg-red-300">
+                    <div class="overflow-hidden h-full">
+                        <img alt="" src="/images/ui10.png" class="w-full" />
+                    </div>
+                </section>
+                <section class="relative bg-yellow-500">
+                    <div class="overflow-hidden h-full">
+                        <img alt="" src="/images/ui12.png" class="w-full" />
+                    </div>
+                </section><section class="relative bg-lila-500">
+                    <div class="overflow-hidden h-full">
+                        <img alt="" src="/images/ui11.png" class="w-full" />
+                    </div>
+                </section>
+            </div>
+        </section>
+        <section>
+            <div
+                class="items-center w-full px-8 pt-12 mx-auto md:px-12 lg:px-24 max-w-7xl lg:pt-32"
+            >
+                <div>
+                    <span
+                        class="text-base items-center inline-flex uppercase tracking-wide font-medium text-regent-600"
+                    >
+                        what includes
+                    </span>
+                    <p class="mt-16 text-2xl font-normal lg:text-4xl text-regent-900">
+                        Discover what Snowpeak includes and what is made of, you will find a ton of
+                        demo pages and components.
+                    </p>
+                </div>
+            </div>
+            <div class="mt-24">
+                <div class="grid gap-12 lg:gap-0 lg:grid-cols-2 items-center">
+                    <section class="relative md:px-12 lg:px-40 px-8">
+                        <div class="overflow-hidden">
+                            <div class="text-left">
+                                <div>
+                                    <p
+                                        class="text-2xl font-normal tracking-tight lg:text-4xl text-regent-900 mt-12 lg:mt-0"
+                                    >
+                                        We protect your data.
+                                    </p>
+                                    <p class="max-w-xl mt-4 text-lg text-regent-900/80">
+                                        Whether you're a beginner or an experienced programmer, our
+                                        SaaS product offers the tools you need to be successful.
+                                    </p>
+                                </div>
+                                <div class="mt-10">
+                                    <a
+                                        href="/"
+                                        class="inline-flex items-center lg:text-xl justify-center w-auto lg:px-12 px-6 py-4 text-center text-regent-900 duration-200 bg-[#99C699] font-medium rounded-full text-base focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-regent-500 ring-offset-2 hover:bg-regent-100"
+                                    >
+                                        See all pages</a
+                                    >
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="relative bg-[#99C699] overflow-hidden">
+                        <div class="overflow-hidden h-full">
+                            <img alt="" src="/images/ui9.png" class="w-full" />
+                        </div>
+                    </section>
+                </div>
+                <div class="px-8 py-12 mx-auto md:px-12 lg:px-16 max-w-7xl">
+                    <ul
+                        class="grid grid-cols-1 lg:mt-24 mt-12 gap-6 lg:gap-12 lg:grid-cols-3"
+                        role="list"
+                    >
+                        <li>
+                            <div>
+                                <span class="text-lg text-medium text-regent-600 font-mono">01</span
+                                >
+                                <p class="text-regent-900 mt-8 font-medium lg:text-3xl text-xl">
+                                    Intelligent analytics
+                                </p>
+                            </div>
+                            <p class="text-slate-500 mt-6 text-lg lg:text-xl tracking-wide">
+                                Unlock the power of data: get real-time insights with our advanced
+                                intelligent analytics tools.
+                            </p>
+                        </li>
+                        <li>
+                            <div>
+                                <span class="text-lg text-medium text-regent-600 font-mono">02</span
+                                >
+                                <p class="text-regent-900 mt-8 font-medium lg:text-3xl text-xl">
+                                    Enhanced collaboration
+                                </p>
+                            </div>
+                            <p class="text-slate-500 mt-6 text-lg lg:text-xl tracking-wide">
+                                Seamlessly work together: boost productivity and teamwork through
+                                our enhanced collaboration features.
+                            </p>
+                        </li>
+                        <li>
+                            <div>
+                                <span class="text-lg text-medium text-regent-600 font-mono">03</span
+                                >
+                                <p class="text-regent-900 mt-8 font-medium lg:text-3xl text-xl">
+                                    Quick onboarding
+                                </p>
+                            </div>
+                            <p class="text-slate-500 mt-6 text-lg lg:text-xl tracking-wide">
+                                Start smoothly: experience a hassle-free onboarding process with our
+                                streamlined and user-friendly tools
+                            </p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <section>
+            <div
+                class="items-center w-full px-8 pt-12 mx-auto md:px-12 lg:px-16 max-w-7xl lg:pt-32"
+            >
+                <div>
+                    <p class="text-2xl font-normal tracking-tight lg:text-4xl text-regent-900">
+                        Discover what Snowpeak includes and what is made of, you will find a ton of
+                        demo pages and components.
+                    </p>
+                </div>
+            </div>
+            <div class="mt-24">
+                <div class="grid gap-12 lg:gap-0 lg:grid-cols-2 items-center">
+                    <section class="relative md:px-12 lg:px-32 px-8">
+                        <div class="">
+                            <div class="text-left" x-data="{ open: false }">
+                                <div>
+                                    <p
+                                        class="text-2xl font-normal tracking-tight lg:text-3xl text-regent-900 mt-12 lg:mt-0"
+                                    >
+                                        "Snow Peaks automated workflows transformed our business. We
+                                        now save time, avoid errors, and stay on top of operations
+                                        effortlessly. Highly recommended for anyone seeking maximum
+                                        efficiency."
+                                    </p>
+                                    <p class="max-w-xl mt-4 text-lg text-regent-900/80">
+                                        John Smith CEO – of Nieve Supply Co.
+                                    </p>
+                                </div>
+                                <div class="mt-10">
+                                    <button
+                                        x-on:click="open = true"
+                                        class="inline-flex items-center lg:text-xl justify-center w-auto lg:px-12 px-6 py-4 text-center text-regent-900 duration-200 bg-[#99C699] font-medium rounded-full text-base focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-regent-500 ring-offset-2 hover:bg-regent-100"
+                                    >
+                                        <span
+                                            ><svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                fill="none"
+                                                viewBox="0 0 24 24"
+                                                stroke-width="1.5"
+                                                stroke="currentColor"
+                                                class="w-6 h-6"
+                                            >
+                                                <path
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                    d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z"
+                                                ></path>
+                                            </svg>
+                                        </span>
+                                        <span class="ml-3">Watch John's story</span></button
+                                    >
+                                </div>
+                                <div
+                                    class="inset-0 fixed overflow-y-auto z-10"
+                                    role="dialog"
+                                    :aria-labelledby="$id('modal-title')"
+                                    aria-modal="true"
+                                    x-id="['modal-title']"
+                                    x-on:keydown.escape.prevent.stop="open = false"
+                                    x-show="open"
+                                    aria-labelledby="modal-title-1"
+                                    style="display: none;"
+                                >
+                                    <div
+                                        class="inset-0 fixed bg-black bg-opacity-50"
+                                        x-show="open"
+                                        x-transition.opacity=""
+                                        style="display: none;"
+                                    >
+                                    </div>
+                                    <div
+                                        class="flex relative items-center justify-center min-h-screen p-4"
+                                        x-show="open"
+                                        x-on:click="open = false"
+                                        x-transition=""
+                                        style="display: none;"
+                                    >
+                                        <div
+                                            class="w-full bg-dark p-4 rounded-3xl max-w-7xl overflow-y-auto relative shadow-3xl"
+                                            x-on:click.stop=""
+                                            x-trap.noscroll.inert="open"
+                                        >
+                                            <iframe
+                                                class="w-full rounded-2xl aspect-video"
+                                                src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                                            ></iframe>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="relative bg-[#99C699] overflow-hidden">
+                        <div class="overflow-hidden h-full">
+                            <img
+                                class="aspect-square object-cover"
+                                alt=""
+                                src="https://images.unsplash.com/photo-1500048993953-d23a436266cf?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2069&q=80"
+                            />
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </section>
+        <section>
+            <div
+                class="items-center w-full px-8 py-12 mx-auto md:px-12 lg:px-16 max-w-7xl lg:py-32"
+            >
+                <div
+                    class="items-center w-full px-8 py-12 mx-auto md:px-12 lg:px-24 max-w-7xl lg:pt-36 lg:pb-0"
+                >
+                    <div class="max-w-6xl lg:mx-auto lg:text-center">
+                        <span
+                            class="text-base items-center inline-flex uppercase tracking-wide font-medium text-regent-600"
+                        >
+                            Accessible pricing
+                        </span>
+                        <p
+                            class="text-2xl sm:text-3xl md:text-5xl lg:text-7xl tracking-tighter font-medium text-regent-900"
+                        >
+                            Empowering your <span class="lg:block"> efficiency journey</span>
+                        </p><p class="max-w-xl mt-4 text-lg text-regent-900/80 mx-auto">
+                            Choose the perfect plan tailored to meet your unique business needs
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="items-center mx-auto 2xl:max-w-7xl">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+                    <section class="flex flex-col p-8">
+                        <h3 class="mt-5 text-lg text-regent-900 lg:text-2xl font-medium">Hobby</h3>
+                        <p class="text-sm text-regent-900 mt-2">For individuals</p>
+                        <p class="text-regent-900 font-medium text-5xl tracking-tight order-first">
+                            $49
+                        </p>
+                        <ul
+                            class="text-lg flex flex-col gap-y-3 order-last mt-10 text-regent-900"
+                            role="list"
+                        >
+                            <li class="flex items-center">
+                                <svg
+                                    class="h-6 w-6"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                >
+                                    <path
+                                        d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"></path>
+                                </svg>
+                                <span class="ml-4">Limited number of users</span>
+                            </li>
+                            <li class="flex items-center">
+                                <svg
+                                    class="h-6 w-6"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                >
+                                    <path
+                                        d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"></path>
+                                </svg>
+                                <span class="ml-4">Limited storage (1 GB)</span>
+                            </li>
+                            <li class="flex items-center">
+                                <svg
+                                    class="h-6 w-6"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                >
+                                    <path
+                                        d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"></path>
+                                </svg>
+                                <span class="ml-4">Basic support (email only)</span>
+                            </li>
+                            <li class="flex items-center">
+                                <svg
+                                    class="h-6 w-6"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                >
+                                    <path
+                                        d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"></path>
+                                </svg>
+                                <span class="ml-4">Basic analytics</span>
+                            </li>
+                            <li class="flex items-center">
+                                <svg
+                                    class="h-6 w-6"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                >
+                                    <path
+                                        d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"></path>
+                                </svg>
+                                <span class="ml-4">Limited integrations</span>
+                            </li>
+                            <li class="flex items-center">
+                                <svg
+                                    class="h-6 w-6"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                >
+                                    <path
+                                        d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"></path>
+                                </svg>
+                                <span class="ml-4">Basic customization</span>
+                            </li>
+                            <li class="flex items-center">
+                                <svg
+                                    class="h-6 w-6"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                >
+                                    <path
+                                        d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"></path>
+                                </svg>
+                                <span class="ml-4">No SLA</span>
+                            </li>
+                        </ul>
+                        <div class="mt-8 w-full order-last">
+                            <a
+                                class="inline-flex items-center lg:text-xl justify-center w-full px-6 py-4 text-center text-regent-900 duration-200 bg-[#99C699] font-medium rounded-full text-base focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-regent-500 ring-offset-2 hover:bg-regent-100"
+                                href="#">Get started</a
+                            >
+                        </div>
+                    </section>
+                    <section class="flex flex-col p-8 bg-yellow-500">
+                        <h3 class="mt-5 text-lg text-regent-900 lg:text-2xl font-medium">Pro</h3>
+                        <p class="text-sm text-regent-900 mt-2">For medium businesses</p>
+                        <p class="text-regent-900 font-medium text-5xl tracking-tight order-first">
+                            $99
+                        </p>
+                        <ul
+                            class="text-lg flex flex-col gap-y-3 order-last mt-10 text-regent-900"
+                            role="list"
+                        >
+                            <li class="flex items-center">
+                                <svg
+                                    class="h-6 w-6"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                >
+                                    <path
+                                        d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"></path>
+                                </svg>
+                                <span class="ml-4">Limited number of users</span>
+                            </li>
+                            <li class="flex items-center">
+                                <svg
+                                    class="h-6 w-6"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                >
+                                    <path
+                                        d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"></path>
+                                </svg>
+                                <span class="ml-4">Limited storage (5 GB)</span>
+                            </li>
+                            <li class="flex items-center">
+                                <svg
+                                    class="h-6 w-6"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                >
+                                    <path
+                                        d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"></path>
+                                </svg>
+                                <span class="ml-4">Basic support (email only)</span>
+                            </li>
+                            <li class="flex items-center">
+                                <svg
+                                    class="h-6 w-6"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                >
+                                    <path
+                                        d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"></path>
+                                </svg>
+                                <span class="ml-4">Basic analytics</span>
+                            </li>
+                            <li class="flex items-center">
+                                <svg
+                                    class="h-6 w-6"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                >
+                                    <path
+                                        d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"></path>
+                                </svg>
+                                <span class="ml-4">Multiple integrations</span>
+                            </li>
+                            <li class="flex items-center">
+                                <svg
+                                    class="h-6 w-6"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                >
+                                    <path
+                                        d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"></path>
+                                </svg>
+                                <span class="ml-4">Basic customization</span>
+                            </li>
+                            <li class="flex items-center">
+                                <svg
+                                    class="h-6 w-6"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                >
+                                    <path
+                                        d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"></path>
+                                </svg>
+                                <span class="ml-4">No SLA</span>
+                            </li>
+                        </ul>
+                        <div class="mt-8 w-full order-last">
+                            <a
+                                class="inline-flex items-center lg:text-xl justify-center w-full px-6 py-4 text-center text-regent-900 duration-200 bg-white font-medium rounded-full text-base focus:outline-none focus:ring-2 focus:ring-offset-2 hover:text-white focus:ring-regent-900 ring-offset-2 hover:bg-regent-900"
+                                href="#">Get started</a
+                            >
+                        </div>
+                    </section>
+                    <section
+                        class="flex flex-col px-6 sm:px-8 bg-gradient-to-tr from-accent-600 via-accent-500 to-accent-400 lg:order-none order-first py-8 shadow-normal bg-[#99C699]"
+                    >
+                        <h3 class="mt-5 text-lg text-regent-900 lg:text-2xl font-medium">
+                            Enterprise
+                        </h3>
+                        <p class="text-sm mt-2 text-regent-900">For organizations</p>
+                        <p class="text-regent-900 font-medium text-5xl tracking-tight order-first">
+                            $129
+                        </p>
+                        <ul
+                            class="text-lg flex flex-col gap-y-3 order-last mt-10 text-regent-900"
+                            role="list"
+                        >
+                            <li class="flex items-center">
+                                <svg
+                                    class="h-6 w-6"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                >
+                                    <path
+                                        d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"></path>
+                                </svg>
+                                <span class="ml-4">Unlimited number of users</span>
+                            </li>
+                            <li class="flex items-center">
+                                <svg
+                                    class="h-6 w-6"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                >
+                                    <path
+                                        d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"></path>
+                                </svg>
+                                <span class="ml-4">Unlimited storage</span>
+                            </li>
+                            <li class="flex items-center">
+                                <svg
+                                    class="h-6 w-6"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                >
+                                    <path
+                                        d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"></path>
+                                </svg>
+                                <span class="ml-4">Advanced support</span>
+                            </li>
+                            <li class="flex items-center">
+                                <svg
+                                    class="h-6 w-6"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                >
+                                    <path
+                                        d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"></path>
+                                </svg>
+                                <span class="ml-4">Advanced analytics</span>
+                            </li>
+                            <li class="flex items-center">
+                                <svg
+                                    class="h-6 w-6"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                >
+                                    <path
+                                        d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"></path>
+                                </svg>
+                                <span class="ml-4">Multiple integrations</span>
+                            </li>
+                            <li class="flex items-center">
+                                <svg
+                                    class="h-6 w-6"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                >
+                                    <path
+                                        d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"></path>
+                                </svg>
+                                <span class="ml-4">Advanced customization</span>
+                            </li>
+                            <li class="flex items-center">
+                                <svg
+                                    class="h-6 w-6"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                >
+                                    <path
+                                        d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"></path>
+                                </svg>
+                                <span class="ml-4">99.9% SLA</span>
+                            </li>
+                        </ul>
+                        <div class="mt-8 w-full order-last">
+                            <a
+                                class="inline-flex items-center lg:text-xl justify-center w-full px-6 py-4 text-center text-regent-900 duration-200 bg-white font-medium rounded-full text-base focus:outline-none focus:ring-2 focus:ring-offset-2 hover:text-white focus:ring-regent-900 ring-offset-2 hover:bg-regent-900"
+                                href="#">Get started</a
+                            >
+                        </div>
+                    </section>
+                    <section class="flex flex-col p-8 bg-lila-500">
+                        <h3 class="mt-5 text-lg text-regent-900 lg:text-2xl font-medium">
+                            Unlimited
+                        </h3>
+                        <p class="text-sm text-regent-900 mt-2">Most advance features.</p>
+                        <p class="text-regent-900 font-medium text-5xl tracking-tight order-first">
+                            $299
+                        </p>
+                        <ul
+                            class="text-lg flex flex-col gap-y-3 order-last mt-10 text-regent-900"
+                            role="list"
+                        >
+                            <li class="flex items-center">
+                                <svg
+                                    class="h-6 w-6"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                >
+                                    <path
+                                        d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"></path>
+                                </svg>
+                                <span class="ml-4">Unlimited number of users</span>
+                            </li>
+                            <li class="flex items-center">
+                                <svg
+                                    class="h-6 w-6"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                >
+                                    <path
+                                        d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"></path>
+                                </svg>
+                                <span class="ml-4">Unlimited storage</span>
+                            </li>
+                            <li class="flex items-center">
+                                <svg
+                                    class="h-6 w-6"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                >
+                                    <path
+                                        d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"></path>
+                                </svg>
+                                <span class="ml-4">Advanced support</span>
+                            </li>
+                            <li class="flex items-center">
+                                <svg
+                                    class="h-6 w-6"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                >
+                                    <path
+                                        d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"></path>
+                                </svg>
+                                <span class="ml-4">Advanced analytics</span>
+                            </li>
+                            <li class="flex items-center">
+                                <svg
+                                    class="h-6 w-6"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                >
+                                    <path
+                                        d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"></path>
+                                </svg>
+                                <span class="ml-4">Multiple integrations</span>
+                            </li>
+                            <li class="flex items-center">
+                                <svg
+                                    class="h-6 w-6"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                >
+                                    <path
+                                        d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"></path>
+                                </svg>
+                                <span class="ml-4">Advanced customization</span>
+                            </li>
+                            <li class="flex items-center">
+                                <svg
+                                    class="h-6 w-6"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                >
+                                    <path
+                                        d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"></path>
+                                </svg>
+                                <span class="ml-4">99.9% SLA</span>
+                            </li>
+                        </ul>
+                        <div class="mt-8 w-full order-last">
+                            <a
+                                class="inline-flex items-center lg:text-xl justify-center w-full px-6 py-4 text-center text-regent-900 duration-200 bg-white font-medium rounded-full text-base focus:outline-none focus:ring-2 focus:ring-offset-2 hover:text-white focus:ring-regent-900 ring-offset-2 hover:bg-regent-900"
+                                href="#">Get started</a
+                            >
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </section>
+        <section class="relative border-white/5 border-y scroll-mt-24">
+            <div
+                class="items-center w-full px-8 py-12 mx-auto md:px-12 lg:px-16 max-w-7xl lg:py-32"
+            >
+                <div class="grid grid-cols lg:grid-cols-2 items-end">
+                    <div>
+                        <span
+                            class="w-auto text-base items-center inline-flex uppercase tracking-wide font-medium text-regent-600"
+                        >
+                            <span class="ml-4">frequent questions and answers</span>
+                        </span>
+                        <p class="mt-16 text-2xl font-normal lg:text-4xl text-regent-900">FAQ</p>
+                    </div>
+                    <p class="text-slate-500 mt-6 text-lg lg:text-xl tracking-wide">
+                        Fully automated, fully supported
+                    </p>
+                </div>
+                <div class="grid grid-cols-1 gap-x-6 gap-y-10 mt-12 lg:mt-24 items-baseline">
+                    <div class="col-span-2 space-y-24">
+                        <div>
+                            <div
+                                class="inline-flex items-center rounded-full bg-regent-100 px-3 py-0.5 text-sm font-medium text-regent-800"
+                            >
+                                Miscelanea
+                            </div>
+                            <div class="mt-6 divide-y space-y-3">
+                                <details>
+                                    <summary
+                                        class="text-regent-900 text-base lg:text-2xl font-medium tracking-tight focus:text-regent-600 i py-3 text-left w-full"
+                                        >How do I get started with your service?</summary
+                                    >
+                                    <p class="text-slate-500 text-sm pt-5 lg:text-xl">
+                                        To get started with our service, simply visit our website
+                                        and sign up for an account. From there, you can explore our
+                                        products and services and choose the ones that best meet
+                                        your needs.
+                                    </p>
+                                </details>
+                                <details>
+                                    <summary
+                                        class="text-regent-900 text-base lg:text-2xl font-medium tracking-tight focus:text-regent-600 i py-3 text-left w-full"
+                                    >
+                                        What types of payment do you accept?</summary
+                                    >
+                                    <p class="text-slate-500 text-sm pt-5 lg:text-xl">
+                                        We accept a variety of payment methods, including credit
+                                        cards, PayPal, and bank transfers. You can choose the method
+                                        that works best for you during the checkout process.
+                                    </p>
+                                </details>
+                                <details>
+                                    <summary
+                                        class="text-regent-900 text-base lg:text-2xl font-medium tracking-tight focus:text-regent-600 i py-3 text-left w-full"
+                                    >
+                                        What is your refund policy?
+                                    </summary>
+                                    <p class="text-slate-500 text-sm pt-5 lg:text-xl">
+                                        We offer a 30-day money-back guarantee on most of our
+                                        products and services. If you're not satisfied with your
+                                        purchase, simply contact us within 30 days and we'll refund
+                                        your money, no questions asked.
+                                    </p>
+                                </details>
+                            </div>
+                        </div>
+                        <div>
+                            <span
+                                class="inline-flex items-center rounded-full bg-lila-100 px-3 py-0.5 text-sm font-medium text-lila-800"
+                            >
+                                Account
+                            </span>
+                            <div class="mt-6 divide-y space-y-3">
+                                <details>
+                                    <summary
+                                        class="text-regent-900 text-base lg:text-2xl font-medium tracking-tight focus:text-lila-700 i py-3 text-left w-full"
+                                    >
+                                        How long does it take to receive my order?
+                                    </summary>
+                                    <p class="text-slate-500 text-sm pt-5 lg:text-xl">
+                                        The time it takes to receive your order depends on the
+                                        product or service you've purchased. Most orders are
+                                        processed and delivered within a few business days, but some
+                                        may take longer. You can check the estimated delivery time
+                                        during the checkout process.
+                                    </p>
+                                </details>
+                                <details>
+                                    <summary
+                                        class="text-regent-900 text-base lg:text-2xl font-medium tracking-tight focus:text-lila-700 i py-3 text-left w-full"
+                                    >
+                                        Do you offer customer support?
+                                    </summary>
+                                    <p class="text-slate-500 text-sm pt-5 lg:text-xl">
+                                        Yes, we offer customer support via email, phone, and live
+                                        chat. Our team is available to answer any questions or
+                                        concerns you may have and provide assistance whenever you
+                                        need it.
+                                    </p>
+                                </details>
+                                <details>
+                                    <summary
+                                        class="text-regent-900 text-base lg:text-2xl font-medium tracking-tight focus:text-lila-700 i py-3 text-left w-full"
+                                    >
+                                        Can I cancel my subscription at any time?
+                                    </summary>
+                                    <p class="text-slate-500 text-sm pt-5 lg:text-xl">
+                                        Yes, you can cancel your subscription at any time by logging
+                                        into your account and following the cancellation process.
+                                        Please note that some subscriptions may require a certain
+                                        amount of notice before cancellation.
+                                    </p>
+                                </details>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="relative overflow-hidden">
+            <div
+                class="items-center w-full px-8 py-12 mx-auto md:px-12 lg:px-16 max-w-7xl lg:pt-32"
+            >
+                <div>
+                    <p class="text-2xl font-normal tracking-tight lg:text-4xl text-regent-900">
+                        Discover what Snowpeak includes and what is made of, you will find a ton of
+                        demo pages and components.
+                    </p>
+                </div>
+            </div>
+            <div class="mt-24">
+                <div class="grid gap-12 lg:gap-0 lg:grid-cols-2 items-center">
+                    <section class="relative md:px-12 lg:px-40 px-8">
+                        <div>
+                            <div class="text-left" x-data="{ open: false }">
+                                <div>
+                                    <p
+                                        class="text-2xl font-normal tracking-tight lg:text-3xl text-regent-900 mt-12 lg:mt-0"
+                                    >
+                                        We help sales teams increase their outbound with scalable
+                                        and high quality customized emails for every prospect. Don't
+                                        waste your change and get on board.
+                                    </p>
+                                </div>
+                                <div class="mt-10">
+                                    <a
+                                        href="/"
+                                        class="inline-flex items-center lg:text-xl justify-center w-auto lg:px-12 px-6 py-4 text-center text-regent-900 duration-200 bg-[#99C699] font-medium rounded-full text-base focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-regent-500 ring-offset-2 hover:bg-regent-100"
+                                        >See all pages</a
+                                    >
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="relative bg-[#99C699] overflow-hidden lg:order-first">
+                        <div class="overflow-hidden h-full">
+                            <img
+                                class="aspect-square object-cover object-right p-16 pl-0"
+                                alt=""
+                                src="/images/device2.png"
+                            />
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </section>
+        <footer class="bg-white">
+            <div
+                class="items-center w-full px-8 py-12 mx-auto md:px-12 lg:px-16 max-w-7xl lg:pt-32"
+            >
+                <div class="xl:gap-8 xl:grid xl:grid-cols-3">
+                    <div class="text-regent-900 xl:col-span-3">
+                        <div class="lg:inline-flex lg:items-center justify-between w-full">
+                            <div>
+                                <a href="/">
+                                    <div class="text-xl inline-flex items-center font-medium">
+                                        <span>
+                                            <svg
+                                                class="w-6 h-6"
+                                                viewBox="0 0 147 148"
+                                                fill="none"
+                                                xmlns="http://www.w3.org/2000/svg"
+                                            >
+                                                <path
+                                                    d="M77.0546 0.147949H69.9463V147.148H77.0546V0.147949Z"
+                                                    fill="currentColor"></path>
+                                                <path
+                                                    d="M77.0546 0.147949H69.9463V147.148H77.0546V0.147949Z"
+                                                    fill="currentColor"
+                                                    fill-opacity="0.2"></path>
+                                                <path
+                                                    d="M147 70.0938H0V77.2021H147V70.0938Z"
+                                                    fill="currentColor"></path>
+                                                <path
+                                                    d="M147 70.0938H0V77.2021H147V70.0938Z"
+                                                    fill="currentColor"
+                                                    fill-opacity="0.2"></path>
+                                                <path
+                                                    d="M24.0282 19.1578L19.002 24.1841L122.946 128.128L127.972 123.101L24.0282 19.1578Z"
+                                                    fill="currentColor"></path>
+                                                <path
+                                                    d="M24.0282 19.1578L19.002 24.1841L122.946 128.128L127.972 123.101L24.0282 19.1578Z"
+                                                    fill="currentColor"
+                                                    fill-opacity="0.2"></path>
+                                                <path
+                                                    d="M122.946 19.1564L19.002 123.1L24.0282 128.126L127.972 24.1827L122.946 19.1564Z"
+                                                    fill="currentColor"></path>
+                                                <path
+                                                    d="M122.946 19.1564L19.002 123.1L24.0282 128.126L127.972 24.1827L122.946 19.1564Z"
+                                                    fill="currentColor"
+                                                    fill-opacity="0.2"></path>
+                                                <path
+                                                    d="M6.7933 42.6484L4.11133 49.2314L140.248 104.695L142.93 98.1115L6.7933 42.6484Z"
+                                                    fill="currentColor"></path>
+                                                <path
+                                                    d="M6.7933 42.6484L4.11133 49.2314L140.248 104.695L142.93 98.1115L6.7933 42.6484Z"
+                                                    fill="currentColor"
+                                                    fill-opacity="0.2"></path>
+                                                <path
+                                                    d="M97.9631 4.26955L42.5 140.406L49.083 143.088L104.546 6.95152L97.9631 4.26955Z"
+                                                    fill="currentColor"></path>
+                                                <path
+                                                    d="M97.9631 4.26955L42.5 140.406L49.083 143.088L104.546 6.95152L97.9631 4.26955Z"
+                                                    fill="currentColor"
+                                                    fill-opacity="0.2"></path>
+                                                <path
+                                                    d="M140.41 42.8958L4.03809 97.7856L6.69233 104.38L143.064 49.4902L140.41 42.8958Z"
+                                                    fill="currentColor"></path>
+                                                <path
+                                                    d="M140.41 42.8958L4.03809 97.7856L6.69233 104.38L143.064 49.4902L140.41 42.8958Z"
+                                                    fill="currentColor"
+                                                    fill-opacity="0.2"></path>
+                                                <path
+                                                    d="M49.3122 4.18875L42.7178 6.84229L97.5928 143.214L104.187 140.561L49.3122 4.18875Z"
+                                                    fill="currentColor"></path>
+                                                <path
+                                                    d="M49.3122 4.18875L42.7178 6.84229L97.5928 143.214L104.187 140.561L49.3122 4.18875Z"
+                                                    fill="currentColor"
+                                                    fill-opacity="0.2"></path>
+                                            </svg>
+                                        </span>
+                                        <span class="ml-3">Snowpeak</span>
+                                    </div>
+                                </a>
+                                <p class="mt-6">
+                                    <span class="text-slate-500 mt-6 text-base tracking-wide"
+                                        >The latest nonsense news, articles, and resources, sent to
+                                        your spam-box daily.
+                                    </span>
+                                </p>
+                            </div>
+                            <form class="mt-4 flex max-w-xl flex-col items-center">
+                                <div class="mt-3 flex w-full flex-col gap-1 sm:flex-row">
+                                    <input
+                                        name="email"
+                                        type="email"
+                                        class="lg:px-12 px-6 py-4 bg-white placeholder-slate-400 border border-slate-300 duration-200 focus:outline-none focus:ring focus:ring-regent-100 focus:border-regent-300 w-full rounded-full"
+                                        placeholder="Enter your email..."
+                                        required=""
+                                    /><button
+                                        type="button"
+                                        class="inline-flex items-center justify-center w-auto lg:px-12 px-6 py-4 text-center text-regent-900 duration-200 bg-[#99C699] font-medium rounded-full text-base focus:outline-none focus:ring-2 focus:ring-offset-2 hover:text-white focus:ring-regent-900 ring-offset-2 hover:bg-regent-900"
+                                        ><div style="position:relative"></div>Subscribe</button
+                                    >
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- <div
+                        class="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-6 xl:col-span-3 border-t pt-12"
+                    >
+                        <div class="md:gap-8 md:grid md:grid-cols-2">
+                            <div>
+                                <h3 class="text-regent-900 font-medium lg:text-xl text-lg">
+                                    Navigation
+                                </h3><ul class="mt-4 space-y-2" role="list">
+                                    <li>
+                                        <a
+                                            class="text-base text-slate-500 inline-flex items-center hover:text-regent-600"
+                                            href="/"
+                                        >
+                                            <span>Overview</span>
+                                            <span
+                                                class="rounded-full items-center bg-regent-100 font-medium inline-flex ml-4 px-3 py-0.5 text-regent-700 text-xs"
+                                                >30+ Pages</span
+                                            >
+                                        </a>
+                                    </li><li>
+                                        <a
+                                            class="text-base text-slate-500 hover:text-regent-600"
+                                            href="/style-guide">Style Guide</a
+                                        >
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="mt-12 md:mt-0">
+                                <h3 class="text-regent-900 font-medium lg:text-xl text-lg">
+                                    Socials
+                                </h3><ul class="mt-4 space-y-2" role="list">
+                                    <li>
+                                        <a
+                                            class="text-base text-slate-500 hover:text-regent-600"
+                                            href="https://twitter.com/lexingtonthemes"
+                                            >@lexingtonthemes</a
+                                        >
+                                    </li><li>
+                                        <a
+                                            class="text-base text-slate-500 hover:text-regent-600"
+                                            href="https://twitter.com/Mike_Andreuzza"
+                                            >@Mike_Andreuzza</a
+                                        >
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="md:gap-8 md:grid md:grid-cols-2">
+                            <div>
+                                <h3 class="text-regent-900 font-medium lg:text-xl text-lg">
+                                    Stay updated
+                                </h3>
+                                <ul class="mt-4 space-y-2" role="list">
+                                    <li>
+                                        <a
+                                            class="text-base text-slate-500 hover:text-regent-600"
+                                            href="https://www.lexingtonthemes.com/license"
+                                            >License</a
+                                        >
+                                    </li><li>
+                                        <a
+                                            class="text-base text-slate-500 hover:text-regent-600"
+                                            href="https://www.lexingtonthemes.com/documentation"
+                                            >Documentation</a
+                                        >
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="mt-12 md:mt-0">
+                                <h3 class="text-regent-900 font-medium lg:text-xl text-lg">
+                                    More themes
+                                </h3><ul class="mt-4 space-y-2" role="list">
+                                    <li>
+                                        <a
+                                            class="text-base text-slate-500 hover:text-regent-600"
+                                            href="https://lexingtonthemes.com">Lexington Themes</a
+                                        >
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><div class="w-full lg:px-16 max-w-7xl md:px-12 mx-auto px-8 py-4">
+                <div class="md:flex md:items-center md:justify-between">
+                    <div class="mt-8 md:mt-0 md:order-1">
+                        <p>
+                            <span class="text-sm text-regent-900 mt-2 mx-auto"
+                                >© 2022 Lexington Themes. All rights reserved - Beautifully
+                                designed HTML, Astro.js and Tailwind themes! Save months of time and
+                                build your startup landing page in minutes.
+                            </span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </footer> -->
+    </body>
+</Layout>

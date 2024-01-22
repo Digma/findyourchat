@@ -14,7 +14,7 @@
         },
         {
             title: "Simple Language",
-            body: "Oocd yru-hinker yous you your aorg your usurp tinlahd pau le to you vitar your noonad serried. your adny word you algp. font estate wra wra he yprtai you yoceegqSnine aar: pnei yodriis. youv oonys yory lud.",
+            body: "Oocd yru-hinker yous you your aorg your usurp tinlahd pau le to you vitar your noonad serried. your adny word you algp. ",
             footer: "One you.",
             color: "bg-teal-400",
             offsetX: "left-[-3px]",
@@ -22,7 +22,7 @@
         },
         {
             title: "Rich Sentences",
-            body: "Oocd yru-hinker yous you your aorg your usurp tinlahd pau le to you vitar your noonad serried. your adny word you algp. font estate wra wra he yprtai you yoceegqSnine aar: pnei yodriis. youv oonys yory lud.",
+            body: "Oocd yru-hinker yous you your aorg your usurp tinlahd pau le to you vitar your noonad serried. your adny word you algp. ",
             footer: "One you.",
             color: "bg-orange-400",
             offsetX: "left-[2px]",
@@ -30,7 +30,7 @@
         },
         {
             title: "Passionate",
-            body: "Oocd yru-hinker yous you your aorg your usurp tinlahd pau le to you vitar your noonad serried. your adny word you algp. font estate wra wra he yprtai you yoceegqSnine aar: pnei yodriis. youv oonys yory lud.",
+            body: "Oocd yru-hinker yous you your aorg your usurp tinlahd pau le to you vitar your noonad serried. your adny word you algp. ",
             footer: "One you.",
             color: "bg-orange-400",
             offsetX: "left-[2px]",
@@ -41,7 +41,7 @@
     let cards_stack_2 = [
         {
             title: "Cautious",
-            body: "Choose your case you pedal you your pod consist to of Kate's bookkeeping on Lunar cataloging to you coun tomorrow. distils, yad your you, your his Kathrin magnetic? you rovid you hoist?",
+            body: "Choose your case you pedal you your pod consist to of Kate's bookkeeping on Lunar cataloging to you coun tomorrow. distils",
             footer: "Chat you.",
             color: "bg-blue-600",
             offsetX: "left-[2px]",
@@ -49,7 +49,7 @@
         },
         {
             title: "Rich Vocabulary",
-            body: "Oocd yru-hinker yous you your aorg your usurp tinlahd pau le to you vitar your noonad serried. your adny word you algp. font estate wra wra he yprtai you yoceegqSnine aar: pnei yodriis. youv oonys yory lud.",
+            body: "Oocd yru-hinker yous you your aorg your usurp tinlahd pau le to you vitar your noonad serried. your adny word you algp. ",
             footer: "One you.",
             color: "bg-teal-400",
             offsetX: "left-[-3px]",
@@ -57,7 +57,7 @@
         },
         {
             title: "Short Sentences",
-            body: "Oocd yru-hinker yous you your aorg your usurp tinlahd pau le to you vitar your noonad serried. your adny word you algp. font estate wra wra he yprtai you yoceegqSnine aar: pnei yodriis. youv oonys yory lud.",
+            body: "Oocd yru-hinker yous you your aorg your usurp tinlahd pau le to you vitar your noonad serried. your adny word you algp. ",
             footer: "One you.",
             color: "bg-orange-400",
             offsetX: "left-[2px]",
@@ -65,7 +65,7 @@
         },
         {
             title: "Analytical",
-            body: "Oocd yru-hinker yous you your aorg your usurp tinlahd pau le to you vitar your noonad serried. your adny word you algp. font estate wra wra he yprtai you yoceegqSnine aar: pnei yodriis. youv oonys yory lud.",
+            body: "Oocd yru-hinker yous you your aorg your usurp tinlahd pau le to you vitar your noonad serried. your adny word you algp. ",
             footer: "One you.",
             color: "bg-orange-400",
             offsetX: "left-[2px]",
