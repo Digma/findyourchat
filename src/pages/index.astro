@@ -1,123 +1,174 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Card from '../components/Card.astro';
+import { Image } from 'astro:assets';
+
+import Logo from "/public/logo.svg"
+import ManCharacter from '../assets/characters/man_avatar.png'
+import ManCharacterLinkedIn from '../assets/characters/man_avatar_3.png'
+import WomanCharacter from '../assets/characters/woman_avatar.png'
+import WomanCharacter2 from '../assets/characters/woman_avatar_2.png'
+
+import ScibblePicker from '../assets/pick_scribble.png'
+
+
+import Layout from "../layouts/Layout.astro";
+import LinkedInPost from '../components/SocialPost.astro'
+import Quote from '../components/Quote.astro'
+
+import CardPicker from '../components/cards/CardPicker.svelte';
+import Card from '../components/cards/CardGeneric.astro';
+import Heart from '../components/cards/logos/Heart.astro';
 ---
 
-<Layout title="Welcome to Astro.">
-	<main>
-		<svg
-			class="astro-a"
-			width="495"
-			height="623"
-			viewBox="0 0 495 623"
-			fill="none"
-			xmlns="http://www.w3.org/2000/svg"
-			aria-hidden="true"
-		>
-			<path
-				fill-rule="evenodd"
-				clip-rule="evenodd"
-				d="M167.19 364.254C83.4786 364.254 0 404.819 0 404.819C0 404.819 141.781 19.4876 142.087 18.7291C146.434 7.33701 153.027 0 162.289 0H332.441C341.703 0 348.574 7.33701 352.643 18.7291C352.92 19.5022 494.716 404.819 494.716 404.819C494.716 404.819 426.67 364.254 327.525 364.254L264.41 169.408C262.047 159.985 255.147 153.581 247.358 153.581C239.569 153.581 232.669 159.985 230.306 169.408L167.19 364.254ZM160.869 530.172C160.877 530.18 160.885 530.187 160.894 530.195L160.867 530.181C160.868 530.178 160.868 530.175 160.869 530.172ZM136.218 411.348C124.476 450.467 132.698 504.458 160.869 530.172C160.997 529.696 161.125 529.242 161.248 528.804C161.502 527.907 161.737 527.073 161.917 526.233C165.446 509.895 178.754 499.52 195.577 500.01C211.969 500.487 220.67 508.765 223.202 527.254C224.141 534.12 224.23 541.131 224.319 548.105C224.328 548.834 224.337 549.563 224.347 550.291C224.563 566.098 228.657 580.707 237.264 593.914C245.413 606.426 256.108 615.943 270.749 622.478C270.593 621.952 270.463 621.508 270.35 621.126C270.045 620.086 269.872 619.499 269.685 618.911C258.909 585.935 266.668 563.266 295.344 543.933C298.254 541.971 301.187 540.041 304.12 538.112C310.591 533.854 317.059 529.599 323.279 525.007C345.88 508.329 360.09 486.327 363.431 457.844C364.805 446.148 363.781 434.657 359.848 423.275C358.176 424.287 356.587 425.295 355.042 426.275C351.744 428.366 348.647 430.33 345.382 431.934C303.466 452.507 259.152 455.053 214.03 448.245C184.802 443.834 156.584 436.019 136.218 411.348Z"
-				fill="url(#paint0_linear_1805_24383)"></path>
-			<defs>
-				<linearGradient
-					id="paint0_linear_1805_24383"
-					x1="247.358"
-					y1="0"
-					x2="247.358"
-					y2="622.479"
-					gradientUnits="userSpaceOnUse"
-				>
-					<stop stop-opacity="0.9"></stop>
-					<stop offset="1" stop-opacity="0.2"></stop>
-				</linearGradient>
-			</defs>
-		</svg>
-		<h1>Welcome to <span class="text-gradient">Astro</span></h1>
-		<p class="instructions">
-			To get started, open the directory <code>src/pages</code> in your project.<br />
-			<strong>Code Challenge:</strong> Tweak the "Welcome to Astro" message above.
-		</p>
-		<ul role="list" class="link-card-grid">
-			<Card
-				href="https://docs.astro.build/"
-				title="Documentation"
-				body="Learn how Astro works and explore the official API docs."
-			/>
-			<Card
-				href="https://astro.build/integrations/"
-				title="Integrations"
-				body="Supercharge your project with new frameworks and libraries."
-			/>
-			<Card
-				href="https://astro.build/themes/"
-				title="Themes"
-				body="Explore a galaxy of community-built starter themes."
-			/>
-			<Card
-				href="https://astro.build/chat/"
-				title="Community"
-				body="Come say hi to our amazing Discord community. ❤️"
-			/>
-		</ul>
-	</main>
+<Layout title="FindYourChat">
+    <body class="bvg-blue-accent max-w-screen-xl mx-auto">
+        <section class="overflow-hidden relative bg-blue-accent">
+            <div class="mx-auto max-w-7xl relative">
+                <div
+                    class="flex flex-col p-5 mx-auto md:items-center md:justify-between md:flex-row md:px-6 lg:px-16"
+                >
+                    <div
+                        class="flex flex-row items-center justify-between text-sm lg:justify-start"
+                    >
+                        <a href="/">
+                            <div class="text-black font-bold text-2xl inline-flex items-center">
+                                <Image src={Logo} alt="Findyourchat logo" height="40" />
+                                <span class="text-lightblue-accent ml-1">Find</span>
+                                <span class="text-white italic">Your</span>
+                                <span class="text-yellow-accent">Chat</span>
+                                <span class="text-yellow-accent">.</span>
+                                <span class="text-dark">ai</span>
+                            </div>
+                        </a>
+                    </div>
+                    <nav
+                        class="flex-col items-center flex-grow hidden md:pb-0 md:flex md:justify-end md:flex-row"
+                    >
+                        <div class="inline-flex items-center gap-2 list-none lg:ml-auto bg-yellow-accent rounded-full">
+                            <a
+                                href="/"
+                                class="inline-flex items-center justify-center font-bold px-4 py-2 text-sm text-regent-900 bg-regent-300 rounded-full group focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 hover:bg-white/5 active:bg-fuchsia-50 active:text-[#0c1824] focus-visible:outline-fuchsia-50"
+                            >
+                                Join the Waiting List
+                            </a>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </section>
+        <section class="bg-blue-accent relative items-center flex justify-center">
+            <div
+                class="mx-auto max-w-7xl items-center pt-12 lg:px-16 lg:pt-32 md:px-12 px-5 pb-8 lg:pb-32"
+            >
+                <div>
+                    <div class="text-white text-center">
+                        <p
+                            class="text-3xl sm:text-4xl md:text-5xl lg:text-7xl tracking-tighter font-medium"
+                        >
+                        Unlock Your <span class="block"
+                                >Unique Writing Style</span
+                            >
+                        </p><p class="max-w-xl mt-12 mx-auto text-lg sm:text-xl md:text-2xl lg:text-3xl">
+                            ✋ Stop sounding like everyone else ✋
+                        </p>
+                    </div>
+                </div><div class="mx-auto max-w-7xl items-center mt-12">
+                    <LinkedInPost name="John Doe" job="Influencer at Buzz Inc & Co" date="1d" post="Please no more ChatGPT posts.\nI am tired of it 😕😕" >
+                        <Image src={ManCharacterLinkedIn} alt="profile picture bearded man" height="50" width="50" class="rounded-full shadow-md"/>
+                    </LinkedInPost>
+                </div>
+            </div>
+        </section>
+        <section class="bg-purple-accent">
+            <div
+                class="items-center w-full px-8 py-12 mx-auto md:px-12 lg:px-16 max-w-7xl lg:pt-32 pb-8 lg:pb-32 space-y-12"
+            >
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 text-white">
+                    <div class="flex flex-col items-center grid-rows-2 gap-4">
+                        <p class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl tracking-tighter font-medium lg:float-end">
+                            Tailor ChatGPT to your Unique Personality
+                        </p>
+                        <p class="font-light text-md sm:text-lg md:text-xl lg:text-2xl">
+                            Make ChatGPT write in your own unique style for all types of communications
+                        </p>
+                    </div>
+                    <div>
+                        <div class="relative w-full mx-auto max-w-7xl items-center">
+                            <Quote post="Hey guys, can you give me a project Update?">
+                                <Image src={WomanCharacter2} alt="picture of a formal woman in work attire" height="100" width="100" class="rounded-full shadow-md"/>
+                            </Quote>
+                            <Quote post="Hello Team, I'm reaching out to ask for a quick project update">
+                                <Image src={ManCharacter} alt="picture of a casual man in work attire" height="130" width="130" class="rounded-full shadow-md"/>  
+                            </Quote>
+                            <Quote post="Dear Team, at your earliest convenience, I kindly request a project update.">
+                                <Image src={WomanCharacter} alt="picture of a woman man in work attire" height="150" width="150" class="rounded-full shadow-md"/>  
+                            </Quote>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="bg-rose-accent">
+            <div
+                class="items-center space w-full px-8 py-12 mx-auto md:px-12 lg:px-16 max-w-7xl lg:pt-32 pb-16 lg:pb-32"
+            >
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                    <div>
+                        <div class="flex justify-center items-center mb-2">
+                            <Image src={ScibblePicker} alt="card picker chose your personality" height="120" />
+                        </div>
+                        <CardPicker client:visible />
+                    </div>
+                    <div class="flex flex-col items-center  grid-rows-2 gap-4 text-white">
+                        <p class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl tracking-tighter font-medium lg:float-end">
+                            Create your own writing styles in Minutes
+                        </p>
+                        <p class="font-light text-md sm:text-lg md:text-xl lg:text-2xl">
+                            Answer a few questions and we'll generate a writing style that's unique to you
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="bg-lightblue-accent">
+            <div class="mx-auto max-w-7xl items-center px-5 lg:px-16 pt-16 lg:pt-48 md:px-12 pb-32 lg:pb-72">
+                <div>
+                    <div class="text-center">
+                        <p class="mt-8 mb-8 text-2xl lg:text-5xl">
+                            <span class=" text-gray-800 sm:text-2xl md:text-4xl lg:text-5xl tracking-tighter font-medium "
+                                >Join the waiting list for early access
+                            </span>
+                        </p>
+                        <form class="mt-4 flex max-w-xl flex-col items-center mx-auto">
+                            <div class="mt-3 flex w-full flex-col gap-1 sm:flex-row">
+                                <input
+                                    name="email"
+                                    type="email"
+                                    class="lg:px-12 px-6 py-4 bg-white placeholder-slate-400 border border-slate-300 duration-200 focus:outline-none focus:ring focus:ring-regent-100 focus:border-regent-300 w-full rounded-full shadow-md"
+                                    placeholder="Enter your email..."
+                                    required=""
+                                /><button
+                                    type="button"
+                                    class="inline-flex items-center justify-center w-auto lg:px-12 px-6 py-4 text-center duration-200 bg-yellow-accent font-medium rounded-full text-base focus:outline-none focus:ring-2 focus:ring-offset-2 hover:text-white ring-offset-2 shadow-md"
+                                    ><div style="position:relative "></div>Join</button
+                                >
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <footer class="bg-lightblue-accent">
+            <div class="w-full lg:px-16 max-w-7xl md:px-12 mx-auto px-8 py-4">
+                <div class="flex items-center justify-center">
+                    <div class="mt-8 md:mt-0 md:order-1">
+                        <p class="text-center">
+                            <span class="text-sm italic mt-2 mx-auto">
+                                © 2024 Grosch. All rights reserved - Designed with Astro and TailwindCSS
+                            </span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </body>
 </Layout>
-
-<style>
-	main {
-		margin: auto;
-		padding: 1rem;
-		width: 800px;
-		max-width: calc(100% - 2rem);
-		color: white;
-		font-size: 20px;
-		line-height: 1.6;
-	}
-	.astro-a {
-		position: absolute;
-		top: -32px;
-		left: 50%;
-		transform: translatex(-50%);
-		width: 220px;
-		height: auto;
-		z-index: -1;
-	}
-	h1 {
-		font-size: 4rem;
-		font-weight: 700;
-		line-height: 1;
-		text-align: center;
-		margin-bottom: 1em;
-	}
-	.text-gradient {
-		background-image: var(--accent-gradient);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-size: 400%;
-		background-position: 0%;
-	}
-	.instructions {
-		margin-bottom: 2rem;
-		border: 1px solid rgba(var(--accent-light), 25%);
-		background: linear-gradient(rgba(var(--accent-dark), 66%), rgba(var(--accent-dark), 33%));
-		padding: 1.5rem;
-		border-radius: 8px;
-	}
-	.instructions code {
-		font-size: 0.8em;
-		font-weight: bold;
-		background: rgba(var(--accent-light), 12%);
-		color: rgb(var(--accent-light));
-		border-radius: 4px;
-		padding: 0.3em 0.4em;
-	}
-	.instructions strong {
-		color: rgb(var(--accent-light));
-	}
-	.link-card-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
-		gap: 2rem;
-		padding: 0;
-	}
-</style>
