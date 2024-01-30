@@ -15,12 +15,11 @@ import LinkedInPost from '../components/SocialPost.astro'
 import Quote from '../components/Quote.astro'
 
 import CardPicker from '../components/cards/CardPicker.svelte';
-import Card from '../components/cards/CardGeneric.astro';
-import Heart from '../components/cards/logos/Heart.astro';
+import Form from '../components/submitEmail.svelte';
 ---
 
 <Layout title="FindYourChat">
-    <body class="bvg-blue-accent max-w-screen-xl mx-auto">
+    <body class="bg-blue-accent max-w-screen-xl mx-auto">
         <section class="overflow-hidden relative bg-blue-accent">
             <div class="mx-auto max-w-7xl relative">
                 <div
@@ -45,7 +44,7 @@ import Heart from '../components/cards/logos/Heart.astro';
                     >
                         <div class="inline-flex items-center gap-2 list-none lg:ml-auto bg-yellow-accent rounded-full">
                             <a
-                                href="/"
+                                href="/#register"
                                 class="inline-flex items-center justify-center font-bold px-4 py-2 text-sm text-regent-900 bg-regent-300 rounded-full group focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 hover:bg-white/5 active:bg-fuchsia-50 active:text-[#0c1824] focus-visible:outline-fuchsia-50"
                             >
                                 Join the Waiting List
@@ -129,30 +128,16 @@ import Heart from '../components/cards/logos/Heart.astro';
                 </div>
             </div>
         </section>
-        <section class="bg-lightblue-accent">
+        <section class="bg-lightblue-accent" id="register">
             <div class="mx-auto max-w-7xl items-center px-5 lg:px-16 pt-16 lg:pt-48 md:px-12 pb-32 lg:pb-72">
                 <div>
-                    <div class="text-center">
+                    <div class="text-center min-h-48">
                         <p class="mt-8 mb-8 text-2xl lg:text-5xl">
                             <span class=" text-gray-800 sm:text-2xl md:text-4xl lg:text-5xl tracking-tighter font-medium "
                                 >Join the waiting list for early access
                             </span>
                         </p>
-                        <form class="mt-4 flex max-w-xl flex-col items-center mx-auto">
-                            <div class="mt-3 flex w-full flex-col gap-1 sm:flex-row">
-                                <input
-                                    name="email"
-                                    type="email"
-                                    class="lg:px-12 px-6 py-4 bg-white placeholder-slate-400 border border-slate-300 duration-200 focus:outline-none focus:ring focus:ring-regent-100 focus:border-regent-300 w-full rounded-full shadow-md"
-                                    placeholder="Enter your email..."
-                                    required=""
-                                /><button
-                                    type="button"
-                                    class="inline-flex items-center justify-center w-auto lg:px-12 px-6 py-4 text-center duration-200 bg-yellow-accent font-medium rounded-full text-base focus:outline-none focus:ring-2 focus:ring-offset-2 hover:text-white ring-offset-2 shadow-md"
-                                    ><div style="position:relative "></div>Join</button
-                                >
-                            </div>
-                        </form>
+                        <Form client:load/>
                     </div>
                 </div>
             </div>

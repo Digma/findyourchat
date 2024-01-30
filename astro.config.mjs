@@ -8,6 +8,6 @@ import vercel from "@astrojs/vercel/serverless";
 export default defineConfig({
   integrations: [tailwind(), svelte()],
   renderers: ['@astrojs/renderer-svelte'],
-  output: "server",
+  output: "hybrid",
   adapter: vercel()
 });
