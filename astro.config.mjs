@@ -10,7 +10,6 @@ export default defineConfig({
   renderers: ['@astrojs/renderer-svelte'],
   output: "hybrid",
   adapter: vercel({
-    webAnalytics : { enabled : true },
-    speedInsights: { enabled: true }
+    webAnalytics : { enabled: true },
   })
 });
