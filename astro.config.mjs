@@ -9,5 +9,7 @@ export default defineConfig({
   integrations: [tailwind(), svelte()],
   renderers: ['@astrojs/renderer-svelte'],
   output: "hybrid",
-  adapter: vercel()
+  adapter: vercel({
+    webAnalytics : { enabled : true }
+  })
 });
