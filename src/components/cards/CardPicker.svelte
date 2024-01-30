@@ -46,7 +46,7 @@
         {
             title: "Cautious",
             icon_src: iconSimple.src,
-            body: "Your writing reflects careful thought and meticulous attention to detail.",
+            body: "Your writing reflects careful thought and attention to detail.",
             footer: "",
             color: "bg-blue-600",
             offsetX: "left-[2px]",

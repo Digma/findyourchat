@@ -30,7 +30,7 @@
                     name="email"
                     type="email"
                     id="email"
-                    class="h-14 min-w-96 lg:px-12 px-6 py-4 bg-white placeholder-slate-400 border invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500 border-slate-300 duration-200 focus:outline-none focus:ring focus:ring-regent-100 focus:border-regent-300 w-full rounded-full shadow-md peer"
+                    class="h-14 min-w-72 lg:px-12 px-6 py-4 bg-white placeholder-slate-400 border invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500 border-slate-300 duration-200 focus:outline-none focus:ring focus:ring-regent-100 focus:border-regent-300 w-full rounded-full shadow-md peer"
                     placeholder="Enter your email..."
                     required
                 />
