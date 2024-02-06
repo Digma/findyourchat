@@ -1,0 +1,40 @@
+---
+import { Image } from 'astro:assets';
+
+import Logo from "/public/logo.svg"
+---
+
+<section class="overflow-hidden relative bg-blue-accent">
+    <div class="mx-auto max-w-7xl relative">
+        <div
+            class="flex flex-col p-5 mx-auto md:items-center md:justify-between md:flex-row md:px-6 lg:px-16"
+        >
+            <div
+                class="flex flex-row items-center justify-between text-sm lg:justify-start"
+            >
+                <a href="/">
+                    <div class="text-black font-bold text-2xl inline-flex items-center">
+                        <Image src={Logo} alt="Findyourchat logo" height="40" />
+                        <span class="text-lightblue-accent ml-1">Find</span>
+                        <span class="text-white italic">Your</span>
+                        <span class="text-yellow-accent">Chat</span>
+                        <span class="text-yellow-accent">.</span>
+                        <span class="text-dark">ai</span>
+                    </div>
+                </a>
+            </div>
+            <nav
+                class="flex-col items-center flex-grow hidden md:pb-0 md:flex md:justify-end md:flex-row"
+            >
+                <div class="inline-flex items-center gap-2 list-none lg:ml-auto bg-yellow-accent rounded-full">
+                    <a
+                        href="/#register"
+                        class="inline-flex items-center justify-center font-bold px-4 py-2 text-sm text-regent-900 bg-regent-300 rounded-full group focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 hover:bg-white/5 active:bg-fuchsia-50 active:text-[#0c1824] focus-visible:outline-fuchsia-50"
+                    >
+                        Join the Waiting List
+                    </a>
+                </div>
+            </nav>
+        </div>
+    </div>
+</section>

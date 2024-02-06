@@ -4,12 +4,9 @@ export default {
 	theme: {
 		extend: {
 			colors: {
-				//'background': '#F5F5F5',
-				//'white-text': '#FFFFFF',
-				//'black-text': '#000000',
 				'white-transparent': '#ffffff61',
 				'blue-accent': '#3A86FF',
-				'lightblue-accent': '#00e6ff',//'#01cfff',
+				'lightblue-accent': '#00e6ff',
 				'purple-accent': '#8338EC',
 				'rose-accent': '#FF006E',
 				'orange-accent': '#fb5607',

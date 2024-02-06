@@ -1,0 +1,28 @@
+---
+import { Image } from 'astro:assets';
+
+import ScibblePicker from '../assets/pick_scribble.png'
+import CardPicker from '../components/cards/CardPicker.svelte';
+---
+<section class="bg-rose-accent">
+    <div
+        class="items-center space w-full px-8 py-12 mx-auto md:px-12 lg:px-16 max-w-7xl lg:pt-32 pb-16 lg:pb-32"
+    >
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+            <div>
+                <div class="flex justify-center items-center mb-2">
+                    <Image src={ScibblePicker} alt="card picker chose your personality" height="120" />
+                </div>
+                <CardPicker client:visible />
+            </div>
+            <div class="flex flex-col items-center  grid-rows-2 gap-4 text-white">
+                <p class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl tracking-tighter font-medium lg:float-end">
+                    Create your own writing styles in Minutes
+                </p>
+                <p class="font-light text-md sm:text-lg md:text-xl lg:text-2xl">
+                    Answer a few questions and we'll generate a writing style that's unique to you
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
