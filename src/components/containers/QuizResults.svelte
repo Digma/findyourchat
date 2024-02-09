@@ -6,11 +6,11 @@
     import iconConfident from '../../assets/card_icons/pink_yellow_4.svg';
 </script>
 
-<div class="w-full max-w-md p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8">
-    <div>
+<div class="w-full max-w-md p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8 flex flex-col justify-center">
+    <div class="mb-4 text-center">
         <h2 class="text-lg font-medium text-gray-900">Your Unique Personality</h2>
     </div>
-   <div class="flow-root">
+   <div class="flow-root mb-4">
         <ul role="list" class="divide-y divide-gray-200">
             <li class="py-3 sm:py-4">
                 <PersonalityDescription 
@@ -35,5 +35,5 @@
             </li>
         </ul>
    </div>
-   <ClipboardButton textToCopy="TODO, the chatgpt prompt" />
+   <ClipboardButton buttonText="Copy Prompt" textToCopy="TODO MY PROMPT" />
 </div>

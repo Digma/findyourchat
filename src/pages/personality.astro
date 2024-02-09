@@ -4,13 +4,17 @@ import Footer from '../components/Footer.astro';
 import QuizHeader from '../components/QuizHeader.astro';
 import Quiz from '../components/Quiz.astro';
 import Layout from "../layouts/Layout.astro";
+
+import Scale from '../components/cards/Scale.svelte';
+import QuizPage from '../components/containers/QuizPage.svelte';
 ---
 
 <Layout title="FindYourChat.ai" description="Unlock the full potential of AI, customize ChatGPT to your unique writing style. Whether it's for emails, content creation, or casual conversations, we generate prompts to adapt ChatGPT's responses to match your tone, style, and personality nuances.">
-    <body class="bg-blue-accent max-w-screen-xl mx-auto">
+    <div class="bg-gradient-to-t from-indigo-500 from-0% via-sky-500 via-30% to-emerald-500 to-90% max-w-screen-xl mx-auto">
         <Header />
         <QuizHeader />
+        <QuizPage client:visible />
         <Quiz />
         <Footer />
-    </body>
+    </div>
 </Layout>

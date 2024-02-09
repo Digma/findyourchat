@@ -4,8 +4,7 @@
     let isEmpty: boolean = false;
 </script>
 
-<!-- {#if !isEmpty} -->
-{#if false}
+{#if !isEmpty}
     <CardPickerInteractive bind:isEmpty={isEmpty} />
 {:else}
     <QuizResults />

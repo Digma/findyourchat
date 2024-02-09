@@ -1,6 +1,9 @@
 <script lang="ts">
+    import { Progressbar } from 'flowbite-svelte';
+
     import Card from "./Card.svelte";
     import type { Props as CardInfo } from "./Card.svelte";
+    
     import iconConfident from '../../assets/card_icons/pink_yellow_4.svg';
     import iconSimple from '../../assets/card_icons/purple_yellow_1.svg';
 
@@ -81,10 +84,12 @@
             offsetY: "bottom-[5px]",
         },
     ];
-
+    
+    // Current State
+    const totalNumberOfQuestions = cards_stack_1.length
     export let isEmpty: boolean = false;
-
     let selection: CardInfo[] = [];
+    let progress = 0;
     
     const saveTopCardFromStack = (stack: CardInfo[]) => () => {
         const card_selected = stack[-1];
@@ -97,6 +102,7 @@
         cards_stack_1 = cards_stack_1.slice(1);
         cards_stack_2 = cards_stack_2.slice(1);
         isEmpty = cards_stack_1.length === 0 && cards_stack_2.length === 0;
+        progress = (totalNumberOfQuestions - cards_stack_1.length) / totalNumberOfQuestions * 100;
         console.log('Discard from stacks');
     }
 
@@ -129,3 +135,4 @@
         </button>
     </div>
 </div>
+<Progressbar class="mt-4" progress={progress} size="h-1.5" color="primary" labelInsideClass="" divClass="bg-white" />
