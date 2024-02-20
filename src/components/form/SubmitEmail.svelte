@@ -1,7 +1,7 @@
 <script lang="ts">
     let responseMessage: string;
     let formSubmitted = false;
-  
+
     async function submit(e: SubmitEvent) {
         e.preventDefault();
         const formData = new FormData(e.currentTarget as HTMLFormElement);

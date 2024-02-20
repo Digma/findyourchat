@@ -1,9 +1,10 @@
 <script context="module" lang="ts">
     import type { Attribute } from '../../lib/quiz'
-    export type Props = Attribute & { icon_src: string; };
+    export type Props = Attribute & { id: string; icon_src: string; };
 </script>
 
 <script lang="ts">
+  export let id: Props["id"];
   export let title: Props["title"];
   // TODO: for now taking image from additional attribyute
   export let icon_src: Props["icon_src"] = '';
@@ -12,6 +13,7 @@
 </script>
 
 <div
+    id={id}
   class={`card max-w-[25%] p-4 md:p-8 rounded-xl drop-shadow-md font-cards first:mt-[0px] last:hover:translate-y-[-10px] transition-all delay-100 ease-out relative last:hover:drop-shadow-2xl will-change-transform`}
 >
   <div class="flex flex-col justify-between items-center">

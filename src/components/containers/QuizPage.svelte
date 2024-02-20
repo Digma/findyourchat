@@ -7,14 +7,6 @@
     // TODO: have a different icon per Attribute
     import icon1 from '../../assets/card_icons/pink_yellow_4.svg';
     import icon2 from '../../assets/card_icons/purple_yellow_1.svg';
-    import type { NumberInput } from 'flowbite-svelte';
-
-    const card = {
-        title: "Confident",
-        icon_src: icon1.src,
-        body: "Your writing exudes self-assuredness and conviction",
-        example: "We've hit a major milestone – 10,000 followers! 🎉 Thank you to each and every one of you for your incredible support. Let's keep the momentum going!",
-    };
 
     // This function scrolls the target element into view
   function scrollToElement(elementId: string) {
@@ -25,9 +17,56 @@
     }
   }
 
-  const trackQuestion = (idx: number) => (e: Event) => {
+  let questionAndAnswers = Array.from(allQuestions, function(question, i) { 
+    return { question: question, value: NaN as number }
+  });
+
+  const trackQuestion = (idx: number) => (e: CustomEvent<number>) => {
+    const score = e.detail
+    questionAndAnswers[idx].value = score
     console.log(`Question ${idx} was selected with option ${e.detail}`);
   }
+
+  const allQuestionFilled = () => {
+    const allFilled = questionAndAnswers.every(element => element.value >= 1 && element.value <= 5)
+    if(allFilled) {
+      result = getPrompt()
+    }
+
+    return allFilled
+  }
+
+  import { questionAndScoreToDescription } from '../attributes/questions.ts';
+  import { QuestionCategory } from '../../lib/quiz.ts';
+  import { writingStyleToPrompt } from '../attributes/prompt.ts';
+  const getPrompt = () => {
+    let personalityArray: string[] = []
+    let toneAndVoiceArray: string[] = []
+    let writingStyleArray: string[] = []
+
+    for (var i = 0; i < questionAndAnswers.length; i++) {
+      const questionAndAnswer = questionAndAnswers[i]
+      const question = questionAndAnswer.question
+      const score = questionAndAnswer.value
+      const questionCategory = questionAndAnswer.question.category
+      const scoreDescription = questionAndScoreToDescription(question, score)
+
+      if (questionCategory.valueOf() === QuestionCategory.PersonalityTraits.valueOf()) {
+        personalityArray.push(scoreDescription)
+      } else if (questionCategory.valueOf() === QuestionCategory.VoiceAndTone.valueOf()) {
+        toneAndVoiceArray.push(scoreDescription)
+      } else if (questionCategory.valueOf() === QuestionCategory.WritingStyle.valueOf()) {
+        writingStyleArray.push(scoreDescription)
+      }
+    }
+
+    // TOOD: Add writing Style array
+    const prompt = writingStyleToPrompt("Swiss, non-native english", personalityArray, toneAndVoiceArray)
+    console.log(prompt)
+    return prompt
+  }
+
+  let result = ""
 </script>
 
 <div class="flex flex-col gap-y-36">
@@ -39,4 +78,11 @@
         </div>
     {/each}
 </div>
-
+<div class="w-full flex flex-col align-middle items-center mt-4">
+  <button class="max-w-[200px] bg-orange-accent rounded-lg px-8 py-4 text-white" on:click={() => console.log(`All Question filled: ${allQuestionFilled()}`)} >
+    <span class="block p-2">Submit</span>
+  </button>
+  {#if result.length > 0}
+  <p class="p-4 whitespace-pre-wrap bg-white max-w-[700px]">{result}</p>
+  {/if}
+</div>
