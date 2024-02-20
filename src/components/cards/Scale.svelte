@@ -1,5 +1,11 @@
+<script context="module" lang="ts">
+    export type Props = { id: string; };
+</script>
+
 <script lang="ts">
     import { createEventDispatcher } from 'svelte';
+
+    export let id: Props["id"];
 
     const dispatch = createEventDispatcher();
     let selectedValue: number | null; 
@@ -25,12 +31,12 @@
 <div class="scale p-2">
   {#each [1, 2, 3, 4, 5] as value}
     {@const size = valueToSize(value)}
-    <label for="radio-button-{value}" class="radio-button-label cursor-pointer bg-transparent rounded-full py-2">
+    <label for="radio-button-{id}-{value}" class="radio-button-label cursor-pointer bg-transparent rounded-full py-2">
       <input
         type="radio"
-        name="scale"
+        name="{id}"
         checked={selectedValue === value}
-        id="radio-button-{value}"
+        id="radio-button-{id}-{value}"
         value={value}
         class="radio-button h-{size} w-{size} cursor-pointer border-2 {borderColor}
          checked:bg-blue-400 hover:bg-blue-200 checked:hover:bg-blue-400"
