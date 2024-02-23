@@ -13,7 +13,6 @@
 
     function handleSelect(value: number) {
         selectedValue = value;
-        dispatch('scrollToNext');
         dispatch('valuePicked', value);
     }
 

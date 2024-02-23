@@ -11,8 +11,10 @@ export const enum QuestionCategory {
 export type Question = {
     title: string;
     category: QuestionCategory;
-    attributes: Attribute[];
+    attribute1: Attribute;
+    attribute2: Attribute;
     quiz_type: QuizType;
+    answer?: number;
 }
 
 export type Attribute = {

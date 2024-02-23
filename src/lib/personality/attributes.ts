@@ -1,4 +1,8 @@
-import type { Attribute } from '../../lib/quiz'
+import type { Attribute } from './types'
+
+/** 
+ * Personality Traits and Voice & Tone Attributes
+ */
 
 export const understated: Attribute = {
     title: 'Understated',
