@@ -1,0 +1,50 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { supabase } from "../lib/supabase/supabase.ts";
+
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+
+const { cookies, redirect } = Astro;
+
+const accessToken = cookies.get("sb-access-token");
+const refreshToken = cookies.get("sb-refresh-token");
+
+if (!accessToken || !refreshToken) {
+    return redirect("/signin");
+}
+
+const { data, error } = await supabase.auth.setSession({
+    refresh_token: refreshToken.value,
+    access_token: accessToken.value,
+});
+
+if (error) {
+    cookies.delete("sb-access-token", {
+        path: "/",
+    });
+    cookies.delete("sb-refresh-token", {
+        path: "/",
+    });
+
+    return redirect("/signin");
+}
+
+console.log(data);
+const email = data?.user?.email;
+---
+
+<Layout title="dashboard" description="Access your private dashboard">
+  <div class="flex min-h-screen flex-col mx-auto">
+      <Header />
+      <div class="flex flex-col gap-2 mt-4 grow text-center">
+          <h1 class="font-bold font-5xl">Welcome {email}</h1>
+          <p>We are happy to see you here</p>
+          <form action="/api/auth/signout">
+              <button type="submit">Sign out</button>
+          </form>
+          <p>{data.user?.pic}</p>
+      </div>
+      <Footer />
+  </div>
+</Layout>

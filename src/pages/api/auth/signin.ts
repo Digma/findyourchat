@@ -2,6 +2,7 @@ import type { APIRoute } from "astro";
 import { supabase } from "../../../lib/supabase/supabase.ts";
 import type { Provider } from "@supabase/supabase-js";
 
+// TODO: Proper env https://github.com/astro-templates/supabase-demo/blob/main/src/pages/api/auth/signin.ts
 export const POST: APIRoute = async ({ request, cookies, redirect }) => {
   const formData = await request.formData();
   const email = formData.get("email")?.toString();
@@ -14,7 +15,7 @@ export const POST: APIRoute = async ({ request, cookies, redirect }) => {
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: provider as Provider,
       options: {
-        redirectTo: "http://localhost:4322/api/auth/callback"
+        redirectTo: "http://localhost:4321/api/auth/callback"
       },
     });
 
@@ -45,5 +46,5 @@ export const POST: APIRoute = async ({ request, cookies, redirect }) => {
   cookies.set("sb-refresh-token", refresh_token, {
     path: "/",
   });
-  return redirect("/dashboard");
+  return redirect("/profile");
 };

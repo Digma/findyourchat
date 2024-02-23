@@ -1,0 +1,23 @@
+---
+import { Image } from 'astro:assets';
+
+import Logo from "/public/logo.svg";
+
+interface Props {
+	black: boolean;
+}
+
+const { black } = Astro.props;
+let colorDefault = black ? "text-black" : "text-white";
+---
+
+<a href="/">
+    <div class="text-black font-bold text-2xl inline-flex items-center">
+        <Image src={Logo} alt="Findyourchat logo" height="40" />
+        <span class="text-lightblue-accent ml-1">Find</span>
+        <span class=`${colorDefault} italic`>Your</span>
+        <span class="text-yellow-accent">Chat</span>
+        <span class="text-yellow-accent">.</span>
+        <span class="text-dark">ai</span>
+    </div>
+</a>
