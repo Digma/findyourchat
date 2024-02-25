@@ -2,6 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import { supabase } from "../lib/supabase/supabase.ts";
 
+import QuizProfiles from "../components/quiz/QuizProfiles.svelte";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 
@@ -32,19 +33,20 @@ if (error) {
 
 console.log(data);
 const email = data?.user?.email;
+const fullName = data?.user?.user_metadata.full_name;
 ---
 
 <Layout title="dashboard" description="Access your private dashboard">
   <div class="flex min-h-screen flex-col mx-auto">
       <Header />
       <div class="flex flex-col gap-2 mt-4 grow text-center">
-          <h1 class="font-bold font-5xl">Welcome {email}</h1>
+          <h1 class="font-bold font-5xl">Welcome {fullName}</h1>
           <p>We are happy to see you here</p>
           <form action="/api/auth/signout">
               <button type="submit">Sign out</button>
           </form>
-          <p>{data.user?.pic}</p>
       </div>
+      <QuizProfiles client:visible />
       <Footer />
   </div>
 </Layout>

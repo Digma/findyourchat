@@ -1,15 +1,13 @@
 <script lang="ts">
-    import PersonalityDescription from "../containers/PersonalityDescription.svelte";
+    // import PersonalityDescription from "../containers/PersonalityDescription.svelte";
     import ClipboardButton from "../form/ClipboardButton.svelte";
     // TODO: Placeholder
-    import iconConfident from "../../assets/card_icons/pink_yellow_4.svg";
+    //import iconConfident from "../../assets/card_icons/pink_yellow_4.svg";
 
-    import {
-        getWritingPromptFromQuestions,
-        checkIfAllQuestionsAnswered,
-    } from "../../lib/personality/prompt.ts";
+    import { getWritingPromptFromQuestions } from "../../lib/personality/prompt.ts";
     import { quizQuestions } from "../../lib/store.ts";
-    import { submitWritingStyle } from "../../lib/api/fetch.ts";
+
+    import { getQuestionsFromDB, saveQuestionsToDB } from "../../lib/personality/api.ts";
 
     const questionResult: string = $quizQuestions.map((q) => q.title).join(".");
     const questionAnswerToProgress = (answer: number) => {
@@ -18,15 +16,6 @@
     };
 
     const generatedPrompt = getWritingPromptFromQuestions($quizQuestions);
-
-    const saveQuestionsToDB = async () => {
-        console.log("saving questions to db");
-        const allQuestionAnswered = checkIfAllQuestionsAnswered($quizQuestions);
-        if (allQuestionAnswered) {
-            const response = await submitWritingStyle($quizQuestions);
-            console.log("response: ", response);
-        }
-    };
 </script>
 
 <div class="flex flex-row justify-center m-4">
@@ -81,6 +70,7 @@
             </ul> -->
         </div>
         <ClipboardButton buttonText="Copy Prompt" textToCopy={generatedPrompt} />
-        <button class="bg-blue-500 text-white px-4 py-2 rounded-lg" on:click={saveQuestionsToDB}>Save Prompt</button>
+        <button class="bg-blue-500 text-white px-4 py-2 rounded-lg" on:click={() => saveQuestionsToDB($quizQuestions)}>Save Prompt</button>
+        <button class="bg-blue-500 text-white px-4 py-2 rounded-lg" on:click={getQuestionsFromDB}>Get Questions</button>
     </div>
 </div>

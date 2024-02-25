@@ -30,7 +30,7 @@ export default {
 			}
 		},
 		fontFamily: {
-			'cards': ["Poppins", "sans-serif"],
+			'cards': ["Poppins", "sans-serif"] //, ...defaultTheme.fontFamily.sans],
 		},
 	},
 	plugins: [require('flowbite/plugin')],
