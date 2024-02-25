@@ -1,29 +1,29 @@
 <script lang="ts">
-    // import PersonalityDescription from "../containers/PersonalityDescription.svelte";
     import ClipboardButton from "../form/ClipboardButton.svelte";
-    // TODO: Placeholder
-    //import iconConfident from "../../assets/card_icons/pink_yellow_4.svg";
-
     import { getWritingPromptFromQuestions } from "../../lib/personality/prompt.ts";
     import { quizQuestions } from "../../lib/store.ts";
-
-    import { getQuestionsFromDB, saveQuestionsToDB } from "../../lib/personality/api.ts";
+    import { saveQuestionsToDB } from "../../lib/personality/api.ts";
 
     const questionResult: string = $quizQuestions.map((q) => q.title).join(".");
     const questionAnswerToProgress = (answer: number) => {
         const percentage = (answer - 1) * 20;
         return `left-[${percentage}%]`;
     };
+    console.log("questionResult: ", $quizQuestions);
 
     const generatedPrompt = getWritingPromptFromQuestions($quizQuestions);
+
+    const saveToProfile = () => {
+        saveQuestionsToDB($quizQuestions);
+    };
 </script>
 
 <div class="flex flex-row justify-center m-4">
     <div
         class="w-full p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8 flex flex-col justify-center items-center"
     >
-        <div class="mb-4 text-center">
-            <h2 class="text-lg font-medium text-gray-900">Your Unique Personality</h2>
+        <div class="w-full text-left mb-8">
+            <h2 class="text-lg font-bold text-gray-900">Your Unique Personality</h2>
         </div>
         {#each $quizQuestions as question}
             <div class="flex flex-row w-full items-center gap-2 m-2">
@@ -69,8 +69,9 @@
                 </li>
             </ul> -->
         </div>
-        <ClipboardButton buttonText="Copy Prompt" textToCopy={generatedPrompt} />
-        <button class="bg-blue-500 text-white px-4 py-2 rounded-lg" on:click={() => saveQuestionsToDB($quizQuestions)}>Save Prompt</button>
-        <button class="bg-blue-500 text-white px-4 py-2 rounded-lg" on:click={getQuestionsFromDB}>Get Questions</button>
+        <div class="w-full flex flex-row mt-8 justify-center">
+            <ClipboardButton buttonText="Copy Prompt" textToCopy={generatedPrompt} />
+            <a class="bg-blue-500 text-white px-4 py-2 rounded-lg" on:click={saveToProfile} href="/profile">Save To Profile</a>
+        </div>
     </div>
 </div>

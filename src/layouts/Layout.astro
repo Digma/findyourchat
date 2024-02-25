@@ -39,7 +39,7 @@ const { title, description, image = "public/findyourchat_overview.png" } = Astro
 		<meta property="twitter:description" content={description} />
 		<meta property="twitter:image" content={new URL(image, Astro.url)} />
 	</head>
-	<body>
+	<body data-theme="modern">
 		<slot />
 		<SpeedInsights />
 	</body>

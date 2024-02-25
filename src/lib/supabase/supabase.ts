@@ -9,6 +9,7 @@ export const supabase = createClient<Database>(
   {
     auth: {
       flowType: "pkce",
+      autoRefreshToken: true,
     },
   },
 );
