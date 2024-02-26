@@ -15,6 +15,8 @@ And visit http://localhost:54323 for the local copy
 
 ### Typescript Schema
 
+Create new table on supabase website and update local schema
+
 ```bash
 npx supabase gen types typescript --project-id "vvojfealyapeoegduhie" --schema public
 ```
