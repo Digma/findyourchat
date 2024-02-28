@@ -42,7 +42,8 @@ export const GET: APIRoute = async ({ cookies }) => {
     const { data, error } = await supabase
         .from("writing_styles")
         .select("id, answers, name")
-        .eq("user_id", user?.id);
+        .eq("user_id", user?.id)
+        .eq("is_deleted", false);
 
     if (error) {
         return new Response(
@@ -57,8 +58,6 @@ export const GET: APIRoute = async ({ cookies }) => {
 };
 
 export const PUT: APIRoute = async ({ request, cookies }) => {
-    console.log("GOT UPDATE REQUEST");
-    console.log("cookies", cookies);
     const accessToken = cookies.get("sb-access-token");
     const refreshToken = cookies.get("sb-refresh-token");
 
@@ -76,8 +75,6 @@ export const PUT: APIRoute = async ({ request, cookies }) => {
         .update({ name: name })
         .eq("id", id)
         .select();
-
-    console.log("data", data);
 
     if (postgresError) {
         return new Response(
@@ -116,6 +113,42 @@ export const POST: APIRoute = async ({ request, cookies }) => {
         return new Response(
             JSON.stringify({
                 error: groupError.message,
+            }),
+            { status: 500 }
+        );
+    }
+
+    return new Response(
+        JSON.stringify({
+            message: "Success",
+        }),
+        { status: 200 }
+    );
+};
+
+export const DELETE: APIRoute = async ({ request, cookies }) => {
+    const accessToken = cookies.get("sb-access-token");
+    const refreshToken = cookies.get("sb-refresh-token");
+
+    // Check for tokens
+    if (!accessToken || !refreshToken) {
+        throw new Error(MISSING_TOKENS_ERROR);
+    }
+
+    const { user, authError } = await verifyToken(accessToken.value, refreshToken.value);
+    if (authError) return authErrorResponse(authError);
+
+    const { id } = await request.json();
+    const { data, error: postgresError } = await supabase
+        .from("writing_styles")
+        .update({ is_deleted: true })
+        .eq("id", id)
+        .select();
+
+    if (postgresError) {
+        return new Response(
+            JSON.stringify({
+                error: postgresError.message,
             }),
             { status: 500 }
         );

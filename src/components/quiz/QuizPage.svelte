@@ -1,21 +1,26 @@
 <script lang="ts">
-    import emblaCarouselSvelte from "embla-carousel-svelte";
+    // import emblaCarouselSvelte from "embla-carousel-svelte";
 
-    import QuizAttributeSlides from "./slide/QuizAttributeSlides.svelte";
+    // import QuizAttributeSlides from "./slide/QuizAttributeSlides.svelte";
     import QuizAttributeSlide from "./slide/QuizAttributeSlide.svelte";
     import QuizSubmitSlide from "./slide/QuizSubmitSlide.svelte";
     import { allQuestions } from "../../lib/personality/questions.ts";
     import { checkIfAllQuestionsAnswered } from "../../lib/personality/prompt.ts";
     import type { Question } from "../../lib/personality/types.ts";
+    import { quizQuestions, editProfile } from "../../lib/store.ts";
 
     const windowHeightPixel = 484;
     const leftPaneItemHeightPixel = windowHeightPixel / 11;
-    // Question And Updates
+
     let questions: Question[] = [...allQuestions];
+    // Question And Updates
+    if ($quizQuestions && $editProfile === "true") {
+        // If existing quiz, load the answers
+        const answers = $quizQuestions.map((q) => q.answer);
+        questions.forEach((q, idx) => (q.answer = answers[idx]));
+    }  
 
     // Store
-    import { quizQuestions } from "../../lib/store.ts";
-
     const updateStoredQuizQuestions = () => {
         const allQuestionAnswered = checkIfAllQuestionsAnswered(questions);
         if (allQuestionAnswered) {

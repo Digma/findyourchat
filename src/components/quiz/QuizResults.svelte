@@ -1,13 +1,10 @@
 <script lang="ts">
     import ClipboardButton from "../form/ClipboardButton.svelte";
     import { getWritingPromptFromQuestions } from "../../lib/personality/prompt.ts";
-    import { quizQuestions, saveProfile } from "../../lib/store.ts";
+    import { quizQuestions, saveProfile, editProfile } from "../../lib/store.ts";
 
     const questions = [...$quizQuestions];
-    const questionAnswerToProgress = (answer: number) => {
-        const percentage = (answer - 1) * 20;
-        return `left-[${percentage}%]`;
-    };
+    editProfile.set("false");
 
     const generatedPrompt = getWritingPromptFromQuestions(questions);
 
@@ -15,6 +12,12 @@
         // Questions will be saved on the profile page
         // That avoids issues with redirecting for unlogged users
         saveProfile.set("true");
+    };
+
+    // Progress bar
+    const questionAnswerToProgress = (answer: number) => {
+        const percentage = (answer - 1) * 20;
+        return `left-[${percentage}%]`;
     };
 </script>
 

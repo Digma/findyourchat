@@ -1,14 +1,33 @@
 <script lang="ts">
+    // TODO: Validation before deleting
+    // TODO: add edit button to name of profile
     import { Avatar } from "@skeletonlabs/skeleton";
+
     import ClipboardButton from "../form/ClipboardButton.svelte";
+    import InlineInput from "../containers/InlineInput.svelte";
+    
     import { getWritingStylesFromDB } from "../../lib/personality/api.ts";
     import { getWritingPromptFromQuestions } from "../../lib/personality/prompt.ts";
+    import type { WritingStyle } from "../../lib/personality/types.ts";
     import { saveQuestionsToDB } from "../../lib/personality/api.ts";
+    import { quizQuestions, saveProfile, editProfile } from "../../lib/store.ts";
 
-    import { quizQuestions, saveProfile } from "../../lib/store.ts";
     const questions = [...$quizQuestions];
-    
-    const saveToProfile = async () => {
+    // Reset the editing profile
+    editProfile.set("false");
+            
+    // Create initials for each user
+    export let userName: string = "User";
+    let initials = userName
+        .split(" ")
+        .map((n) => n[0])
+        .slice(0, 3)
+        .join("");
+
+    // Use to signal a deleted entry to the table and force a refresh
+    let deleteIdx = 0;
+
+    const saveToWritingProfileToDB = async () => {
         // Questions will be saved on the profile page
         // That avoids issues with redirecting for unlogged users
         if ($saveProfile == "true") {
@@ -17,16 +36,13 @@
         }
     };
 
-    import InlineInput from "../containers/InlineInput.svelte";
-    // TODO: Create a name for each profile
-    export let userName: string = "User";
-    let initials = userName
-        .split(" ")
-        .map((n) => n[0])
-        .join("");
+    const loadProfileToEdit = (writingStyle: WritingStyle) => async () => {
+        quizQuestions.set(writingStyle.questions);
+        editProfile.set("true")
+    }
 
     const updateProfileName = (idx: string) => async (e: CustomEvent<string>) => {
-        const response = await fetch("/api/personalities", {
+        await fetch("/api/personalities", {
             method: "PUT",
             body: JSON.stringify({
                 id: idx,
@@ -34,17 +50,27 @@
             }),
         });
     }
+
+    const deleteProfile = (idx: string) => async () => {
+        await fetch("/api/personalities", {
+            method: "DELETE",
+            body: JSON.stringify({
+                id: idx,
+            }),
+        });
+        // Force a refresh of the table
+        deleteIdx++;
+    }
     
     const createWritingStyleRows = async () => {
-        console.log("Fetching Writing Styles");
         const styles = await getWritingStylesFromDB();
-        console.log("Fetched Writing Styles", styles);
         return styles.map((profile) => {
             return {
                 id: profile.id,
                 name: profile.name,
                 prompt: getWritingPromptFromQuestions(profile.questions),
-            };
+                questions: profile.questions,
+            } as WritingStyle;
         });
     };
 </script>
@@ -64,8 +90,9 @@
             <h2 class="text-lg font-bold text-gray-900">Your Personalities</h2>
         </div>
         <!-- svelte-ignore empty-block -->
-        {#await saveToProfile()}
+        {#await saveToWritingProfileToDB()}
         {:then}
+            {#key deleteIdx}
             {#await createWritingStyleRows()}
                 <p>Loading...</p>
             {:then styles}
@@ -93,6 +120,12 @@
                                                 textToCopy={style.prompt}
                                             />
                                         </td>
+                                        <td class="text-right">
+                                            <a class="text-red-500" href="/quiz" on:click={loadProfileToEdit(style)}>✍️</a>
+                                        </td>
+                                        <td class="text-right">
+                                            <button class="text-red-500" on:click={deleteProfile(style.id)}>❌</button>
+                                        </td>
                                     </tr>
                                 {/each}
                             </tbody>
@@ -108,6 +141,7 @@
             {:catch error}
                 <p>{error.message} - Please Reload the page</p>
             {/await}
+            {/key}
         {:catch error}
             <p>Could not save the profile. Please reload the page</p>
         {/await}

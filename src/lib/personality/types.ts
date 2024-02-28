@@ -23,3 +23,10 @@ export type Attribute = {
     image_url?: string;
     example: string;
 }
+
+export type WritingStyle = {
+    id: string;
+    name: string;
+    prompt: string;
+    questions: Question[];
+};
