@@ -16,6 +16,8 @@ export const quizQuestions = persistentAtom<Question[]>(
     }
 );
 
+export const saveProfile = persistentAtom<string>('saveProfile', 'false')
+
 // export const shoppingCart = persistentAtom<Product[]>('cart', [], {
 //     encode: JSON.stringify,
 //     decode: JSON.parse,

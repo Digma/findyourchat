@@ -1,66 +1,144 @@
 <script lang="ts">
-  import emblaCarouselSvelte from 'embla-carousel-svelte'
+    import emblaCarouselSvelte from "embla-carousel-svelte";
 
-  import QuizAttributeSlides from "./slide/QuizAttributeSlides.svelte";
-  import QuizSubmitSlide from "./slide/QuizSubmitSlide.svelte";
-  import { allQuestions } from "../../lib/personality/questions.ts";
-  import { checkIfAllQuestionsAnswered } from "../../lib/personality/prompt.ts";
+    import QuizAttributeSlides from "./slide/QuizAttributeSlides.svelte";
+    import QuizAttributeSlide from "./slide/QuizAttributeSlide.svelte";
+    import QuizSubmitSlide from "./slide/QuizSubmitSlide.svelte";
+    import { allQuestions } from "../../lib/personality/questions.ts";
+    import { checkIfAllQuestionsAnswered } from "../../lib/personality/prompt.ts";
+    import type { Question } from "../../lib/personality/types.ts";
 
-  // Question And Updates
-  let questions = [];
+    const windowHeightPixel = 484;
+    const leftPaneItemHeightPixel = windowHeightPixel / 11;
+    // Question And Updates
+    let questions: Question[] = [...allQuestions];
 
-  // Store
-  import { quizQuestions } from '../../lib/store.ts';
-  const updateStoredQuizQuestions = () => {
-    console.log("updating stored quiz questions");
-    const allQuestionAnswered = checkIfAllQuestionsAnswered(questions);
-    if (allQuestionAnswered) {
-      quizQuestions.set(questions);
-    }
-  }
-  
-  // Carrousel / Question Slides
-  let emblaApi
-  let options = { loop: true };
-  let plugins = [];
-  let prevButtonEnabled = false;
-  let nextButtonEnabled = false;
-  let selected = 0;
+    // Store
+    import { quizQuestions } from "../../lib/store.ts";
 
+    const updateStoredQuizQuestions = () => {
+        const allQuestionAnswered = checkIfAllQuestionsAnswered(questions);
+        if (allQuestionAnswered) {
+            quizQuestions.set(questions);
+        }
+    };
 
-  const onInit = (event) => {
-    emblaApi = event.detail
-    emblaApi.on("select", onSelect);
-    emblaApi.on("reInit", onSelect);
-    onSelect();
-  }
+    // Carrousel / Question Slides
+    // let emblaApi
+    // let options = { loop: true };
+    // let plugins = [];
+    // let prevButtonEnabled = false;
+    // let nextButtonEnabled = false;
+    // let selected = 0;
 
-  const onSelect = () => {
-    if (!emblaApi) return;
-    prevButtonEnabled = emblaApi.canScrollPrev();
-    nextButtonEnabled = emblaApi.canScrollNext();
-    console.log("selected: ", emblaApi.selectedScrollSnap());
-    selected = emblaApi.selectedScrollSnap() ?? 0;
-  };
+    // const onInit = (event) => {
+    //   emblaApi = event.detail
+    //   emblaApi.on("select", onSelect);
+    //   emblaApi.on("reInit", onSelect);
+    //   onSelect();
+    // }
 
-  const scrollPrev = () => {
-    if (emblaApi) emblaApi.scrollPrev();
-  };
+    // const onSelect = () => {
+    //   if (!emblaApi) return;
+    //   prevButtonEnabled = emblaApi.canScrollPrev();
+    //   nextButtonEnabled = emblaApi.canScrollNext();
+    //   console.log("selected: ", emblaApi.selectedScrollSnap());
+    //   selected = emblaApi.selectedScrollSnap() ?? 0;
+    // };
 
-  const scrollNext = () => {
-    if (emblaApi) emblaApi.scrollNext();
-  };
+    // const scrollPrev = () => {
+    //   if (emblaApi) emblaApi.scrollPrev();
+    // };
 
-  const scollTo = (index) => () => {
-    console.log("scrolling to index: ", index);
-    if (emblaApi) emblaApi.scrollTo(index);
-  };
+    // const scrollNext = () => {
+    //   if (emblaApi) emblaApi.scrollNext();
+    // };
 
-  
+    // const scollTo = (index: number) => () => {
+    //   console.log("scrolling to index: ", index);
+    //   if (emblaApi) emblaApi.scrollTo(index);
+    // };
+
+    const toNextSlide = () => {
+        currentTile = currentTile + 1;
+    };
+
+    const toPrevSlide = () => {
+        currentTile = currentTile - 1;
+    };
+
+    const updateAnswerAndGoToNextSlide = (index: number) => (e: CustomEvent<number>) => {
+        const score = e.detail;
+        console.log("Score", score);
+        questions[index].answer = score;
+        // Force update of component
+        questions = questions;
+        toNextSlide();
+    };
+
+    import { AppRail, AppRailTile, AppRailAnchor } from "@skeletonlabs/skeleton";
+    let currentTile: number = 0;
+    $: selectedQuestion = questions[currentTile];
+    $: selectedQuestionAnswer = selectedQuestion?.answer;
+    $: questionsAnsweredBoolArray = questions.map((q) => (q.answer ? true : false));
+    $: questionsAllAnswered = checkIfAllQuestionsAnswered(questions);
 </script>
 
 <section class="quiz_section">
-  <div class="embla overflow-hidden" >
+    <div
+        class="card bg-surface-50-900-token rounded-none h-[{windowHeightPixel}x] grid grid-cols-[auto_1fr] w-full"
+    >
+        <AppRail width="w-72" height="h-full" aspectRatio="aspect-auto">
+            <!-- <svelte:fragment slot="lead">
+        <AppRailAnchor href="/" >(icon)</AppRailAnchor>
+      </svelte:fragment> -->
+            <!-- --- -->
+            {#each allQuestions as question, index}
+                <AppRailTile bind:group={currentTile} name="tile-1" value={index} title="tile-1">
+                    <div class="flex flex-row justify-between m-4">
+                        <span class="items-center justify-center">{question.title}</span>
+                        <span class="flex items-center justify-center"
+                            >{questionsAnsweredBoolArray[index] ? "✓" : "❌"}</span
+                        >
+                    </div>
+                    <!-- <svelte:fragment slot="lead">(icon)</svelte:fragment> -->
+                </AppRailTile>
+            {/each}
+            <AppRailTile bind:group={currentTile} name="tile-1" value={10} title="tile-1">
+                <span class="items-center justify-center m-4">Submit</span>
+            </AppRailTile>
+            <!-- --- -->
+            <!-- <svelte:fragment slot="trail">
+        <AppRailAnchor href="/" target="_blank" title="Account">(icon)</AppRailAnchor>
+      </svelte:fragment> -->
+        </AppRail>
+        <div class="grid place-content-center place-items-center">
+            {#if currentTile === 10}
+                <QuizSubmitSlide
+                    on:submittedAnswers={updateStoredQuizQuestions}
+                    enableSubmit={questionsAllAnswered}
+                />
+            {:else if currentTile >= 0 && currentTile < 10}
+                <QuizAttributeSlide
+                    question={selectedQuestion}
+                    selectedValue={selectedQuestionAnswer}
+                    on:valuePicked={updateAnswerAndGoToNextSlide(currentTile)}
+                />
+                <p>value: {selectedQuestionAnswer}</p>
+                <div class="mt-8">
+                    <button class="bg-primary-500 text-white rounded-md p-2" on:click={toPrevSlide}
+                        >﹤</button
+                    >
+                    <button class="bg-primary-500 text-white rounded-md p-2" on:click={toNextSlide}
+                        >﹥</button
+                    >
+                </div>
+            {:else}
+                <div>error</div>
+            {/if}
+        </div>
+    </div>
+    <!-- <div class="embla overflow-hidden" >
     <div class="embla__viewport" use:emblaCarouselSvelte={{ options, plugins }} on:emblaInit={onInit}>
       <div class="embla__container flex">
         <QuizSubmitSlide on:submittedAnswers={updateStoredQuizQuestions} />
@@ -108,5 +186,5 @@
         />
     </button>
     {/each}
-  </div>
+  </div> -->
 </section>

@@ -1,19 +1,19 @@
 <script context="module" lang="ts">
-    export type Props = { id: string; };
+    export type Props = { id: string; selectedValue: number | undefined;};
 </script>
 
 <script lang="ts">
     import { createEventDispatcher } from 'svelte';
 
     export let id: Props["id"];
+    export let selectedValue: Props["selectedValue"];
 
     const dispatch = createEventDispatcher();
-    let selectedValue: number | null; 
     let borderColor = "border-gray-300";
 
     function handleSelect(value: number) {
-        selectedValue = value;
-        dispatch('valuePicked', value);
+      console.log("ValueSelected Scale", selectedValue);
+      dispatch('valuePicked', value);
     }
 
     function valueToSize(value: number) {
@@ -27,7 +27,7 @@
     }
 </script>
 
-<div class="scale p-2">
+<div class="flex gap-x-2 scale p-2 min-w-32 items-center">
   {#each [1, 2, 3, 4, 5] as value}
     {@const size = valueToSize(value)}
     <label for="radio-button-{id}-{value}" class="radio-button-label cursor-pointer bg-transparent rounded-full py-2">

@@ -2,7 +2,6 @@ import type { APIRoute } from "astro";
 import { supabase } from "../../../lib/supabase/supabase.ts";
 
 export const GET: APIRoute = async ({ url, cookies, redirect }) => {
-  console.log(url);
   const authCode = url.searchParams.get("code");
 
   if (!authCode) {

@@ -3,6 +3,12 @@ import type { Question } from './types.ts';
 import { checkIfAllQuestionsAnswered } from "../../lib/personality/prompt.ts";
 
 
+type WritingStyle = {
+    id: string;
+    name: string;
+    questions: Question[];
+};
+
 const createDefaultNameFromQuestion = (questions: Question[]) => {
     const veryLowAnswers = questions.filter((q) => q.answer === 1).map((q) => q.attribute1.title);
     const veryHighAnswers = questions.filter((q) => q.answer === 5).map((q) => q.attribute2.title);
@@ -18,10 +24,10 @@ const createDefaultNameFromQuestion = (questions: Question[]) => {
         return mediumLowAnswers.slice(0, 3).join(" ");
     }
 
-    return "Perfectly Balanced";
+    return "Perfectly Balanced as all things should be.";
 }
 
-export const getWritingStylesFromDB = async () => {
+export const getWritingStylesFromDB: () => Promise<WritingStyle[]> = async () => {
     const response = await fetch("/api/personalities", {
         method: "GET",
     });
@@ -31,8 +37,9 @@ export const getWritingStylesFromDB = async () => {
             id: r["id"],
             name: r["name"], 
             questions: JSON.parse(r["answers"]) as Question[]
-        }
+        } as WritingStyle;
     });
+
     return writingStyles;
 };
 

@@ -1,5 +1,5 @@
 <script context="module" lang="ts">
-    import type { Attribute } from '../../lib/quiz'
+    import type { Attribute } from '../../lib/personality/types.ts';
     export type Props = Attribute & { id: string; icon_src: string; };
 </script>
 
@@ -14,7 +14,7 @@
 
 <div
     id={id}
-  class={`card max-w-[25%] p-4 md:p-8 rounded-xl drop-shadow-md font-cards first:mt-[0px] last:hover:translate-y-[-10px] transition-all delay-100 ease-out relative last:hover:drop-shadow-2xl will-change-transform`}
+  class={`bg-blue-400 card max-w-[25%] p-4 md:p-8 rounded-xl drop-shadow-md font-cards first:mt-[0px] last:hover:translate-y-[-10px] transition-all delay-100 ease-out relative last:hover:drop-shadow-2xl will-change-transform`}
 >
   <div class="flex flex-col justify-between items-center">
     <img src={icon_src} alt="card icon" class="w-[80px] h-[80px]" />

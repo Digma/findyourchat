@@ -1,6 +1,7 @@
 <script lang="ts">
     import { createEventDispatcher } from 'svelte';
 
+    import type { Question } from "../../../lib/personality/types.ts";
     import { allQuestions } from "../../../lib/personality/questions.ts";
     import CardAttribute from "../../attributeCard/CardAttribute.svelte";
     import Scale from "../../attributeCard/Scale.svelte";
@@ -10,7 +11,7 @@
     import icon2 from "../../../assets/card_icons/purple_yellow_1.svg";
   
     // Question shared with parent
-    export let questions
+    export let questions: Question[]
     questions = allQuestions;
 
     // Dispatch to parent
@@ -35,6 +36,7 @@
         <CardAttribute id="q-{index}-card1" {...question.attribute1} icon_src={icon1.src} />
         <Scale
             id="q-{index}-scale"
+            selectedValue={question.answer}
             on:valuePicked={trackQuestion(index)}
         />
         <CardAttribute id="q-{index}-card2" {...question.attribute2} icon_src={icon2.src} />

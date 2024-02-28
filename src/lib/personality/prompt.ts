@@ -41,7 +41,7 @@ export const answerToAttribute = (question: Question) => {
 
 
 export const checkIfAllQuestionsAnswered = (questions: Question[]) => {
-    return questions.every((question) => { return question.answer });
+    return questions.every((question) => { return question.answer !== undefined});
 }
 
 export const getWritingPromptFromQuestions = (questions: Question[]) => {
@@ -64,15 +64,6 @@ export const getWritingPromptFromQuestions = (questions: Question[]) => {
                 toneAndVoiceArray.push(scoreDescription);
                 break;
         }
-
-
-        // if (questionCategory.valueOf() === QuestionCategory.PersonalityTraits.valueOf()) {
-        //     personalityArray.push(scoreDescription);
-        // } else if (questionCategory.valueOf() === QuestionCategory.VoiceAndTone.valueOf()) {
-        //     toneAndVoiceArray.push(scoreDescription);
-        // } else if (questionCategory.valueOf() === QuestionCategory.WritingStyle.valueOf()) {
-        //     writingStyleArray.push(scoreDescription);
-        // }
     }
 
     // TOOD: Add writing Style array
@@ -81,6 +72,5 @@ export const getWritingPromptFromQuestions = (questions: Question[]) => {
         personalityArray,
         toneAndVoiceArray
     );
-    console.log(prompt);
     return prompt;
 };

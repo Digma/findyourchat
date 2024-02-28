@@ -1,20 +1,20 @@
 <script lang="ts">
     import ClipboardButton from "../form/ClipboardButton.svelte";
     import { getWritingPromptFromQuestions } from "../../lib/personality/prompt.ts";
-    import { quizQuestions } from "../../lib/store.ts";
-    import { saveQuestionsToDB } from "../../lib/personality/api.ts";
+    import { quizQuestions, saveProfile } from "../../lib/store.ts";
 
-    const questionResult: string = $quizQuestions.map((q) => q.title).join(".");
+    const questions = [...$quizQuestions];
     const questionAnswerToProgress = (answer: number) => {
         const percentage = (answer - 1) * 20;
         return `left-[${percentage}%]`;
     };
-    console.log("questionResult: ", $quizQuestions);
 
-    const generatedPrompt = getWritingPromptFromQuestions($quizQuestions);
+    const generatedPrompt = getWritingPromptFromQuestions(questions);
 
     const saveToProfile = () => {
-        saveQuestionsToDB($quizQuestions);
+        // Questions will be saved on the profile page
+        // That avoids issues with redirecting for unlogged users
+        saveProfile.set("true");
     };
 </script>
 
@@ -71,7 +71,7 @@
         </div>
         <div class="w-full flex flex-row mt-8 justify-center">
             <ClipboardButton buttonText="Copy Prompt" textToCopy={generatedPrompt} />
-            <a class="bg-blue-500 text-white px-4 py-2 rounded-lg" on:click={saveToProfile} href="/profile">Save To Profile</a>
+            <a class="bg-blue-500 text-white px-4 py-2 rounded-lg" on:click={saveToProfile} href="/save_profile">Save To Profile</a>
         </div>
     </div>
 </div>

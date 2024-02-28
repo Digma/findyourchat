@@ -2,7 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import Logo from "../components/Logo.astro";
 
-const { cookies, redirect } = Astro;
+const { cookies } = Astro;
 
 const accessToken = cookies.get("sb-access-token");
 const refreshToken = cookies.get("sb-refresh-token");
@@ -22,7 +22,7 @@ if (accessToken && refreshToken) {
                     >
                         <div class="mb-10 text-center md:mb-8">
                             <a href="javascript:void(0)" class="mx-auto inline-block max-w-[160px]">
-                                <Logo src={Logo} alt="Findyourchat logo" height="80" black={true} />
+                                <Logo black={true} />
                             </a>
                         </div>
                         <form action="/api/auth/signin" method="post">
