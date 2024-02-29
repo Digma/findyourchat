@@ -26,7 +26,7 @@
     {buttonText}
 </Button>
 <Popover 
-    class="min-w-32 text-sm font-light text-center" 
+    class="min-w-44 text-sm font-light text-center" 
     title="" 
     triggeredBy="#btn-clipboard-prompt">
     {PopoverContent}

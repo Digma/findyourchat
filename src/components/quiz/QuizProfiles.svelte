@@ -77,17 +77,17 @@
 
 <div class="flex flex-row justify-center m-4">
     <div
-        class="w-full p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8 flex flex-col justify-center items-center"
+        class="w-full p-4 rounded-lg sm:p-8 flex flex-col justify-center items-center"
     >
-        <div class="w-full flex gap-2">
-            <Avatar class="h-8 self-center" {initials} background="bg-gray-300" />
-            <h2 class="text-lg font-bold center text-gray-900">{userName}</h2>
+        <div class="w-full flex gap-2 items-center">
+            <Avatar class="self-center" {initials} background="bg-gray-300" />
+            <h2 class="text-3xl font-bold center text-gray-900">{userName}</h2>
             <form action="/api/auth/signout" class="flex-1 text-right">
                 <button type="submit" class="italic">Sign out</button>
             </form>
         </div>
         <div class="w-full mb-2 mt-8">
-            <h2 class="text-lg font-bold text-gray-900">Your Personalities</h2>
+            <h2 class="text-lg font-bold text-white">Your Personalities</h2>
         </div>
         <!-- svelte-ignore empty-block -->
         {#await saveToWritingProfileToDB()}
@@ -101,7 +101,7 @@
                 {:else}
                     <div class="table-container">
                         <!-- Native Table Element -->
-                        <table class="table table-hover">
+                        <table class="table table-hover table-compact">
                             <thead>
                                 <!-- <tr>
                                     <th>Position</th>
@@ -111,19 +111,20 @@
                             </thead>
                             <tbody>
                                 {#each styles as style, index}
-                                    <tr class="h-full">
-                                        <td>{style.id}</td>
-                                        <td class=""> <InlineInput value={style.name} on:blur={updateProfileName(style.id)}/></td>
-                                        <td class="text-right">
+                                    <tr class="flex h-full p-2 gap-2">
+                                        <td class="m-auto w-full">
+                                            <InlineInput value={style.name} on:blur={updateProfileName(style.id)}/>
+                                        </td>
+                                        <td class="text-right h-full p-0">
                                             <ClipboardButton
                                                 buttonText="Copy Prompt"
                                                 textToCopy={style.prompt}
                                             />
                                         </td>
-                                        <td class="text-right">
+                                        <td class="text-right h-full bg-rose-accent rounded m-auto">
                                             <a class="text-red-500" href="/quiz" on:click={loadProfileToEdit(style)}>✍️</a>
                                         </td>
-                                        <td class="text-right">
+                                        <td class="text-right h-full bg-blue-accent rounded m-auto">
                                             <button class="text-red-500" on:click={deleteProfile(style.id)}>❌</button>
                                         </td>
                                     </tr>

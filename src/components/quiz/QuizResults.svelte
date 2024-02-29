@@ -1,7 +1,7 @@
 <script lang="ts">
     import ClipboardButton from "../form/ClipboardButton.svelte";
     import { getWritingPromptFromQuestions } from "../../lib/personality/prompt.ts";
-    import { quizQuestions, saveProfile, editProfile } from "../../lib/store.ts";
+    import { quizQuestions, saveProfile, editProfile, englishType } from "../../lib/store.ts";
 
     const questions = [...$quizQuestions];
     editProfile.set("false");
@@ -17,32 +17,50 @@
     // Progress bar
     const questionAnswerToProgress = (answer: number) => {
         const percentage = (answer - 1) * 20;
-        return `left-[${percentage}%]`;
+        return percentage;
     };
 </script>
 
 <div class="flex flex-row justify-center m-4">
     <div
-        class="w-full p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8 flex flex-col justify-center items-center"
+        class="w-full p-4 sm:p-8 flex flex-col justify-center items-center"
     >
-        <div class="w-full text-left mb-8">
-            <h2 class="text-lg font-bold text-gray-900">Your Unique Personality</h2>
+        <div class="w-full text-center mb-8">
+            <h2 class="text-3xl font-bold text-white">Your Unique Personality</h2>
         </div>
-        {#each $quizQuestions as question}
+        <div class="mt-4 mb-4">
+            <p class="text-center text-black font-bold text-2xl">English Type</p>
+        </div>
+        <div class="flex flex-row w-full items-center gap-2 m-2">
+            <div class="w-[25%] text-right text-white">
+                <p class="font-bold">{$englishType}</p>
+            </div>
+        </div>
+        {#each $quizQuestions as question, idx}
+            {#if idx == 0}
+                <div class="mt-4 mb-4">
+                    <p class="text-center text-black font-bold text-2xl">Personality Traits</p>
+                </div>
+            {/if}
+            {#if idx == 6}
+            <div class="mt-8 mb-4">
+                <p class="text-center font-bold text-black text-2xl">Tone</p>
+            </div>
+            {/if}
             <div class="flex flex-row w-full items-center gap-2 m-2">
-                <div class="w-[25%] text-right">
+                <div class="w-[25%] text-right text-white">
                     <p class="font-bold">{question.attribute1.title}</p>
                 </div>
                 <div class="w-[50%] px-4 lg:w-5/12">
-                    <div class="bg-gray-200 dark:bg-dark-3 relative h-2.5 w-full rounded-2xl">
+                    <div class="bg-gray-200 relative h-4 w-full rounded-2xl">
                         <div
-                            class="bg-blue-500 absolute {questionAnswerToProgress(
-                                question.answer
-                            )} h-full w-[20%] rounded-2xl"
-                        ></div>
+                            id="progress-bar-q-{question.attribute1.title}"
+                            class="bg-yellow-accent absolute h-full w-[20%] rounded-2xl"
+                            style:left="{questionAnswerToProgress(question.answer)}%"
+                        />
                     </div>
                 </div>
-                <div class="w-[25%] text-left">
+                <div class="w-[25%] text-left text-gray-300">
                     <p class="font-bold">{question.attribute2.title}</p>
                 </div>
             </div>
@@ -74,7 +92,7 @@
         </div>
         <div class="w-full flex flex-row mt-8 justify-center">
             <ClipboardButton buttonText="Copy Prompt" textToCopy={generatedPrompt} />
-            <a class="bg-blue-500 text-white px-4 py-2 rounded-lg" on:click={saveToProfile} href="/save_profile">Save To Profile</a>
+            <a class="bg-rose-accent text-white px-4 py-2 rounded-lg" on:click={saveToProfile} href="/profile">Save To Profile</a>
         </div>
     </div>
 </div>

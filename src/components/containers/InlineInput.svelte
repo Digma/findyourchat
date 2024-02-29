@@ -8,8 +8,8 @@
     export let value = "";
     export let type = "text";
     export let placeholder = "";
-    export let labelClasses = "";
-    export let inputClasses = "";
+    export let labelClasses = "align-middle m-auto";
+    export let inputClasses = "h-6 m-auto";
     export let rows = 2;
     export let cols = 20;
     export let options = [];
@@ -101,7 +101,7 @@
         {/each}
     </select>
 {:else}
-    <span class={labelClasses} on:click={toggle}>
+    <span class="{labelClasses}" on:click={toggle}>
         {label}<slot name="selectCaret"
             >{#if isSelect}<span>&#9660;</span>{/if}</slot
         >
