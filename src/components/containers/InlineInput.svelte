@@ -9,7 +9,7 @@
     export let type = "text";
     export let placeholder = "";
     export let labelClasses = "align-middle m-auto";
-    export let inputClasses = "h-6 m-auto";
+    export let inputClasses = "min-w-64 h-6 m-auto";
     export let rows = 2;
     export let cols = 20;
     export let options = [];
