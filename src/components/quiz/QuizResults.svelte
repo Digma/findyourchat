@@ -17,17 +17,20 @@
     };
 
     // Progress bar
-    const progressPercentage = (answer: number) => {
+    const progressPercentage = (answer: number|undefined) => {
+        if (!answer) return "0%";
         const percentage = (answer - 1) * 25;
         return `${percentage}%`;
     };
 
-    const progressPercentageInverse = (answer: number) => {
+    const progressPercentageInverse = (answer: number|undefined) => {
+        if (!answer) return "0%";
         const percentage = 100 - (answer - 1) * 25;
         return `${percentage}%`;
     };
 
-    const progressBarStart = (answer: number) => {
+    const progressBarStart = (answer: number|undefined) => {
+        if (!answer) return "0%";
         if (answer === 1) {
             return "0%";
         } else if (answer === 2) {
@@ -41,7 +44,8 @@
         }
     };
 
-    const progressBarWidth = (answer: number) => {
+    const progressBarWidth = (answer: number|undefined) => {
+        if (!answer) return "0%";
         if (answer === 1) {
             return "60%";
         } else if (answer === 2) {
@@ -55,36 +59,28 @@
         }
     };
 
-    const attribute1Color = (answer: number, index: number) => {
-        if (answer <= 3) {
-            return textColors[index + 1];
-        } else {
-            return "text-gray-300";
-        }
+    const attribute1Color = (answer: number|undefined, index: number) => {
+        if (!answer) return "text-gray-300";
+        else if (answer <= 3) return textColors[index + 1];
+        else return "text-gray-300";
     };
 
-    const attribute2Color = (answer: number, index: number) => {
-        if (answer >= 3) {
-            return textColors[index + 1];
-        } else {
-            return "text-gray-300";
-        }
+    const attribute2Color = (answer: number|undefined, index: number) => {
+        if (!answer) return "text-gray-300";
+        if (answer >= 3) return textColors[index + 1];
+        else return "text-gray-300";
     };
 
-    const percentage1Color = (answer: number) => {
-        if (answer <= 3) {
-            return "text-black";
-        } else {
-            return "text-gray-500";
-        }
+    const percentage1Color = (answer: number|undefined) => {
+        if (!answer) return "text-gray-500";
+        else if (answer <= 3) return "text-black";
+        else return "text-gray-500";
     };
 
-    const percentage2Color = (answer: number) => {
-        if (answer >= 3) {
-            return "text-black";
-        } else {
-            return "text-gray-500";
-        }
+    const percentage2Color = (answer: number|undefined) => {
+        if (!answer) return "text-gray-500";
+        else if (answer >= 3) return "text-black";
+        else return "text-gray-500";
     };
 </script>
 
@@ -99,20 +95,20 @@
             </div>
             <div class="flex flex-row items-center gap-4">
                 <ClipboardButton textToCopy={generatedPrompt} />
-                <a
-                    class="flex flex-row gap-2 place-self-end"
-                    href="/profile">
-                    <SaveButton on:save={saveProfile} />
+                <a class="flex flex-row gap-2 place-self-end" href="/profile">
+                    <SaveButton on:save={saveToProfile} />
                 </a>
             </div>
         </div>
-        
-        <div class="rounded w-32 text-left text-sm ">
+
+        <div class="rounded w-32 text-left text-sm">
             <h1
-  class="font-extrabold text-transparent text-xl bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">🗣️ {$englishType}</h1>
-            
+                class="font-extrabold text-transparent text-xl bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600"
+            >
+                🗣️ {$englishType}
+            </h1>
         </div>
-        {#each $quizQuestions as question, idx}
+        {#each questions as question, idx}
             {#if idx == 0}
                 <div class="mt-4 mb-4">
                     <p class="text-gray-500 font-bold text-2xl">Personality Traits 🌟</p>
@@ -120,7 +116,7 @@
             {/if}
             {#if idx == 6}
                 <div class="mt-8 mb-4">
-                    <p class="text-left font-bold text-gray-500 text-2xl ">Tone 🎤</p>
+                    <p class="text-left font-bold text-gray-500 text-2xl">Tone 🎤</p>
                 </div>
             {/if}
             <div class="w-full mb-4">
@@ -146,7 +142,9 @@
                             style:left={progressBarStart(question.answer)}
                             style:width={progressBarWidth(question.answer)}
                         />
-                        <p class="mr-2 text-sm font-bold z-10 {percentage2Color(question.answer)}">{progressPercentage(question.answer)}</p>
+                        <p class="mr-2 text-sm font-bold z-10 {percentage2Color(question.answer)}">
+                            {progressPercentage(question.answer)}
+                        </p>
                     </div>
                 </div>
             </div>

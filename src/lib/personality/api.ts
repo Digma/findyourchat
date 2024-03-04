@@ -28,7 +28,7 @@ const createDefaultNameFromQuestion = (questions: Question[]) => {
 }
 
 export const getWritingStylesFromDB: () => Promise<WritingStyle[]> = async () => {
-    const response = await fetch("/api/personalities", {
+    const response = await fetch("/api/users/writing_styles", {
         method: "GET",
     });
     const responseJson = await response.json();
@@ -36,21 +36,22 @@ export const getWritingStylesFromDB: () => Promise<WritingStyle[]> = async () =>
         return {
             id: r["id"],
             name: r["name"], 
-            questions: JSON.parse(r["answers"]) as Question[]
+            questions: JSON.parse(r["answers"]) as Question[],
         } as WritingStyle;
     });
 
     return writingStyles;
 };
 
-export const saveQuestionsToDB = async (questions: Question[]) => {
+export const saveQuestionsToDB = async (questions: Question[], englishType: string) => {
     const allQuestionAnswered = checkIfAllQuestionsAnswered(questions);
 
     if (allQuestionAnswered) {
-        const response = await fetch("/api/personalities", {
+        const response = await fetch("/api/users/writing_styles", {
             method: "POST",
             body: JSON.stringify({
                 name: createDefaultNameFromQuestion(questions),
+                englishType: englishType,
                 questions: questions,
             }),
         });

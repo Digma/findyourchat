@@ -1,0 +1,11 @@
+---
+import ForgetPasswordForm from "../components/auth/ForgetPasswordForm.svelte";
+import Layout from "../../layouts/Layout.astro";
+
+const title = "Forgot Password - FindYourChat.ai";
+const description = "Reset your password to regain access to your account.";
+---
+
+<Layout title={title} description={description}>
+  <ForgetPasswordForm client:load />
+</Layout>

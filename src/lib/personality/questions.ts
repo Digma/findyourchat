@@ -1,4 +1,4 @@
-import type { Question, Attribute } from './types'
+import type { Question } from './types'
 import { QuizType, QuestionCategory } from './types'
 import * as attribute from './attributes'
 
@@ -16,7 +16,7 @@ export const understatedHyperbolic: Question = {
 }
 
 export const reservedEmotionallyExpressive: Question = {
-    title: 'Reserved or Emotionally Expressive?',
+    title: 'Reserved or Expressive?',
     category: QuestionCategory.PersonalityTraits,
     attribute1: attribute.reserved,
     attribute2: attribute.emotionallyExpressive,

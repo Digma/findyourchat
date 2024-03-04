@@ -1,0 +1,20 @@
+---
+import Layout from "./Layout.astro";
+import getUserData from "../lib/firebase/utils/auth/getUserData";
+import Navbar from "../components/Navbar.svelte";
+
+interface Props {
+	title: string;
+	description: string;
+	image?: string;
+}
+const { title, description, image } = Astro.props;
+
+const sessionCookie = Astro.cookies.get("session")?.value ?? null;
+const user = await getUserData(sessionCookie);
+---
+
+<Layout title={title} description={description} image={image}>
+    <Navbar {user} client:load />
+    <slot />
+</Layout>

@@ -24,7 +24,7 @@
 >
     <div class="max-w-96 flex flex-col items-center justify-center text-black">
         <div class="mb-8">
-            <img src="/public/logo.png" alt="Logo" class="mx-auto h-24" />
+            <img src="/logo.png" alt="Logo" class="mx-auto h-24" />
         </div>
 
         <!-- Clock icon SVG -->

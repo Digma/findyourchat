@@ -1,0 +1,15 @@
+---
+import ConfirmPasswordForm from "@/components/auth/ConfirmPasswordForm.svelte";
+import Layout from "../../../layouts/LayoutWithNavbar.astro";
+
+const title = "Confirm Password - FindYourChat.ai";
+const description = "Reset your password to regain access to your account.";
+
+const oobCode = Astro.url.searchParams.get("oobCode")! || "";
+---
+
+<Layout title={title} description={description}>
+  {/* 
+  // @ts-ignore */}
+  <ConfirmPasswordForm {oobCode} client:load />
+</Layout>

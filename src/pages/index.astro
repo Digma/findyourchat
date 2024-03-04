@@ -1,5 +1,5 @@
 ---
-import Header from '../components/Header.astro';
+import Header from '../components/Navbar.svelte';
 import Footer from '../components/Footer.astro';
 import Hero from '../components/Hero.astro';
 import Feature1 from '../components/Feature1UniquePersonality.astro';
@@ -7,12 +7,11 @@ import Feature2 from '../components/Feature2WritingStyle.astro';
 
 import WaitingListForm from '../components/form/WaitingListForm.astro';
 
-import Layout from "../layouts/Layout.astro";
+import Layout from "../layouts/LayoutWithNavbar.astro";
 ---
 
 <Layout title="FindYourChat.ai" description="Unlock the full potential of AI, customize ChatGPT to your unique writing style. Whether it's for emails, content creation, or casual conversations, we generate prompts to adapt ChatGPT's responses to match your tone, style, and personality nuances.">
     <body class="bg-blue-accent max-w-screen-xl mx-auto">
-        <Header />
         <Hero />
         <Feature1 />
         <Feature2 />

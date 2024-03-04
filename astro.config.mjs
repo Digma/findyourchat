@@ -11,6 +11,12 @@ export default defineConfig({
   renderers: ['@astrojs/renderer-svelte'],
   site: 'https://www.findyourchat.ai',
   output: "hybrid",
+  server: {
+    port: 3000
+  },
+  preview: {
+    port: 3000
+  },
   adapter: vercel({
     webAnalytics: {
       enabled: true

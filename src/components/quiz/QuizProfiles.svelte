@@ -1,8 +1,5 @@
 <script lang="ts">
     // TODO: Validation before deleting
-    // TODO: add edit button to name of profile
-    import { Avatar } from "@skeletonlabs/skeleton";
-
     import ClipboardButton from "../form/ClipboardButton.svelte";
     import InlineInput from "../containers/InlineInput.svelte";
     
@@ -15,14 +12,6 @@
     const questions = [...$quizQuestions];
     // Reset the editing profile
     editProfile.set("false");
-            
-    // Create initials for each user
-    export let userName: string = "User";
-    let initials = userName
-        .split(" ")
-        .map((n) => n[0])
-        .slice(0, 3)
-        .join("");
 
     // Use to signal a deleted entry to the table and force a refresh
     let deleteIdx = 0;
@@ -31,7 +20,9 @@
         // Questions will be saved on the profile page
         // That avoids issues with redirecting for unlogged users
         if ($saveProfile == "true") {
+            // TODO
             await saveQuestionsToDB(questions, $englishType);
+            //await saveQuestionsToDB(questions, $englishType);
             saveProfile.set("false");
         }
     };
@@ -42,7 +33,7 @@
     }
 
     const updateProfileName = (idx: string) => async (e: CustomEvent<string>) => {
-        await fetch("/api/personalities", {
+        await fetch("/api/users/writing_styles", {
             method: "PUT",
             body: JSON.stringify({
                 id: idx,
@@ -52,7 +43,7 @@
     }
 
     const deleteProfile = (idx: string) => async () => {
-        await fetch("/api/personalities", {
+        await fetch("/api/users/writing_styles", {
             method: "DELETE",
             body: JSON.stringify({
                 id: idx,
@@ -63,7 +54,9 @@
     }
     
     const createWritingStyleRows = async () => {
+        // TODO:
         const styles = await getWritingStylesFromDB();
+        //const styles = []
         return styles.map((profile) => {
             return {
                 id: profile.id,
@@ -79,13 +72,6 @@
     <div
         class="w-full p-4 rounded-lg sm:p-8 flex flex-col justify-center items-center"
     >
-        <div class="w-full flex gap-2 items-center">
-            <Avatar class="self-center" {initials} background="bg-gray-300" />
-            <h2 class="text-3xl font-bold center text-gray-900">{userName}</h2>
-            <form action="/api/auth/signout" class="flex-1 text-right">
-                <button type="submit" class="italic">Sign out</button>
-            </form>
-        </div>
         <div class="w-full mb-2 mt-8">
             <h2 class="text-lg font-bold text-white">Your Personalities</h2>
         </div>

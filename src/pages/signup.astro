@@ -1,0 +1,20 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/Navbar.svelte";
+import SignupForm from "../components/auth/SignupForm.svelte";
+import getUserData from "../lib/firebase/utils/auth/getUserData";
+
+const title = "Sign Up - FindYourChat.ai";
+const description =
+  "Join FindYourChat.ai and start creating your own personality profiles for ChatGPT and HuggingChat";
+const sessionCookie = Astro.cookies.get("session")?.value ?? null;
+const user = await getUserData(sessionCookie);
+if (user) {
+  return Astro.redirect("/profile");
+}
+---
+
+<Layout title={title} description={description}>
+  <Navbar {user} client:load />
+  <SignupForm client:visible />
+</Layout>

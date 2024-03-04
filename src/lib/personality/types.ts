@@ -2,6 +2,19 @@ export const enum QuizType {
     Scale5 = "Scale5",
 }
 
+export enum EnglishType {
+    International = "International",
+    American = "American",
+    British = "British",
+    SouthAfrican = "South African",
+    Australian = "Australian",
+    Canadian = "Canadian",
+    Indian = "Indian",
+    Irish = "Irish",
+    NewZealand = "New Zealand",
+    Singaporean = "Singaporean",
+} 
+
 export const enum QuestionCategory {
     PersonalityTraits = "Personality Traits",
     VoiceAndTone = "Voice & Tone",

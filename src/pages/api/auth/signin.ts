@@ -1,55 +1,41 @@
 import type { APIRoute } from "astro";
-import { supabase } from "../../../lib/supabase/supabase.ts";
-import type { Provider } from "@supabase/supabase-js";
+import { app } from "../../../lib/firebase/server";
+import { getAuth } from "firebase-admin/auth";
 
-// TODO: Proper env https://github.com/astro-templates/supabase-demo/blob/main/src/pages/api/auth/signin.ts
-export const POST: APIRoute = async ({ request, cookies, redirect }) => {
-    // Load data
-    const formData = await request.formData();
-    const email = formData.get("email")?.toString();
-    const password = formData.get("password")?.toString();
-    const provider = formData.get("provider")?.toString();
+export const GET: APIRoute = async ({ request, cookies, redirect }) => {
+  const auth = getAuth(app);
 
-    const validProviders = ["google"];
+  /* Get token from request headers */
+  const idToken = request.headers.get("Authorization")?.split("Bearer ")[1];
+  console.log(request.headers.get("Authorization"))
+  if (!idToken) {
+    return new Response(
+      "No token found",
+      { status: 401 }
+    );
+  }
 
-    if (provider && validProviders.includes(provider)) {
-        const { data, error } = await supabase.auth.signInWithOAuth({
-            provider: provider as Provider,
-            options: {
-                redirectTo: `http://localhost:4321/api/auth/callback`,
-            },
-        });
+  /* Verify id token */
+  try {
+    await auth.verifyIdToken(idToken);
+  } catch (error) {
+    return new Response(
+      "Invalid token",
+      { status: 401 }
+    );
+  }
 
-        if (error) {
-            return new Response(error.message, { status: 500 });
-        }
+  /* Create and set session cookie */
+  const fiveDays = 60 * 60 * 24 * 5 * 1000;
+  const sessionCookie = await auth.createSessionCookie(idToken, {
+    expiresIn: fiveDays,
+  });
 
-        return redirect(data.url);
-    }
+  cookies.set("session", sessionCookie, {
+    path: "/",
+    secure: true,
+    sameSite: "strict",
+  });
 
-    if (!email || !password) {
-        return new Response("Email and password are required", { status: 400 });
-    }
-
-    const { data, error } = await supabase.auth.signInWithPassword({
-        email,
-        password,
-    });
-
-    if (error) {
-        return new Response(error.message, { status: 500 });
-    }
-
-    const { access_token, refresh_token } = data.session;
-    cookies.set("sb-access-token", access_token, {
-        path: "/",
-        sameSite: "strict",
-        secure: true,
-    });
-    cookies.set("sb-refresh-token", refresh_token, {
-        path: "/",
-        sameSite: "strict",
-        secure: true,
-    });
-    return redirect('/profile');
+  return redirect("/profile");
 };

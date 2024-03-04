@@ -5,7 +5,7 @@
     export let index: number;
 
     const dispatch = createEventDispatcher();
-    console.log("Question", question);
+
     $: attribute1 = question.attribute1.title;
     $: attribute2 = question.attribute2.title;
     $: example1 = question.attribute1.example;
@@ -16,7 +16,7 @@
         dispatch("valuePicked", value);
     };
 
-    const buttonStyle = (value) => {
+    const buttonStyle = (value: number) => {
         if(question.answer === value) {
             return `bg-white hover:bg-white border-orange-500 border-double border-4`;
         }

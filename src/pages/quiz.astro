@@ -1,5 +1,5 @@
 ---
-import Header from '../components/Header.astro';
+import Header from '../components/Navbar.svelte';
 import Footer from '../components/Footer.astro';
 import QuizHeader from '../components/QuizHeader.astro';
 import Layout from "../layouts/Layout.astro";
@@ -8,9 +8,9 @@ import QuizPage from '../components/quiz/QuizPage.svelte';
 
 <Layout title="FindYourChat.ai" description="Unlock the full potential of AI, customize ChatGPT to your unique writing style. Whether it's for emails, content creation, or casual conversations, we generate prompts to adapt ChatGPT's responses to match your tone, style, and personality nuances.">
     <div class="bg-gradient-to-t from-indigo-500 from-0% via-sky-500 via-30% to-emerald-500 to-90% max-w-screen-xl mx-auto">
-        <Header />
+        <Header user={null} client:load />
         <QuizHeader />
-        <QuizPage client:visible />
+        <QuizPage client:load />
         <Footer />
     </div>
 </Layout>

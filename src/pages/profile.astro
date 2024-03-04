@@ -1,45 +1,31 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import { supabase } from "../lib/supabase/supabase.ts";
-
 import QuizProfiles from "../components/quiz/QuizProfiles.svelte";
-import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 
-const { cookies, redirect } = Astro;
 
-const accessToken = cookies.get("sb-access-token");
-const refreshToken = cookies.get("sb-refresh-token");
+import { app } from "../lib/firebase/server";
+import { getAuth } from "firebase-admin/auth";
+import Layout from "../layouts/LayoutWithNavbar.astro";
 
-if (!accessToken || !refreshToken) {
-    return redirect("/signin");
+const auth = getAuth(app);
+
+/* Check current session */
+if (!Astro.cookies.has("session")) {
+  return Astro.redirect("/signin");
 }
 
-const { data, error } = await supabase.auth.setSession({
-    refresh_token: refreshToken.value,
-    access_token: accessToken.value,
-});
+const sessionCookie = Astro.cookies.get("session")?.value;
+const decodedCookie = await auth.verifySessionCookie(sessionCookie || "");
+const user = await auth.getUser(decodedCookie.uid);
 
-if (error) {
-    cookies.delete("sb-access-token", {
-        path: "/",
-    });
-    cookies.delete("sb-refresh-token", {
-        path: "/",
-    });
-
-    return redirect("/signin");
+if (!user) {
+  return Astro.redirect("/signin");
 }
-
-console.log(data);
-const email = data?.user?.email;
-const fullName = data?.user?.user_metadata.full_name;
 ---
 
-<Layout title="dashboard" description="Access your private dashboard">
+<Layout title="Profile" description="Access your private Profile">
   <div class="flex min-h-screen flex-col mx-auto">
-      <Header />
-      <QuizProfiles client:visible userName={fullName}/>
-      <Footer />
+      <QuizProfiles client:load />
+      <!-- <Footer /> -->
   </div>
 </Layout>

@@ -1,5 +1,7 @@
 ---
 import  SpeedInsights  from "@vercel/speed-insights/astro"
+import { ViewTransitions } from "astro:transitions";
+
 interface Props {
 	title: string;
 	description: string;
@@ -7,7 +9,6 @@ interface Props {
 }
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-
 const { title, description, image = "public/findyourchat_overview.png" } = Astro.props;
 ---
 
@@ -38,6 +39,7 @@ const { title, description, image = "public/findyourchat_overview.png" } = Astro
 		<meta property="twitter:title" content={title} />
 		<meta property="twitter:description" content={description} />
 		<meta property="twitter:image" content={new URL(image, Astro.url)} />
+		<ViewTransitions />
 	</head>
 	<body data-theme="modern">
 		<slot />
@@ -54,3 +56,9 @@ const { title, description, image = "public/findyourchat_overview.png" } = Astro
 		background-color: #3A86FF;
 	}
 </style>
+<script>
+	// Script for popups
+	import { computePosition, autoUpdate, offset, shift, flip, arrow } from '@floating-ui/dom';
+	import { storePopup } from '@skeletonlabs/skeleton';
+	storePopup.set({ computePosition, autoUpdate, offset, shift, flip, arrow });
+</script>

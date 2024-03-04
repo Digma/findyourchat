@@ -16,6 +16,8 @@ export const quizQuestions = persistentAtom<Question[]>(
     }
 );
 
+export const englishType = persistentAtom<string>('englishType', undefined)
+
 export const saveProfile = persistentAtom<string>('saveProfile', 'false')
 export const editProfile = persistentAtom<string>('editProfile', 'false')
 
