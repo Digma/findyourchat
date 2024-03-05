@@ -2,7 +2,6 @@
 import QuizProfiles from "../components/quiz/QuizProfiles.svelte";
 import Footer from "../components/Footer.astro";
 
-
 import { app } from "../lib/firebase/server";
 import { getAuth } from "firebase-admin/auth";
 import Layout from "../layouts/LayoutWithNavbar.astro";
@@ -11,7 +10,7 @@ const auth = getAuth(app);
 
 /* Check current session */
 if (!Astro.cookies.has("session")) {
-  return Astro.redirect("/signin");
+    return Astro.redirect("/signin");
 }
 
 const sessionCookie = Astro.cookies.get("session")?.value;
@@ -19,13 +18,17 @@ const decodedCookie = await auth.verifySessionCookie(sessionCookie || "");
 const user = await auth.getUser(decodedCookie.uid);
 
 if (!user) {
-  return Astro.redirect("/signin");
+    return Astro.redirect("/signin");
 }
 ---
 
-<Layout title="Profile" description="Access your private Profile">
-  <div class="flex min-h-screen flex-col mx-auto">
-      <QuizProfiles client:load />
-      <!-- <Footer /> -->
-  </div>
+<Layout
+    title="Profile"
+    description="Access your private Profile"
+    background="bg-gradient-to-r from-blue-800 to-indigo-900"
+>
+    <div class="flex flex-col mx-auto">
+        <QuizProfiles client:load />
+        <!-- <Footer /> -->
+    </div>
 </Layout>

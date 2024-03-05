@@ -42,7 +42,7 @@ const { title, description, image = "public/findyourchat_overview.png", backgrou
 		<meta property="twitter:image" content={new URL(image, Astro.url)} />
 		<ViewTransitions />
 	</head>
-	<body data-theme="modern" class=`${background}`>
+	<body data-theme="modern" class=`${background} h-screen`>
 		<slot />
 		<SpeedInsights />
 	</body>
@@ -54,7 +54,7 @@ const { title, description, image = "public/findyourchat_overview.png", backgrou
 		content-visibility: auto;
 	}
 	body {
-		/* background-color: #3A86FF; */
+		height: 100%;
 	}
 </style>
 <script>
