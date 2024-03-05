@@ -4,13 +4,9 @@
     import { EnglishType } from "../../../lib/personality/types";
     const dispatch = createEventDispatcher();
 
-    export let answer: string;
+    export let answer: string | undefined = undefined;
 
-    Object.entries(EnglishType).forEach(([key, value]) => {
-        console.log("EnglishType", key, value);
-    });
-
-    const buttonStyle = (value) => {
+    const buttonStyle = (value: string) => {
         if (answer === value) {
             return `bg-white hover:bg-white border-orange-500 border-double border-4`;
         } else {

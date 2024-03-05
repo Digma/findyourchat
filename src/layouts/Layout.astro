@@ -6,10 +6,11 @@ interface Props {
 	title: string;
 	description: string;
 	image?: string;
+	background?: string;
 }
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-const { title, description, image = "public/findyourchat_overview.png" } = Astro.props;
+const { title, description, image = "public/findyourchat_overview.png", background = "bg-blue-accent" } = Astro.props;
 ---
 
 <!doctype html>
@@ -41,7 +42,7 @@ const { title, description, image = "public/findyourchat_overview.png" } = Astro
 		<meta property="twitter:image" content={new URL(image, Astro.url)} />
 		<ViewTransitions />
 	</head>
-	<body data-theme="modern">
+	<body data-theme="modern" class=`${background}`>
 		<slot />
 		<SpeedInsights />
 	</body>
@@ -53,7 +54,7 @@ const { title, description, image = "public/findyourchat_overview.png" } = Astro
 		content-visibility: auto;
 	}
 	body {
-		background-color: #3A86FF;
+		/* background-color: #3A86FF; */
 	}
 </style>
 <script>

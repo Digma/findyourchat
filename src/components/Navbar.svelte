@@ -6,13 +6,14 @@
     import UserDropdown from "@/components/auth/UserDropdown.svelte";
 
     export let user: User | null | undefined = null;
+    export let logoBlack = false;
 </script>
 
 <div
-    class="my-4 w-full flex justify-center z-30 transition-all bg-white/0"
+    class="my-4 w-full flex justify-center z-30 transition-all"
 >
     <div class="mx-5 flex h-16 max-w-screen-xl items-left justify-between w-full">
-        <Logo />
+        <Logo black={logoBlack} />
         <div>
             {#if user}
                 <UserDropdown {user} />

@@ -1,13 +1,6 @@
-
-import type { Question } from './types.ts';
+import type { Question } from "./types.ts";
 import { checkIfAllQuestionsAnswered } from "../../lib/personality/prompt.ts";
-
-
-type WritingStyle = {
-    id: string;
-    name: string;
-    questions: Question[];
-};
+import { WritingStyleDocument } from "../../lib/personality/dataConverter.ts";
 
 const createDefaultNameFromQuestion = (questions: Question[]) => {
     const veryLowAnswers = questions.filter((q) => q.answer === 1).map((q) => q.attribute1.title);
@@ -18,41 +11,45 @@ const createDefaultNameFromQuestion = (questions: Question[]) => {
     }
 
     const mediumLowAnswers = questions.filter((q) => q.answer === 2).map((q) => q.attribute1.title);
-    const mediumHighAnswers = questions.filter((q) => q.answer === 4).map((q) => q.attribute2.title);
+    const mediumHighAnswers = questions
+        .filter((q) => q.answer === 4)
+        .map((q) => q.attribute2.title);
     const mediumLowAndHighAnswers = mediumLowAnswers.concat(mediumHighAnswers);
     if (mediumLowAndHighAnswers.length > 0) {
         return mediumLowAnswers.slice(0, 3).join(" ");
     }
 
     return "Perfectly Balanced as all things should be.";
-}
+};
 
-export const getWritingStylesFromDB: () => Promise<WritingStyle[]> = async () => {
+export const getWritingStylesFromDB: () => Promise<WritingStyleDocument[]> = async () => {
     const response = await fetch("/api/users/writing_styles", {
         method: "GET",
     });
     const responseJson = await response.json();
     const writingStyles = responseJson.map((r: any) => {
+        const created_at = r.created_at ? new Date(r.created_at) : undefined;
+        const modified_at = r.modified_at ? new Date(r.modified_at) : undefined;
         return {
-            id: r["id"],
-            name: r["name"], 
-            questions: JSON.parse(r["answers"]) as Question[],
-        } as WritingStyle;
+            ...r,
+            created_at,
+            modified_at,
+        } as WritingStyleDocument;
     });
 
     return writingStyles;
 };
 
-export const saveQuestionsToDB = async (questions: Question[], englishType: string) => {
-    const allQuestionAnswered = checkIfAllQuestionsAnswered(questions);
+export const postWritingStyleToDB = async (writingStyle: WritingStyleDocument) => {
+    const allQuestionAnswered = checkIfAllQuestionsAnswered(writingStyle);
 
     if (allQuestionAnswered) {
         const response = await fetch("/api/users/writing_styles", {
             method: "POST",
             body: JSON.stringify({
-                name: createDefaultNameFromQuestion(questions),
-                englishType: englishType,
-                questions: questions,
+                name: createDefaultNameFromQuestion(writingStyle.answers),
+                englishType: writingStyle.englishType,
+                questions: writingStyle.answers,
             }),
         });
 
@@ -66,3 +63,32 @@ export const saveQuestionsToDB = async (questions: Question[], englishType: stri
         );
     }
 };
+
+export const updateWritingStyleName = async (id: string, name: string) => {
+    await fetch("/api/users/writing_styles", {
+        method: "PUT",
+        body: JSON.stringify({
+            id: id,
+            name: name,
+        }),
+    });
+};
+
+export const updateWritingStyleAnswers = async (writingStyle: WritingStyleDocument) => {
+    await fetch("/api/users/writing_styles", {
+        method: "PUT",
+        body: JSON.stringify({
+            id: writingStyle.id,
+            answers: writingStyle.answers,
+        }),
+    });
+};
+
+export const deleteWritingStyle = async (id: string) => {
+    await fetch("/api/users/writing_styles", {
+        method: "DELETE",
+        body: JSON.stringify({
+            id: id,
+        }),
+    });
+}

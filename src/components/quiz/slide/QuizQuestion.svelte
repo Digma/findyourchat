@@ -12,7 +12,6 @@
     $: example2 = question.attribute2.example;
 
     const valueSelected = (value: number) => () => {
-        console.log("ValueSelected Scale", value);
         dispatch("valuePicked", value);
     };
 

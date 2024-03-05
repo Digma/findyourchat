@@ -5,8 +5,6 @@ import { getFirestore } from "firebase-admin/firestore";
 
 const activeApps = getApps();
 
-console.log(import.meta.env);
-
 const serviceAccount = {
     type: "service_account",
     project_id: import.meta.env.FIREBASE_PROJECT_ID,

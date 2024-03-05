@@ -1,6 +1,8 @@
 import type { APIRoute } from "astro";
-import { firestore, auth } from "../../../lib/firebase/server";
 import { FieldValue } from "firebase-admin/firestore";
+
+import { firestore, auth } from "../../../lib/firebase/server";
+import { writingStyleConverter } from "../../../lib/personality/dataConverter";
 
 const writingStyleRef = firestore.collection("writing_styles");
 
@@ -12,7 +14,7 @@ const USER_NOT_FOUND_RESPONSE = new Response("User not found", { status: 404 });
 const SUCCESS = new Response("Success", { status: 200 });
 
 const errorResponse = (error: any) => {
-    console.log("Error:", error);
+    console.error(error);
     return new Response("Something went wrong", {
         status: 500,
         headers: {
@@ -33,12 +35,26 @@ export const GET: APIRoute = async ({ request, cookies, redirect }) => {
 
     try {
         // Get the specific user document based on the userId
-        const styles = await writingStyleRef.doc(uid).collection("test").get();
+        const styles = await writingStyleRef
+            .doc(uid)
+            .collection("test")
+            // @ts-ignore
+            .withConverter(writingStyleConverter)
+            .get();
+
         if (styles.empty) {
             return USER_NOT_FOUND_RESPONSE;
         }
 
-        const styleDocuments = styles.docs.map((doc) => doc.data());
+        const styleDocuments = (
+            styles.docs
+            .map((doc) => doc.data())
+            .sort((doc1, doc2) => {
+                return doc2.modified_at.getTime() - doc1.modified_at.getTime();
+            })
+            .filter((doc) => !doc.deleted)
+            );
+
         // Sending back the user data as JSON
         return new Response(JSON.stringify(styleDocuments), {
             status: 200,
@@ -79,6 +95,7 @@ export const POST: APIRoute = async ({ request, cookies, redirect }) => {
             english_type: englishType,
             created_at: FieldValue.serverTimestamp(),
             modified_at: FieldValue.serverTimestamp(),
+            deleted: false,
         });
     } catch (error) {
         errorResponse(error);
@@ -95,20 +112,28 @@ export const PUT: APIRoute = async ({ request, cookies, redirect }) => {
     }
 
     const { uid } = await auth.verifySessionCookie(sessionCookie, true);
-    // const { id, name, answers, englishType } = await request.json();
-    // if (!id || !name || !answers || !englishType) {
-    //     return MISSING_REQUIRED_FIELDS_RESPONSE;
-    // }
-    const { id, name } = await request.json();
-    console.log("id", id);
+    const { id, name, answers, englishType } = await request.json();
+    if (!id) {
+        return MISSING_REQUIRED_FIELDS_RESPONSE;
+    }
+
+    // Create an object with the data to update
+    let dataToUpdate = {};
+    if (name) {
+        dataToUpdate = { ...dataToUpdate, name: name };
+    }
+    if (answers) {
+        dataToUpdate = { ...dataToUpdate, answers: JSON.stringify(answers) };
+    }
+    if (englishType) {
+        dataToUpdate = { ...dataToUpdate, english_type: englishType };
+    }
 
     try {
         const entry = writingStyleRef.doc(uid).collection(WRITING_STYLE_COLLECTION).doc(id);
         await entry.update({
-            name: name,
-            // answers: JSON.stringify(answers),
-            // english_type: englishType,
-            // modified_at: FieldValue.serverTimestamp(),
+            ...dataToUpdate,
+            modified_at: FieldValue.serverTimestamp(),
         });
     } catch (error) {
         errorResponse(error);
@@ -133,7 +158,10 @@ export const DELETE: APIRoute = async ({ request, cookies, redirect }) => {
 
     try {
         const entry = writingStyleRef.doc(uid).collection(WRITING_STYLE_COLLECTION).doc(id);
-        await entry.delete();
+        await entry.update({
+            deleted: true,
+            modified_at: FieldValue.serverTimestamp(),
+        });
     } catch (error) {
         errorResponse(error);
     }

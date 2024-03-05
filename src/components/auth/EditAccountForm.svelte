@@ -34,7 +34,6 @@
 
         try {
             const updatedUser = await fetchUpdateUser(updates);
-            console.log(updatedUser);
             successMessage = "Successfully updated..";
             user = { ...user, ...updatedUser };
         } catch (error) {

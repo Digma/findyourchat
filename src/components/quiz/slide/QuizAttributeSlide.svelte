@@ -10,7 +10,9 @@
     import Scale from "../../attributeCard/Scale.svelte";
 
     // TODO: have a different icon per Attribute
+    // @ts-ignore
     import icon1 from "../../../assets/card_icons/pink_yellow_4.svg";
+    // @ts-ignore
     import icon2 from "../../../assets/card_icons/purple_yellow_1.svg";
 
     // Question shared with parent
@@ -22,9 +24,7 @@
     const dispatch = createEventDispatcher();
     
     const trackQuestion = () => (e: CustomEvent<number>) => {
-        console.log("ValueSelected QuizAttributeSlide", selectedValue);
         const score = e.detail;
-        console.log("Score", score);
         // 1. Dispatch update to parent
         dispatch('valuePicked', score );
     };

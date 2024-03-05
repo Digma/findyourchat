@@ -7,14 +7,16 @@ interface Props {
 	title: string;
 	description: string;
 	image?: string;
+	background?: string;
+	logoBlack?: boolean;
 }
-const { title, description, image } = Astro.props;
+const { title, description, image, background, logoBlack = false } = Astro.props;
 
 const sessionCookie = Astro.cookies.get("session")?.value ?? null;
 const user = await getUserData(sessionCookie);
 ---
 
-<Layout title={title} description={description} image={image}>
-    <Navbar {user} client:load />
+<Layout title={title} description={description} image={image} background={background}>
+    <Navbar {user} {logoBlack} client:load />
     <slot />
 </Layout>

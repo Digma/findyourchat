@@ -40,6 +40,6 @@ export type Attribute = {
 export type WritingStyle = {
     id: string;
     name: string;
-    prompt: string;
+    englishType: string;
     questions: Question[];
 };

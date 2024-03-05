@@ -1,7 +1,8 @@
+import type { WritingStyleDocument } from "./dataConverter";
 import { QuestionCategory, type Question } from "./types";
 
 
-const writingStyleToPrompt = (origin: string, personalityTraits: string[], voiceAndTone: string[]) => {
+const writingStyleToPrompt = (origin: string | undefined, personalityTraits: string[], voiceAndTone: string[]) => {
     return (`
 Act as an professional Ghostwriter writing text that match a precise client writing style. 
 Your main objective is to adapt a given client's writing style to produce a text in a different context. 
@@ -9,7 +10,7 @@ The content of the writing style is confidential and should appear in the conten
 
 Client Writing Style:
 
-- Origin: ${origin}
+- English Type: ${origin ? origin : 'Standard English'}
 - Personality: ${personalityTraits.join(', ')}
 - Voice And Tone: ${voiceAndTone.join(', ')}
 
@@ -40,19 +41,24 @@ export const answerToAttribute = (question: Question) => {
 }
 
 
-export const checkIfAllQuestionsAnswered = (questions: Question[]) => {
-    return questions.every((question) => { return question.answer !== undefined});
+export const checkIfAllQuestionsAnswered = (writingStyle: WritingStyleDocument|undefined) => {
+    if (!writingStyle) {
+        return false;
+    }
+    const allQuestionAnswered = writingStyle.answers.every((question) => {return question.answer !== undefined});
+    const englishTypeAnswered = writingStyle.englishType? true : false;
+    return allQuestionAnswered && englishTypeAnswered;
 }
 
-export const getWritingPromptFromQuestions = (questions: Question[]) => {
-    if (!checkIfAllQuestionsAnswered(questions)) {
+export const getWritingPromptFromQuestions = (writingStyle: WritingStyleDocument) => {
+    if (!checkIfAllQuestionsAnswered(writingStyle)) {
         throw Error("Prompt generation requires a defined value for all questions");
     }
 
     let personalityArray: string[] = [];
     let toneAndVoiceArray: string[] = [];
 
-    for (const question of questions) {
+    for (const question of writingStyle.answers) {
         const questionCategory = question.category;
         const scoreDescription = answerToAttribute(question);
 
@@ -68,7 +74,7 @@ export const getWritingPromptFromQuestions = (questions: Question[]) => {
 
     // TOOD: Add writing Style array
     const prompt = writingStyleToPrompt(
-        "Swiss, non-native english",
+        writingStyle.englishType,
         personalityArray,
         toneAndVoiceArray
     );

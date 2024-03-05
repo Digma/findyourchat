@@ -1,24 +1,22 @@
 <script lang="ts">
-    import type { Question } from "../../lib/personality/types.ts";
     import { allQuestions } from "../../lib/personality/questions.ts";
     import { checkIfAllQuestionsAnswered } from "../../lib/personality/prompt.ts";
     import QuizStartPage from "./slide/QuizStartPage.svelte";
     import QuizQuestion from "./slide/QuizQuestion.svelte";
     import QuizSubmitSlide from "./slide/QuizSubmitSlide.svelte";
     import QuizEnglishType from "./slide/QuizEnglishType.svelte";
+    import QuizSaveProfile from "./slide/QuizSaveProfile.svelte";
     import { backgroundColors } from "../../lib/personality/color.ts";
 
-    import { quizQuestions, editProfile, englishType } from "../../lib/store.ts";
+    import { currentWritingStyle, editProfile, saveProfile } from "../../lib/store.ts";
     
-
-    let questions: Question[] = [...allQuestions];
-    let englishTypeAnswer: string;
+    const nbOfQuestions = allQuestions.length;
     let sections: any[] = [];
     let currentVisibleSectionIndex = 0;
-
-    $: personalityQuestionsAllAnswered = checkIfAllQuestionsAnswered(questions)
-    $: englishTypeAnswered = englishTypeAnswer ? true : false;
-    $: allQuestionsAnswered = personalityQuestionsAllAnswered && englishTypeAnswered;
+    
+    $: writingStyle = $currentWritingStyle ? $currentWritingStyle.clone() : new WritingStyleDocument(allQuestions);
+    $: allQuestionsAnswered = checkIfAllQuestionsAnswered(writingStyle)
+    $: englishTypeAnswered = writingStyle.englishType? true : false;
 
     const slideToColor = (slide: number) => {
         return backgroundColors[slide % backgroundColors.length];
@@ -27,6 +25,7 @@
     let currentBackgroundColor = slideToColor(currentVisibleSectionIndex);
 
     import { onMount } from 'svelte';
+    import { WritingStyleDocument } from "@/lib/personality/dataConverter.ts";
     onMount(() => {
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -62,23 +61,32 @@
     }
 
     const updateAnswerAndScroll = (index: number) => (e: CustomEvent<number>) => {
-        const score = e.detail;
-        questions[index].answer = score;
+        writingStyle.answers[index].answer = e.detail;;
         // Force update of component
-        questions = questions;
+        writingStyle = writingStyle;
         scrollToSection(1);
     };
 
     const updateEnglishType = (e: CustomEvent<string>) => {
-        englishTypeAnswer = e.detail.valueOf();
+        writingStyle.englishType = e.detail.valueOf();
+        // Force update of component
+        writingStyle = writingStyle;
         scrollToSection(1);
     };
 
     // Store
     const storeAnswersLocally = () => {
         if (allQuestionsAnswered) {
-            quizQuestions.set(questions);
-            englishType.set(englishTypeAnswer);
+            currentWritingStyle.set(writingStyle);
+        }
+    };
+
+    const updateWritingProfile = () => {
+        if (allQuestionsAnswered && $currentWritingStyle) {
+            currentWritingStyle.set(writingStyle);
+            saveProfile.set("true");
+        } else {
+            console.error("No writing style to update");
         }
     };
 </script>
@@ -89,23 +97,35 @@
         <section id="quiz-section-0" bind:this={sections[0]} class="snap-start h-screen w-full flex items-center justify-center p-4">
             <QuizStartPage on:start={() => scrollToSection(1)}/>
         </section>
-        {#each questions as question, index}
+        {#each writingStyle.answers as question, index}
             <section id="quiz-section-{index + 1}" bind:this={sections[index + 1]} class="snap-start h-screen w-full flex items-center justify-center p-4">
                 <QuizQuestion index={index+1} question={question} on:valuePicked={updateAnswerAndScroll(index)}/>
             </section>
         {/each}
-        <section id="quiz-section-12" bind:this={sections[questions.length+1]} class="snap-start h-screen w-full flex items-center justify-center p-4">
-            <QuizEnglishType answer={englishTypeAnswer} on:valuePicked={updateEnglishType}/>
+        <section id="quiz-section-12" bind:this={sections[nbOfQuestions+1]} class="snap-start h-screen w-full flex items-center justify-center p-4">
+            <QuizEnglishType answer={writingStyle.englishType} on:valuePicked={updateEnglishType}/>
         </section>
-        <section id="quiz-section-13" bind:this={sections[questions.length+2]} class="snap-start h-screen w-full flex items-center justify-center p-4">
+        {#if !($editProfile == "true")}
+        <section id="quiz-section-13" bind:this={sections[nbOfQuestions+2]} class="snap-start h-screen w-full flex items-center justify-center p-4">
             <QuizSubmitSlide
-                questions={questions}
+                answers={writingStyle.answers}
                 englishAnswered={englishTypeAnswered}
                 on:submittedAnswers={storeAnswersLocally}
                 on:scrollPrev={scrollBackToAnswer}
                 enableSubmit={allQuestionsAnswered}
             />
         </section>
+        {:else}
+        <section id="quiz-section-13" bind:this={sections[nbOfQuestions+2]} class="snap-start h-screen w-full flex items-center justify-center p-4">
+            <QuizSaveProfile
+                answers={writingStyle.answers}
+                englishAnswered={englishTypeAnswered}
+                on:submittedAnswers={updateWritingProfile}
+                on:scrollPrev={scrollBackToAnswer}
+                enableSubmit={allQuestionsAnswered}
+            />
+        </section>
+        {/if}
         </div>
     </div>
     <div class="absolute bottom-4 left-4 flex flex-col">
