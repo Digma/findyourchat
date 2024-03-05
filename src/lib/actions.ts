@@ -11,27 +11,27 @@ import type { ActionReturn } from "svelte/action";
  */
 
 export function clickOutside(
-    node: Node,
-    [callback, except]: [VoidFunction, HTMLElement?]
+  node: Node,
+  [callback, except]: [VoidFunction, HTMLElement?],
 ): ActionReturn<[VoidFunction, HTMLElement?]> {
-    const onClick = (event: MouseEvent) => {
-        const target = event.target as Node;
-        if (!node.contains(target) && (!except || !except.contains(target))) {
-            callback();
-        }
-    };
+  const onClick = (event: MouseEvent) => {
+    const target = event.target as Node;
+    if (!node.contains(target) && (!except || !except.contains(target))) {
+      callback();
+    }
+  };
 
-    document.body.addEventListener("click", onClick);
+  document.body.addEventListener("click", onClick);
 
-    return {
-        update([newCallback, newExcept]: [VoidFunction, HTMLElement?]) {
-            callback = newCallback;
-            except = newExcept;
-        },
-        destroy() {
-            document.body.removeEventListener("click", onClick);
-        },
-    };
+  return {
+    update([newCallback, newExcept]: [VoidFunction, HTMLElement?]) {
+      callback = newCallback;
+      except = newExcept;
+    },
+    destroy() {
+      document.body.removeEventListener("click", onClick);
+    },
+  };
 }
 
 // https://github.com/WailAbou/shadcn-svelte-nodep/blob/72b96d937afd3b79ae04f883e71e6b42daddb5d7/src/lib/helpers/actions.ts#L26
@@ -47,35 +47,35 @@ export function clickOutside(
  */
 type KeyCombination = "always" | "never" | "ignore";
 export function keyDown(
-    node: Node,
-    [condition, callback, codes, shiftKey = "ignore"]: [
-        boolean,
-        VoidFunction,
-        string[],
-        KeyCombination?
-    ]
+  node: Node,
+  [condition, callback, codes, shiftKey = "ignore"]: [
+    boolean,
+    VoidFunction,
+    string[],
+    KeyCombination?,
+  ],
 ): ActionReturn {
-    const onKeyDown: EventListener = (event: Event) => {
-        const e = event as KeyboardEvent;
+  const onKeyDown: EventListener = (event: Event) => {
+    const e = event as KeyboardEvent;
 
-        const shiftCondition =
-            shiftKey === "ignore" ||
-            (shiftKey === "never" && !e.shiftKey) ||
-            (shiftKey === "always" && e.shiftKey);
+    const shiftCondition =
+      shiftKey === "ignore" ||
+      (shiftKey === "never" && !e.shiftKey) ||
+      (shiftKey === "always" && e.shiftKey);
 
-        if (condition && codes.includes(e.code) && shiftCondition) {
-            e.preventDefault();
-            callback();
-        }
-    };
+    if (condition && codes.includes(e.code) && shiftCondition) {
+      e.preventDefault();
+      callback();
+    }
+  };
 
-    node.addEventListener("keydown", onKeyDown);
+  node.addEventListener("keydown", onKeyDown);
 
-    return {
-        destroy() {
-            node.removeEventListener("keydown", onKeyDown);
-        },
-    };
+  return {
+    destroy() {
+      node.removeEventListener("keydown", onKeyDown);
+    },
+  };
 }
 // Source: https://github.com/WailAbou/shadcn-svelte-nodep/blob/72b96d937afd3b79ae04f883e71e6b42daddb5d7/src/lib/helpers/actions.ts#L76
 // Popover
@@ -89,76 +89,79 @@ export function keyDown(
  * - `enabled`: Boolean that enables or disables the focus trap.
  */
 export function focusTrap(node: HTMLElement, enabled: boolean = true) {
-    const elemWhitelist: string[] = [
-        "a[href]",
-        "area[href]",
-        'input:not([disabled]):not([type="hidden"]):not([aria-hidden])',
-        "select:not([disabled]):not([aria-hidden])",
-        "textarea:not([disabled]):not([aria-hidden])",
-        "button:not([disabled]):not([aria-hidden])",
-        "iframe",
-        "object",
-        "embed",
-        "[contenteditable]",
-        '[tabindex]:not([tabindex^="-"])',
-    ];
-    let elemFirst: HTMLElement;
-    let elemLast: HTMLElement;
+  const elemWhitelist: string[] = [
+    "a[href]",
+    "area[href]",
+    'input:not([disabled]):not([type="hidden"]):not([aria-hidden])',
+    "select:not([disabled]):not([aria-hidden])",
+    "textarea:not([disabled]):not([aria-hidden])",
+    "button:not([disabled]):not([aria-hidden])",
+    "iframe",
+    "object",
+    "embed",
+    "[contenteditable]",
+    '[tabindex]:not([tabindex^="-"])',
+  ];
+  let elemFirst: HTMLElement;
+  let elemLast: HTMLElement;
 
-    function onFirstElemKeydown(e: KeyboardEvent): void {
-        if (e.shiftKey && e.code === "Tab") {
-            e.preventDefault();
-            elemLast.focus();
-        }
+  function onFirstElemKeydown(e: KeyboardEvent): void {
+    if (e.shiftKey && e.code === "Tab") {
+      e.preventDefault();
+      elemLast.focus();
     }
-    function onLastElemKeydown(e: KeyboardEvent): void {
-        if (!e.shiftKey && e.code === "Tab") {
-            e.preventDefault();
-            elemFirst.focus();
-        }
+  }
+  function onLastElemKeydown(e: KeyboardEvent): void {
+    if (!e.shiftKey && e.code === "Tab") {
+      e.preventDefault();
+      elemFirst.focus();
     }
+  }
 
-    const onScanElements = (fromObserver: boolean) => {
-        if (enabled === false) return;
+  const onScanElements = (fromObserver: boolean) => {
+    if (enabled === false) return;
 
-        const focusableElems: HTMLElement[] = Array.from(
-            node.querySelectorAll(elemWhitelist.join(", "))
-        );
-        if (focusableElems.length) {
-            elemFirst = focusableElems[0];
-            elemLast = focusableElems[focusableElems.length - 1];
+    const focusableElems: HTMLElement[] = Array.from(
+      node.querySelectorAll(elemWhitelist.join(", ")),
+    );
+    if (focusableElems.length) {
+      elemFirst = focusableElems[0];
+      elemLast = focusableElems[focusableElems.length - 1];
 
-            if (!fromObserver) elemFirst.focus();
+      if (!fromObserver) elemFirst.focus();
 
-            elemFirst.addEventListener("keydown", onFirstElemKeydown);
-            elemLast.addEventListener("keydown", onLastElemKeydown);
-        }
-    };
-    onScanElements(false);
-
-    function onCleanUp(): void {
-        if (elemFirst) elemFirst.removeEventListener("keydown", onFirstElemKeydown);
-        if (elemLast) elemLast.removeEventListener("keydown", onLastElemKeydown);
+      elemFirst.addEventListener("keydown", onFirstElemKeydown);
+      elemLast.addEventListener("keydown", onLastElemKeydown);
     }
+  };
+  onScanElements(false);
 
-    const onObservationChange = (mutationRecords: MutationRecord[], observer: MutationObserver) => {
-        if (mutationRecords.length) {
-            onCleanUp();
-            onScanElements(true);
-        }
-        return observer;
-    };
-    const observer = new MutationObserver(onObservationChange);
-    observer.observe(node, { childList: true, subtree: true });
+  function onCleanUp(): void {
+    if (elemFirst) elemFirst.removeEventListener("keydown", onFirstElemKeydown);
+    if (elemLast) elemLast.removeEventListener("keydown", onLastElemKeydown);
+  }
 
-    return {
-        update(newArgs: boolean) {
-            enabled = newArgs;
-            newArgs ? onScanElements(false) : onCleanUp();
-        },
-        destroy() {
-            onCleanUp();
-            observer.disconnect();
-        },
-    };
+  const onObservationChange = (
+    mutationRecords: MutationRecord[],
+    observer: MutationObserver,
+  ) => {
+    if (mutationRecords.length) {
+      onCleanUp();
+      onScanElements(true);
+    }
+    return observer;
+  };
+  const observer = new MutationObserver(onObservationChange);
+  observer.observe(node, { childList: true, subtree: true });
+
+  return {
+    update(newArgs: boolean) {
+      enabled = newArgs;
+      newArgs ? onScanElements(false) : onCleanUp();
+    },
+    destroy() {
+      onCleanUp();
+      observer.disconnect();
+    },
+  };
 }

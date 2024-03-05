@@ -1,0 +1,6 @@
+# Ignore Artifacts
+build
+public
+
+# Ignore all HTML files:
+**/*.html

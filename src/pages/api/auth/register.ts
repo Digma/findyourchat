@@ -12,10 +12,7 @@ export const POST: APIRoute = async ({ request, redirect }) => {
   const name = formData.get("name")?.toString();
 
   if (!email || !password || !name) {
-    return new Response(
-      "Missing form data",
-      { status: 400 }
-    );
+    return new Response("Missing form data", { status: 400 });
   }
 
   /* Create user */
@@ -25,11 +22,8 @@ export const POST: APIRoute = async ({ request, redirect }) => {
       password,
       displayName: name,
     });
-  } catch (error: any) {
-    return new Response(
-      "Something went wrong",
-      { status: 400 }
-    );
+  } catch (error: unknown) {
+    return new Response("Something went wrong", { status: 400 });
   }
   return redirect("/signin");
 };

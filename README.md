@@ -1,9 +1,11 @@
 # Astro Starter Kit: Basics
 
 # Quickstart
+
 Follow this guide to quickly set up Firebase for your project. For more in-depth instructions, see FIREBASE_SETUP.md.
 
 ## Firebase - Obtain Firebase Keys
+
 ### Service Account Key
 
 1. Go to the Firebase Console.
@@ -16,12 +18,12 @@ Follow this guide to quickly set up Firebase for your project. For more in-depth
 2. Find your web app and you should see your configuration
 3. Copy the configuration object.
 
-
 ## Firebase - Update Configuration Files
+
 Place your keys in the appropriate files:
 
-* .env: Add service account key values from the downloaded JSON.
-* src/firebase/client.ts: Insert the web app configuration object.
+- .env: Add service account key values from the downloaded JSON.
+- src/firebase/client.ts: Insert the web app configuration object.
 
 ### Set up .env
 
@@ -42,8 +44,8 @@ Add the appropriate Firebase Env variables. See https://docs.astro.build/en/guid
 For local development
 
 ```
-npx supabase init 
-npx supabase start  
+npx supabase init
+npx supabase start
 ```
 
 And visit http://localhost:54323 for the local copy
@@ -65,10 +67,10 @@ npx supabase db reset
 ```
 
 ### Migrations
+
 For migration follow the instructions here:
 
 https://supabase.com/docs/guides/cli/local-development#database-migrations
-
 
 ## Astro
 
@@ -102,4 +104,3 @@ All commands are run from the root of the project, from a terminal:
 | `npm run preview`         | Preview your build locally, before deploying     |
 | `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
 | `npm run astro -- --help` | Get help using the Astro CLI                     |
-

@@ -18,7 +18,7 @@ type UserUpdates = {
 
 async function updateUserData(
   uid: string,
-  updates: UserUpdates
+  updates: UserUpdates,
 ): Promise<UserRecord> {
   const auth = getAuth();
 

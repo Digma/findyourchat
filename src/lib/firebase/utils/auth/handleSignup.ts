@@ -9,10 +9,10 @@
  * @throws {Error} If registration, profile update, or server session creation fails.
  */
 import {
-    createUserWithEmailAndPassword,
-    getAuth,
-    inMemoryPersistence,
-    updateProfile,
+  createUserWithEmailAndPassword,
+  getAuth,
+  inMemoryPersistence,
+  updateProfile,
 } from "firebase/auth";
 import { app } from "@/lib/firebase/client";
 import fetchSignIn from "../../../api/fetchSignIn";
@@ -21,19 +21,23 @@ const auth = getAuth(app);
 auth.setPersistence(inMemoryPersistence);
 
 async function handleSignup(name: string, email: string, password: string) {
-    // Register the user using Firebase's client SDK
-    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-    // Update the user's profile with the provided name
-    await updateProfile(userCredential.user, {
-        displayName: name,
-    });
+  // Register the user using Firebase's client SDK
+  const userCredential = await createUserWithEmailAndPassword(
+    auth,
+    email,
+    password,
+  );
+  // Update the user's profile with the provided name
+  await updateProfile(userCredential.user, {
+    displayName: name,
+  });
 
-    // Get the ID token of the newly registered user
-    const idToken = await userCredential.user.getIdToken();
+  // Get the ID token of the newly registered user
+  const idToken = await userCredential.user.getIdToken();
 
-    const redirectedUrl = await fetchSignIn(idToken);
+  const redirectedUrl = await fetchSignIn(idToken);
 
-    return redirectedUrl;
+  return redirectedUrl;
 }
 
 export default handleSignup;
