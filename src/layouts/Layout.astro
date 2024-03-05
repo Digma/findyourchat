@@ -7,10 +7,11 @@ interface Props {
 	description: string;
 	image?: string;
 	background?: string;
+	whiteGradient?: boolean;
 }
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-const { title, description, image = "public/findyourchat_overview.png", background = "bg-blue-accent" } = Astro.props;
+const { title, description, image = "public/findyourchat_overview.png", background = "bg-blue-accent", whiteGradient = false} = Astro.props;
 ---
 
 <!doctype html>
@@ -43,8 +44,14 @@ const { title, description, image = "public/findyourchat_overview.png", backgrou
 		<ViewTransitions />
 	</head>
 	<body data-theme="modern" class=`${background} h-screen`>
-		<slot />
-		<SpeedInsights />
+		{whiteGradient ? 
+			<div class="h-screen bg-gradient-to-r from-gray-400/0 from-50% to-white/25 pt-2">
+				<slot />
+				<SpeedInsights />
+			</div> 
+			: 
+			<slot />
+		<SpeedInsights />}
 	</body>
 </html>
 <style is:global>
@@ -54,7 +61,7 @@ const { title, description, image = "public/findyourchat_overview.png", backgrou
 		content-visibility: auto;
 	}
 	body {
-		height: 100%;
+		/* height: 100%; */
 	}
 </style>
 <script>

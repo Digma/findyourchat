@@ -50,6 +50,19 @@ export class WritingStyleDocument {
   }
 }
 
+export const cloneWritingStyle = (writingStyle: WritingStyleDocument) => {
+  return new WritingStyleDocument(
+    writingStyle.answers,
+    writingStyle.englishType,
+    writingStyle.name,
+    writingStyle.id,
+    writingStyle.deleted,
+    writingStyle.created_at,
+    writingStyle.modified_at,
+  );
+}
+
+
 // Firestore data converter
 export const writingStyleConverter = {
   toFirestore(writingStyle: WritingStyleDocument): DocumentData {

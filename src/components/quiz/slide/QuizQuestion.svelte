@@ -49,7 +49,10 @@
             <div class="w-full flex text-black max-w-[1024px]">
                 <span class="font-semibold text-3xl mr-1 min-w-24 mt-0.5">{index} →</span>
                 <div class="w-full">
-                    <h3 class="text-3xl font-semibold mb-8">Are you more?</h3>
+                    <div class="flex flex-row mr-auto">
+                        <img src="{question.iconPath}" alt="Question Icon" class="h-16 w-16 my-auto mt-[-1rem] ml-[-1rem]" />
+                        <h3 class="text-3xl font-semibold mb-8">Are you more?</h3>
+                    </div>
                     <!-- <div class="flex space-x-2 justify-center">
                         <div class="w-2/6 italic bg-white px-4 py-1 rounded-e-xl rounded-ss-xl">"We’ve learned about the basic Tailwind CSS gradient classes. Now, let’s use that knowledge to create a linear background gradient."</div>
                         <div class="w-2/6"></div>

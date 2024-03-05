@@ -1,20 +1,21 @@
 <script lang="ts">
-    import { allQuestions } from "../../lib/personality/questions.ts";
-    import { checkIfAllQuestionsAnswered } from "../../lib/personality/prompt.ts";
     import QuizStartPage from "./slide/QuizStartPage.svelte";
     import QuizQuestion from "./slide/QuizQuestion.svelte";
     import QuizSubmitSlide from "./slide/QuizSubmitSlide.svelte";
     import QuizEnglishType from "./slide/QuizEnglishType.svelte";
     import QuizSaveProfile from "./slide/QuizSaveProfile.svelte";
+    
+    import { cloneWritingStyle } from "../../lib/personality/dataConverter.ts";
+    import { allQuestions } from "../../lib/personality/questions.ts";
     import { backgroundColors } from "../../lib/personality/color.ts";
-
+    import { checkIfAllQuestionsAnswered } from "../../lib/personality/prompt.ts";
     import { currentWritingStyle, editProfile, saveProfile } from "../../lib/store.ts";
     
     const nbOfQuestions = allQuestions.length;
     let sections: any[] = [];
     let currentVisibleSectionIndex = 0;
     
-    $: writingStyle = $currentWritingStyle ? $currentWritingStyle.clone() : new WritingStyleDocument(allQuestions);
+    $: writingStyle = $currentWritingStyle ? cloneWritingStyle($currentWritingStyle) : new WritingStyleDocument(allQuestions);
     $: allQuestionsAnswered = checkIfAllQuestionsAnswered(writingStyle)
     $: englishTypeAnswered = writingStyle.englishType? true : false;
 

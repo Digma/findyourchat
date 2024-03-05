@@ -3,7 +3,7 @@
     import SaveButton from "../form/SaveButton.svelte";
     import { getWritingPromptFromQuestions } from "../../lib/personality/prompt.ts";
     import { currentWritingStyle, saveProfile, editProfile } from "../../lib/store.ts";
-    import { textColors, backgroundColors } from "../../lib/personality/color.ts";
+    import { textColors } from "../../lib/personality/color.ts";
     import ScoreCard from "../containers/ScoreCard.svelte";
 
     const colorOptionLength = textColors.length;
@@ -75,7 +75,7 @@
             </div>
         </div>
         {#if $currentWritingStyle}
-        <div class="rounded w-32 text-left text-sm m-auto">
+        <div class="rounded text-left text-sm m-auto">
             <h1
             class="font-extrabold text-transparent text-xl bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600"
             >
@@ -85,26 +85,28 @@
     <div class="mt-12 mb-4 m-auto">
         <p class="text-black font-bold text-4xl">Personality Traits</p>
     </div>
-    <div class="grid grid-cols-2 gap-4">
+    <div class="grid sm:grid-cols-1 md:grid-cols-2 gap-4">
         {#each $currentWritingStyle.answers.slice(0, 6) as question, idx}
         <ScoreCard
         title={question.title}
         attribute={getAttributeName(idx, question.answer)}
         value={getAttributePercentage(question.answer)}
         bgColor={getAttributeColor(idx)}
+        iconPath={question.iconPath}
         />
         {/each}
     </div>
     <div class="mt-12 mb-4 m-auto">
         <p class="text-left font-bold text-black text-4xl">Tone of Voice</p>
     </div>
-    <div class="grid grid-cols-2 gap-4">
+    <div class="grid sm:grid-cols-1 md:grid-cols-2 gap-4">
         {#each $currentWritingStyle.answers.slice(6, 10) as question, idx}
         <ScoreCard
         title={question.title}
         attribute={getAttributeName(idx, question.answer)}
         value={getAttributePercentage(question.answer)}
         bgColor={getAttributeColor(idx)}
+        iconPath={question.iconPath}
         />
         {/each}
     </div>

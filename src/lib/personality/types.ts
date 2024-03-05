@@ -23,23 +23,17 @@ export const enum QuestionCategory {
 
 export type Question = {
   title: string;
+  iconPath?: string;
   category: QuestionCategory;
   attribute1: Attribute;
   attribute2: Attribute;
-  quiz_type: QuizType;
+  quizType: QuizType;
   answer?: number;
 };
 
 export type Attribute = {
   title: string;
   description: string;
-  image_url?: string;
+  imageUrl?: string;
   example: string;
-};
-
-export type WritingStyle = {
-  id: string;
-  name: string;
-  englishType: string;
-  questions: Question[];
 };

@@ -25,8 +25,8 @@
             <div class="w-full flex text-black max-w-[1024px]">
                 <span class="font-semibold text-3xl mr-1 min-w-24 mt-0.5">11 →</span>
                 <div class="w-full">
-                    <h3 class="text-3xl font-semibold mb-8">Pick an english type</h3>
-                    <div class="grid grid-cols-4 justify-center mb-4 min-h-16 gap-2">
+                    <h3 class="text-3xl font-semibold mb-8">Please choose your preferred variant of English</h3>
+                    <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 justify-center mb-4 min-h-16 gap-2">
                         {#key answer}
                             {#each Object.entries(EnglishType) as [key, value]}
                                 <button
