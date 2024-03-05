@@ -1,6 +1,8 @@
 ---
 import { Image } from 'astro:assets';
 
+import ManCharacterLinkedIn from '../../assets/characters/man_avatar_3.png'
+
 interface Props {
     title: string;
     description: string;
@@ -10,12 +12,11 @@ interface Props {
 const {
     title,
     description,
-    image = '../../assets/characters/man_avatar_3.png'
 } = Astro.props
 ---
 <div class="bg-white p-4 rounded-lg">
     <div class="flex flex-col items-center gap-4 justify-center">
-        <Image src={import(image)} alt="" height=100 />
+        <Image src={ManCharacterLinkedIn} alt="" height=100 />
         <h3 class="font-bold text-lg md:text-xl lg:text-2xl">{title}</h2>
         <p class="text-center">{description}</p>
     </div>
