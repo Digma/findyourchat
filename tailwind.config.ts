@@ -66,6 +66,11 @@ export default {
       cards: ["Poppins", "sans-serif"], //, ...defaultTheme.fontFamily.sans],
     },
   },
+  variants: {
+    extend: {
+      display: ["group-hover"],
+    },
+  },
   plugins: [
     skeleton({
       themes: { preset: ["modern"] },

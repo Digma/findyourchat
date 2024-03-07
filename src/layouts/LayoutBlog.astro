@@ -14,7 +14,6 @@ interface Props {
 	whiteGradient?: boolean;
 }
 const { title, description, image, background, logoBlack = false, whiteGradient = false } = Astro.props;
-
 const sessionCookie = Astro.cookies.get("session")?.value ?? null;
 const user = await getUserData(sessionCookie);
 ---

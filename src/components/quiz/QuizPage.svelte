@@ -10,6 +10,7 @@
     import { backgroundColors } from "../../lib/personality/color.ts";
     import { checkIfAllQuestionsAnswered } from "../../lib/personality/prompt.ts";
     import { currentWritingStyle, editProfile, saveProfile } from "../../lib/store.ts";
+    import { encodeAnswerToResultUrl } from "../../lib/personality/url.ts";
     
     const nbOfQuestions = allQuestions.length;
     let sections: any[] = [];
@@ -18,6 +19,7 @@
     $: writingStyle = $currentWritingStyle ? cloneWritingStyle($currentWritingStyle) : new WritingStyleDocument(allQuestions);
     $: allQuestionsAnswered = checkIfAllQuestionsAnswered(writingStyle)
     $: englishTypeAnswered = writingStyle.englishType? true : false;
+    $: resultUrl = encodeAnswerToResultUrl(writingStyle);
 
     const slideToColor = (slide: number) => {
         return backgroundColors[slide % backgroundColors.length];
@@ -96,7 +98,7 @@
     <div id="scrollContainer" class="w-full h-screen {currentBackgroundColor} transition-colors duration-1000 delay-50 ease-in-out snap-y snap-mandatory h-screen overflow-y-scroll hide-scrollbar">
         <div class="bg-gradient-to-r from-gray-400/0 from-50% to-white/35">
         <section id="quiz-section-0" bind:this={sections[0]} class="snap-start h-screen w-full flex items-center justify-center p-4">
-            <QuizStartPage on:start={() => scrollToSection(1)}/>
+            <QuizStartPage on:start={() => scrollToSection(1)} isEdit={$editProfile === "true"}/>
         </section>
         {#each writingStyle.answers as question, index}
             <section id="quiz-section-{index + 1}" bind:this={sections[index + 1]} class="snap-start h-screen w-full flex items-center justify-center p-4">
@@ -106,7 +108,7 @@
         <section id="quiz-section-12" bind:this={sections[nbOfQuestions+1]} class="snap-start h-screen w-full flex items-center justify-center p-4">
             <QuizEnglishType answer={writingStyle.englishType} on:valuePicked={updateEnglishType}/>
         </section>
-        {#if !($editProfile == "true")}
+        {#if !($editProfile === "true")}
         <section id="quiz-section-13" bind:this={sections[nbOfQuestions+2]} class="snap-start h-screen w-full flex items-center justify-center p-4">
             <QuizSubmitSlide
                 answers={writingStyle.answers}
@@ -114,6 +116,7 @@
                 on:submittedAnswers={storeAnswersLocally}
                 on:scrollPrev={scrollBackToAnswer}
                 enableSubmit={allQuestionsAnswered}
+                resultUrl={resultUrl}
             />
         </section>
         {:else}

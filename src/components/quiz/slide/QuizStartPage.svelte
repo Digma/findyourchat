@@ -1,6 +1,7 @@
 <script lang="ts">
     import { createEventDispatcher } from "svelte";
     
+    export let isEdit = false;
     const dispatch = createEventDispatcher();
 
     const handleKeydown = (e: KeyboardEvent) => {
@@ -41,7 +42,11 @@
             type="button"
             on:click={dispatchStart}
         >
-            Start
+            {#if isEdit}
+                Edit Profile
+            {:else}
+                Start
+            {/if}
         </button>
 
         <div class="flex mt-4 gap-2">

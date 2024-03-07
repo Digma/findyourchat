@@ -5,6 +5,7 @@
     export let enableSubmit: boolean = true;
     export let answers: Question[] = [];
     export let englishAnswered: boolean = false;
+    export let resultUrl: string = '';
 
     $: emptyAnswers = answers.map((obj, idx) => ({ ...obj, index: idx })).filter((q) => !q.answer);
 
@@ -26,7 +27,7 @@
             <h2 class="text-3xl font-bold text-black mb-4">Submit your answers</h2>
             <p class="text-lg text-black mb-4">You have completed the quiz 🎉 If you are done, click on the Submit button</p>
             <div class="rounded-md bg-black">
-                <a class="btn text-white font-bold" href="/results" on:click={submitAnswers}>Submit</a>
+                <a class="btn text-white font-bold" href={resultUrl} on:click={submitAnswers}>Submit</a>
             </div>
         {:else}
             <h2 class="text-3xl font-bold text-black mb-4">Please answer all questions</h2>
