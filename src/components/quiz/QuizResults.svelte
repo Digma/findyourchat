@@ -1,27 +1,38 @@
 <script lang="ts">
+    import X from "../social/X.svelte";
+    import Reddit from "../social/Reddit.svelte";
+    import LinkedIn from "../social/LinkedIn.svelte";
     import ClipboardButton from "../form/ClipboardButton.svelte";
     import SaveButton from "../form/SaveButton.svelte";
     import EditButton from "../form/EditButton.svelte";
     import ScoreCard from "../containers/ScoreCard.svelte";
     import Tooltip from "../containers/Tooltip.svelte";
     import InlineInput from "../containers/InlineInput.svelte";
-
+    
     import { getWritingPromptFromQuestions } from "../../lib/personality/prompt.ts";
     import { currentWritingStyle, saveProfile, editProfile } from "../../lib/store.ts";
     import { textColors } from "../../lib/personality/color.ts";
     import { urlToWritingStyle } from "../../lib/personality/url.ts";
     import { createDefaultNameFromQuestion } from "../../lib/personality/naming.ts";
     
-
+    
     const colorOptionLength = textColors.length;
     editProfile.set("false");
-
+    
     const writingStyle = urlToWritingStyle(window.location.search)
     const writingStyleDefined = writingStyle && writingStyle.answers.every(a => a.answer);
     const generatedPrompt = writingStyleDefined ? getWritingPromptFromQuestions(writingStyle) : "";
     const profileExists = writingStyle.id && writingStyle.id != "" ? true : false;
     const profileName = writingStyle.name && writingStyle.id != "" ? writingStyle.name : createDefaultNameFromQuestion(writingStyle.answers);
-
+    
+    // Social sharing buttons
+    const url = window.location.href.split('?')[0];;
+    const searchParams = new URLSearchParams(window.location.search);
+    searchParams.delete("id");
+    searchParams.delete("name");
+    const searchParamsString = searchParams.toString(); 
+    const title = 'Check my ChatGPT Writing Style ✍️';
+    
     const saveToProfile = () => {
         // Questions will be saved on the profile page
         // That avoids issues with redirecting for unlogged users
@@ -87,7 +98,7 @@
         </div> -->
         <div class="mt-4 mb-4">
             <div class="w-full flex flex-col sm:flex-row md:flex-row lg:flex-row justify-between m-auto gap-4 align-top">
-                <div class="flex flex-row gap-4 align-top">
+                <div class="flex flex-col gap-4 align-top items-start">
                     <div class="flex flex-row group max-w-96">
                         <InlineInput 
                             value={profileName} 
@@ -163,6 +174,16 @@
                 <p class="text-lg text-gray-500">No writing style found</p>
             </div>
         {/if}
+    </div>
+    <div class="w-full flex flex-col items-center justify-center mt-8">
+        <div class="w-full flex flex-col justify-center items-center gap-4">
+            <p class="text-md text-gray-800">Share your Writing Style with others</p>
+            <div>
+                <Reddit class="share-button rounded-lg h-10" {title} {url} parameters={searchParamsString} />
+                <LinkedIn class="share-button rounded-lg h-10" {url} parameters={searchParamsString} />
+                <X class="share-button rounded-lg h-10" text="{title}" {url} parameters={searchParamsString} hashtags="ChatGPT" related="other,users" />
+            </div>
+        </div>
     </div>
     {/if}
 </div>

@@ -7,16 +7,13 @@ export const encodeAnswerToResultUrl = (writingStyle: WritingStyleDocument) => {
     // Initialize the query parameters string
     let queryParams = [];
     
-    // Add each item in the list variable to the query string
-    writingStyle.answers.forEach((answer, index) => {
-        if (answer) {
-            queryParams.push(`answer${index}=${encodeURIComponent(answer.answer || "")}`);
-        }
-    });
+    // Add a list of all the answers to the query string
+    const answerShort = writingStyle.answers.map((answer) => answer.answer).join("");
+    queryParams.push(`answers=${encodeURIComponent(answerShort)}`);
 
     // Add the string variable to the query string
     if (writingStyle.englishType) {
-        queryParams.push(`englishType=${encodeURIComponent(writingStyle.englishType)}`);
+        queryParams.push(`et=${encodeURIComponent(writingStyle.englishType)}`);
     }
 
     if (writingStyle.id) {
@@ -35,13 +32,14 @@ export const decodeUrlToAnswer = (url: string) => {
     const urlParams = new URLSearchParams(url);
     const answers: number[] = [];
 
-    for (let i = 0; i < 10; i++) {
-        const answer = urlParams.get(`answer${i}`);
-        if (answer) {
-            answers.push(parseInt(answer));
+    const answersShort = urlParams.get('answers');
+    if (answersShort) {
+        for (let i = 0; i < answersShort.length; i++) {
+            answers.push(parseInt(answersShort[i]));
         }
     }
-    const englishType = urlParams.get('englishType') || '';
+
+    const englishType = urlParams.get('et') || '';
     const id = urlParams.get('id') || '';
     const name = urlParams.get('name') || '';
 
