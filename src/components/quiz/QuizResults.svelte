@@ -175,7 +175,7 @@
             </div>
         {/if}
     </div>
-    <div class="w-full flex flex-col items-center justify-center mt-8">
+    <div class="w-full flex flex-col items-center justify-center mt-16">
         <div class="w-full flex flex-col justify-center items-center gap-4">
             <p class="text-md text-gray-800">Share your Writing Style with others</p>
             <div>
