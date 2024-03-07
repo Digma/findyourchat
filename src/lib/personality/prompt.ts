@@ -18,8 +18,8 @@ Client Writing Style:
 - Voice And Tone: ${voiceAndTone.join(", ")}
 
 Content to write:
-A LinkedIn post on a new Open-source project launched by that person called the DataAnalysisLib
-    `;
+[REPLACE HERE WITH YOUR CONTENT: e.g. "Write a blog post about the latest OpenAI model."]
+`;
 };
 
 //

@@ -7,6 +7,8 @@
 
     export let user: User | null | undefined = null;
     export let logoBlack = false;
+
+    let isOpen = false;
 </script>
 
 <div
@@ -14,12 +16,42 @@
 >
     <div class="mx-5 flex h-16 max-w-screen-xl items-left justify-between w-full">
         <Logo black={logoBlack} />
-        <div>
+        <div class="flex flex-row align-middle">
+            <div class="py-2 px-6 mr-2">
+                <div class="relative">
+                    <button class="text-xl font-bold text-white rounded inline-flex relative gap-x-2" on:click={() => isOpen = !isOpen}>
+                      Docs
+                      <svg class="hs-dropdown-open:rotate-180 size-4 mt-1.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                    </button>
+                    {#if isOpen}
+                      <div class="absolute z-10 right-0 mt-2 min-w-36">
+                        <div class="bg-white border-gray-200 rounded-md shadow-lg will-change-transform animate-slide-up-fade">
+                          <div class="text-sm py-1">
+                            <a href="/doc/chatgpt-guide" class="w-full block inline-flex gap-x-2 px-4 py-2 text-gray-800 hover:bg-gray-100 hover:text-black">
+                                ChatGPT
+                            </a>
+                            <a href="/doc/huggingchat-guide" class="w-full block inline-flex gap-x-2 px-4 py-2 text-gray-800 hover:bg-gray-100 hover:text-black">
+                                HuggingChat
+                            </a>
+                            <a href="/doc/google-gemini-guide" class="w-full block inline-flex gap-x-2 px-4 py-2 text-gray-800 hover:bg-gray-100 hover:text-black">
+                                Google Gemini
+                            </a>
+                            <a href="/doc/microsoft-copilot-guide" class="w-full block inline-flex gap-x-2 px-4 py-2 text-gray-800 hover:bg-gray-100 hover:text-black">
+                                Microsoft Copilot
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    {/if}
+                  </div>
+            </div>
+            <div>
             {#if user}
                 <UserDropdown {user} />
             {:else}
                 <Button href="/signin" variant="rounded">Sign In</Button>
             {/if}
+            </div>
         </div>
     </div>
 </div>

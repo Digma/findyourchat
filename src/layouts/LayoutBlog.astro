@@ -1,0 +1,28 @@
+---
+import Prose from '../components/Prose.astro';
+import Layout from '../layouts/Layout.astro';
+
+import getUserData from "../lib/firebase/utils/auth/getUserData";
+import Navbar from "../components/Navbar.svelte";
+
+interface Props {
+	title: string;
+	description: string;
+	image?: string;
+	background?: string;
+	logoBlack?: boolean;
+	whiteGradient?: boolean;
+}
+const { title, description, image, background, logoBlack = false, whiteGradient = false } = Astro.props;
+
+const sessionCookie = Astro.cookies.get("session")?.value ?? null;
+const user = await getUserData(sessionCookie);
+---
+<Layout {title} {description} {image} {background} {whiteGradient} >
+    <Navbar {user} {logoBlack} client:load />
+    <div class="font-blog max-w-[640px] w-[calc(90%)] m-auto pb-8">
+        <Prose>
+            <slot />
+        </Prose>
+    </div>
+</Layout>

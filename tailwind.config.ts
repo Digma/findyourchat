@@ -51,6 +51,16 @@ export default {
           "100%": { opacity: 1, transform: "translateY(0)" },
         },
       },
+      typography: {
+        DEFAULT: {
+          css: {
+            maxWidth: "860px",
+            img: {
+              margin: 'auto',
+            },
+          },
+        },
+      },
     },
     fontFamily: {
       cards: ["Poppins", "sans-serif"], //, ...defaultTheme.fontFamily.sans],
@@ -60,5 +70,6 @@ export default {
     skeleton({
       themes: { preset: ["modern"] },
     }),
+    require('@tailwindcss/typography'),
   ],
 };

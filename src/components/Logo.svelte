@@ -13,8 +13,8 @@
             class="mr-2 rounded-sm"
         />
         <span class="text-lightblue-accent ml-1">Find</span>
-        <span class="{colorDefault} italic">Your</span>
-        <span class="text-yellow-accent">Chat</span>
+        <span class="{colorDefault} italic">Your<em/></span>
+        <span class="text-yellow-accent ml-1.5">Chat</span>
         <span class="text-yellow-accent">.</span>
         <span class="text-dark">ai</span>
     </div>

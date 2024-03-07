@@ -21,19 +21,6 @@
         saveProfile.set("true");
     };
 
-    // Progress bar
-    const progressPercentage = (answer: number | undefined) => {
-        if (!answer) return "0%";
-        const percentage = (answer - 1) * 25;
-        return `${percentage}%`;
-    };
-
-    const progressPercentageInverse = (answer: number | undefined) => {
-        if (!answer) return "0%";
-        const percentage = 100 - (answer - 1) * 25;
-        return `${percentage}%`;
-    };
-
     const getAttributeColor = (index: number | undefined) => {
         if (!index) return "text-gray-600";
         else return textColors[index % colorOptionLength];
@@ -83,10 +70,10 @@
                     </a>
                 </div>
             </div>
-            <div class="mb-8">
-                <p class="text-sm">This is your own unique writing style. It can easily be used with ChatGPT, Claude, HuggingChat to create texts with your personal identity. <b>Simply use the "Copy Prompt" button and paste it in your tool of choice.</b></p>
+            <div class="mb-4 mt-4 p-2 rounded bg-white/50">
+                <p class="text-sm">To use it, <b>simply copy the prompt using the "Copy Prompt" button</b> or <b>check our documentation</b> for <a href="/doc/chatgpt-guide" class="text-blue-500">ChatGPT</a>, <a href="/doc/huggingchat-guide" class="text-blue-500">HuggingChat</a>, <a href="/doc/google-gemini-guide" class="text-blue-500">Google Gemini</a> or <a href="/doc/copilot-guide" class="text-blue-500">Microsoft Copilot</a>.</p>
             </div>
-            <div class="flex-grow border-t border-gray-200/50"></div>
+            <!-- <div class="flex-grow border-t border-gray-200/50"></div> -->
         </div>
         {#if $currentWritingStyle}
         <div class="mt-2 flex flex-col sm:flex-row">
