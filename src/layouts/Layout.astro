@@ -43,9 +43,9 @@ const { title, description, image = "public/findyourchat_overview.png", backgrou
 		<meta property="twitter:image" content={new URL(image, Astro.url)} />
 		<ViewTransitions />
 	</head>
-	<body data-theme="modern" class=`${background} h-screen`>
+	<body data-theme="modern" class=`${background} h-full`>
 		{whiteGradient ? 
-			<div class="h-screen bg-gradient-to-r from-gray-400/0 from-50% to-white/25 pt-2">
+			<div class="min-h-screen h-full bg-gradient-to-r from-gray-400/0 from-50% to-white/25 pt-2">
 				<slot />
 				<SpeedInsights />
 			</div> 
@@ -64,9 +64,3 @@ const { title, description, image = "public/findyourchat_overview.png", backgrou
 		/* height: 100%; */
 	}
 </style>
-<script>
-	// Script for popups
-	import { computePosition, autoUpdate, offset, shift, flip, arrow } from '@floating-ui/dom';
-	import { storePopup } from '@skeletonlabs/skeleton';
-	storePopup.set({ computePosition, autoUpdate, offset, shift, flip, arrow });
-</script>

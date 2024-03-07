@@ -60,8 +60,7 @@ export const cloneWritingStyle = (writingStyle: WritingStyleDocument) => {
     writingStyle.created_at,
     writingStyle.modified_at,
   );
-}
-
+};
 
 // Firestore data converter
 export const writingStyleConverter = {

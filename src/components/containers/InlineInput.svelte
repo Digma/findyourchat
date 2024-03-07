@@ -8,8 +8,8 @@
     export let value = "";
     export let type = "text";
     export let placeholder = "";
-    export let labelClasses = "align-middle m-auto";
-    export let inputClasses = "min-w-80 h-6 m-auto bg-white/20 p-2";
+    export let labelClasses = "align-middle m-auto text-md md:text-lg";
+    export let inputClasses = "min-w-80 h-10 m-auto bg-white/20 p-2";
     export let rows = 2;
     export let cols = 20;
     export let options = [];
