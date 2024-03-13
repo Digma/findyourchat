@@ -123,7 +123,7 @@
                     </div>
                 </div>
             </div>
-            <div class="mb-4 p-2 py-4 rounded bg-white/50">
+            <div class="mb-4 p-2 py-4 rounded bg-white/50 mt-4">
                 <p class="text-sm">To use it, <b>simply copy the prompt using the "Copy Prompt" button</b> or <b>check our documentation</b> for <a href="/doc/chatgpt-guide" class="text-blue-500">ChatGPT</a>, <a href="/doc/huggingchat-guide" class="text-blue-500">HuggingChat</a>, <a href="/doc/google-gemini-guide" class="text-blue-500">Google Gemini</a> or <a href="/doc/copilot-guide" class="text-blue-500">Microsoft Copilot</a>.</p>
             </div>
             <!-- <div class="flex-grow border-t border-gray-200/50"></div> -->
@@ -132,7 +132,7 @@
         <div class="mt-2 flex flex-col sm:flex-row">
             <div class="max-w-72 flex flex-row">
                 <Tooltip tooltipText="This refers to the differences in the English language accross the world." position="top">
-                    <p class="text-black font-bold text-2xl">English Variety —</p>
+                    <p class="text-purple-600 font-bold text-2xl">English Variety —</p>
                 </Tooltip>
             </div>
             <div class="rounded text-left text-sm sm:ml-2 mt-2.5">
@@ -140,7 +140,7 @@
             </div>
         </div>
     <div class="mt-2 mb-4">
-        <p class="text-black font-bold text-2xl">Personality Traits</p>
+        <p class="text-purple-600  font-bold text-2xl">Personality Traits</p>
         <p>Your personality, a reflection of you, your personality</p>
     </div>
     <div class="grid sm:grid-cols-1 md:grid-cols-2 gap-4">
@@ -155,7 +155,7 @@
         {/each}
     </div>
     <div class="mt-8 mb-4">
-        <p class="text-left font-bold text-black text-2xl">Tone of Voice</p>
+        <p class="text-left font-bold text-purple-600  text-2xl">Tone of Voice</p>
         <p>Your tone may vary based on the situation, it is shaped by your intent and who you are addressing</p>
     </div>
     <div class="grid sm:grid-cols-1 md:grid-cols-2 gap-4 mb-8">

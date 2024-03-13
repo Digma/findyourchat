@@ -66,7 +66,7 @@
                             <div class="w-full text-left text-white mr-[8%] ml-[8%]">
                                 <h2 class="text-3xl font-bold uppercase">{attribute1}</h2>
                                 <div class="bg-white h-1 w-24 mt-2 mb-8"></div>
-                                <p class="h-full italic rounded-e-xl rounded-ss-xl max-w-72">«{example1}»</p>
+                                <p class="h-full text-black text-lg font-bold italic rounded-e-xl rounded-ss-xl max-w-72">«{example1}»</p>
                             </div>
                         </div>
                         <!-- Right side with color 2 -->
@@ -79,7 +79,7 @@
                                 <div class="w-full flex flex-row-reverse">
                                     <div class="bg-white h-1 w-24 mt-2 mb-8"></div>
                                 </div>
-                                <p class="italic text-end rounded-e-xl rounded-ss-xl float-right max-w-72">«{example2}»</p>
+                                <p class="italic text-end text-black text-lg font-bold  rounded-e-xl rounded-ss-xl float-right max-w-72">«{example2}»</p>
                             </div>
                         </div>
                     </div>

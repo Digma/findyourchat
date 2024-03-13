@@ -1,0 +1,30 @@
+---
+import { Image } from 'astro:assets';
+
+import ManCharacter from '../assets/characters/man_avatar.png'
+import WomanCharacter from '../assets/characters/woman_avatar.png'
+import Schema from '../assets/drawings/writingStyleAndContent.png'
+
+import Quote from './containers/Quote.astro'
+---
+<section class="bg-green-accent">
+    <div
+        class="items-center space w-full px-8 py-12 mx-auto md:px-12 lg:px-16 max-w-7xl lg:pt-32 pb-16 lg:pb-32"
+    >
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 text-white">
+            <div class="mx-auto my-auto max-w-2xl">
+                <div class="relative w-full mx-auto max-w-7xl items-center">
+                    <Image src={Schema} alt="picture of a formal woman in work attire" width="600" class=""/>
+                </div>
+            </div>
+            <div class="flex flex-col items-center grid-rows-2 gap-4">
+                <p class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl tracking-tighter font-medium lg:float-end">
+                    Tailor ChatGPT with your Unique Writing Style
+                </p>
+                <p class="font-light text-md sm:text-lg md:text-xl lg:text-2xl">
+                    Make ChatGPT write in your own unique style for all types of communications
+                </p>
+            </div>
+        </div>
+    </div>
+</section>

@@ -8,22 +8,30 @@ import ManCharacterLinkedIn from '../assets/characters/man_avatar_3.png'
     <div
         class="mx-auto max-w-7xl items-center pt-12 lg:px-16 lg:pt-32 md:px-12 px-5 pb-8 lg:pb-32"
     >
-        <div>
-            <div class="text-white text-center">
-                <p
-                    class="text-3xl sm:text-4xl md:text-5xl lg:text-7xl tracking-tighter font-medium"
+        <div class="text-white text-center">
+            <p
+                class="text-3xl sm:text-4xl md:text-5xl lg:text-7xl tracking-tighter font-medium"
+            >
+            AI Content, <span class="block"
+                    >Uniquely You</span
                 >
-                Unlock Your <span class="block"
-                        >Unique Writing Style</span
-                    >
-                </p><p class="max-w-xl mt-12 mx-auto text-lg sm:text-xl md:text-2xl lg:text-3xl">
-                    ✋ Stop sounding like everyone else ✋
-                </p>
-            </div>
-        </div><div class="mx-auto max-w-7xl items-center mt-12">
-            <LinkedInPost name="John Doe" job="Influencer at Buzz Inc & Co" date="1d" post="Please no more ChatGPT posts.\nI am tired of it 😕😕" >
-                <Image src={ManCharacterLinkedIn} alt="profile picture bearded man" height="50" width="50" class="rounded-full shadow-md" />
-            </LinkedInPost>
+                <div class="mx-auto max-w-7xl items-center mt-12">
+                    <LinkedInPost name="John Doe" job="Influencer at Buzz Inc & Co" date="1d" post="Please no more ChatGPT posts.\nI am tired of it 😕😕" >
+                        <Image src={ManCharacterLinkedIn} alt="profile picture bearded man" height="50" width="50" class="rounded-full shadow-md" />
+                    </LinkedInPost>
+                </div>
+            </p><p class="max-w-xl mt-12 mx-auto text-lg sm:text-xl md:text-2xl lg:text-3xl">
+                ✋ Stop sounding like everyone else ✋
+            </p>
+        </div>
+        <div class="flex justify-center mt-12">
+            <a
+                href="/quiz"
+                type="submit"
+                class="text-white text-xl group-invalid:pointer-events-none h-14 inline-flex items-center justify-center w-auto lg:px-12 px-6 py-4 text-center duration-200 bg-yellow-accent font-medium rounded-full text-base focus:outline-none focus:ring-2 focus:ring-offset-2 hover:text-blue-accent ring-offset-2 shadow-md"
+                >
+                    Create your Unique ChatGPT Writing Style →
+        </a>
         </div>
     </div>
 </section>

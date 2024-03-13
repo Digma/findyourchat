@@ -1,0 +1,28 @@
+---
+import { Image } from 'astro:assets';
+
+import QuizToPrompt from '../assets/drawings/quizToPrompt.png'
+
+import Quote from './containers/Quote.astro'
+---
+<section class="bg-purple-accent">
+    <div
+        class="items-center w-full px-8 py-12 mx-auto md:px-12 lg:px-16 max-w-7xl lg:pt-32 pb-8 lg:pb-32 space-y-12"
+    >
+        <div class="grid grid-cols-1 lg:grid-cols-1 gap-8 text-white">
+            <div class="flex flex-col items-center grid-rows-2 gap-4 max-w-2xl">
+                <p class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl tracking-tighter font-medium lg:float-end">
+                    Take a Quiz to get your Unique Personality Prompt
+                </p>
+                <p class="font-extralight text-md sm:text-lg md:text-xl lg:text-2xl">
+                    We create a personal prompmt for you to use with ChatGPT, HuggingChat or other LLMs
+                </p>
+            </div>
+            <div class="mx-auto">
+                <div class="relative w-full mx-auto max-w-7xl items-center">
+                        <Image src={QuizToPrompt} alt="picture of a formal woman in work attire" height="100" width="800" class=""/>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -45,7 +45,7 @@
                     {/if}
                   </div>
             </div>
-            <div>
+            <div class="mt-1">
             {#if user}
                 <UserDropdown {user} />
             {:else}

@@ -13,8 +13,7 @@ export const understated: Attribute = {
 export const hyperbolic: Attribute = {
   title: "Hyperbolic",
   description: "You are dramatically impactful and boldly inspiring.",
-  example:
-    "Revolutionizing the world of AI as we know it, the groundbreaking new OpenAI model is an absolute game-changer!",
+  example: "The groundbreaking new OpenAI model is an absolute game-changer!",
 };
 
 export const reserved: Attribute = {
@@ -28,7 +27,7 @@ export const emotionallyExpressive: Attribute = {
   title: "Expressive",
   description: "You are exuberantly open and radiantly empathetic.",
   example:
-    "Thrilled to announce that I have accepted an incredible opportunity and will be starting a new chapter in my career journey!",
+    "Thrilled to announce that I will be starting a new chapter in my career journey!",
 };
 
 export const introverted: Attribute = {
@@ -49,7 +48,7 @@ export const politeness: Attribute = {
   title: "Polite",
   description: "You are graciously courteous and elegantly considerate.",
   example:
-    "Dear [Name], I would greatly appreciate it if you could share your thoughts on the guidelines at your earliest convenience. Thank you.",
+    "Dear [Name], I would greatly appreciate your thoughts on the guidelines at your earliest convenience.",
 };
 
 export const directness: Attribute = {
@@ -63,14 +62,14 @@ export const intuitive: Attribute = {
   title: "Intuitive",
   description: "You are profoundly perceptive and instinctively insightful.",
   example:
-    "Ecology is like a big puzzle where plants, animals, and other living things all fit together perfectly to create a beautiful picture called nature.",
+    "Ecology is like a big puzzle where plants, animals, and other living things all fit together perfectly to create a beautiful picture.",
 };
 
 export const analytical: Attribute = {
   title: "Analytical",
   description: "You are precisely logical and rigorously methodical.",
   example:
-    "Ecology is the study of how all living things, like plants and animals, interact with each other and their environment to survive and thrive.",
+    "Ecology is the study of how all living things, like plants and animals, interact with each other and their environment.",
 };
 
 export const traditional: Attribute = {
@@ -91,14 +90,14 @@ export const formal: Attribute = {
   title: "Formal",
   description: "You are distinctly professional and impeccably mannered.",
   example:
-    "I kindly request one day off from work for personal reasons and assure you that I will ensure all pending tasks are completed before my departure.",
+    "I kindly request one day off from work for personal reasons. I will ensure all pending tasks are completed before my departure.",
 };
 
 export const casual: Attribute = {
   title: "Casual",
   description: "You are unreservedly open and freely spirited.",
   example:
-    "Hey boss, hope all is well! Just wanted to check if I could take a day off tomorrow, need to take care of some personal stuff. Thanks!",
+    "Hey boss, Just wanted to check if I could take a day off tomorrow, need to take care of some personal stuff. Thanks!",
 };
 
 export const serious: Attribute = {

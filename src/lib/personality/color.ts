@@ -1,7 +1,7 @@
 export const backgroundColors = [
   "bg-amber-300",
   "bg-yellow-500",
-  "bg-green-400",
+  "bg-green-500",
   "bg-emerald-400",
   "bg-teal-400",
   "bg-sky-400",
