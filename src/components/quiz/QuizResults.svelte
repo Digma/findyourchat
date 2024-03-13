@@ -22,8 +22,8 @@
     const writingStyle = urlToWritingStyle(window.location.search)
     const writingStyleDefined = writingStyle && writingStyle.answers.every(a => a.answer);
     const generatedPrompt = writingStyleDefined ? getWritingPromptFromQuestions(writingStyle) : "";
-    const profileExists = writingStyle.id && writingStyle.id != "" ? true : false;
-    const profileName = writingStyle.name && writingStyle.id != "" ? writingStyle.name : createDefaultNameFromQuestion(writingStyle.answers);
+    const profileExists = writingStyle.id && writingStyle.id !== "" ? true : false;
+    const profileName = writingStyle.name && writingStyle.id !== "" ? writingStyle.name : createDefaultNameFromQuestion(writingStyle.answers);
     
     // Social sharing buttons
     const url = window.location.href.split('?')[0];;
@@ -36,6 +36,9 @@
     const saveToProfile = () => {
         // Questions will be saved on the profile page
         // That avoids issues with redirecting for unlogged users
+        if (!writingStyle.name || writingStyle.name === "") {
+            writingStyle.name = profileName;
+        }
         currentWritingStyle.set(writingStyle);
         saveProfile.set("true");
     };

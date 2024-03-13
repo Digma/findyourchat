@@ -25,7 +25,6 @@
                 await postWritingStyleToDB($currentWritingStyle);
             }
         }
-        
         // Reset the editing profile
         currentWritingStyle.set(undefined);
         saveProfile.set("false");
@@ -43,6 +42,7 @@
     }
 
     const deleteProfile = (idx: string|undefined) => async () => {
+        open = false;
         if (idx){
             await deleteWritingStyle(idx);
             // Force a refresh of the table
@@ -95,7 +95,7 @@
                 <p>Loading...</p>
             {:then styles}
                 {#if styles.length === 0}
-                    <p class="w-full mt-4 italic">No profiles found</p>
+                    <p class="w-full mt-4 italic text-center text-white">No profiles found</p>
                 {:else}
                     <div class="w-full flex flex-col">
                         <div class="overflow-x-auto">
@@ -124,7 +124,7 @@
                                                     <div class="top-[30%] bg-white rounded-2xl w-[50%] h-fit mx-auto absolute inset-0 text-gray-600 p-4 py-8">
                                                         <!-- Delete Confirmation Popup -->
                                                         <div class="flex flex-col items-center justify-center">
-                                                            <h2 class="text-2xl font-bold mb-4">Are you sure you want to delete this profile?</h2>
+                                                            <h2 class="text-xl mb-4 align-center">Are you sure you want to delete this profile?</h2>
                                                             <div class="flex flex-row gap-4">
                                                                 <button class="text-white rounded justify-center bg-red-500 p-1 px-3" on:click={deleteProfile(style.id)}>
                                                                     <p>Delete</p>
@@ -168,7 +168,7 @@
         {:catch error}
             <p>Could not save the profile. Please reload the page</p>
         {/await}
-        <div class="w-full flex flex-col mt-8">
+        <div class="w-full flex flex-col mt-16">
             <a
                 class="w-88 text-lg font-bold m-auto text-center bg-orange-accent text-white px-6 py-2 rounded-lg"
                 href="/quiz"

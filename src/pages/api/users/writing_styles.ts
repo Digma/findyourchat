@@ -6,7 +6,7 @@ import { writingStyleConverter } from "../../../lib/personality/dataConverter";
 
 const writingStyleRef = firestore.collection("writing_styles");
 
-const WRITING_STYLE_COLLECTION = "test";
+const WRITING_STYLE_COLLECTION = "styles";
 
 const NO_TOKEN_RESPONSE = new Response("No token found", { status: 401 });
 const MISSING_REQUIRED_FIELDS_RESPONSE = new Response(
@@ -35,12 +35,11 @@ export const GET: APIRoute = async ({ cookies }) => {
   }
 
   const { uid } = await auth.verifySessionCookie(sessionCookie, true);
-
   try {
     // Get the specific user document based on the userId
     const styles = await writingStyleRef
       .doc(uid)
-      .collection("test")
+      .collection(WRITING_STYLE_COLLECTION)
       // @ts-expect-error: Typescript nightmare to setup all required types
       .withConverter(writingStyleConverter)
       .get();
@@ -71,11 +70,15 @@ export const GET: APIRoute = async ({ cookies }) => {
 
 /* Save a new writing style */
 export const POST: APIRoute = async ({ request, cookies, redirect }) => {
+  
   /* Verify required fields */
   const { questions, name, englishType } = await request.json();
   if (!name || !questions || !englishType) {
+    console.info("Missing required fields");
     return MISSING_REQUIRED_FIELDS_RESPONSE;
   }
+
+  await new Promise(resolve => setTimeout(resolve, 1000));
 
   /* Verify cookie */
   const sessionCookie = cookies.get("session")?.value;
@@ -104,6 +107,7 @@ export const POST: APIRoute = async ({ request, cookies, redirect }) => {
   } catch (error) {
     errorResponse(error);
   }
+
   return redirect("/profile");
 };
 

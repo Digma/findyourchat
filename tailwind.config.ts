@@ -26,6 +26,7 @@ export default {
         "rose-accent": "#FF006E",
         "orange-accent": "#fb5607",
         "yellow-accent": "#ffbe0b",
+        "green-accent": "#5eadafff",
         // flowbite-svelte
         primary: {
           50: "#FFF5F2",
@@ -56,7 +57,7 @@ export default {
           css: {
             maxWidth: "860px",
             img: {
-              margin: 'auto',
+              margin: "auto",
             },
           },
         },
@@ -75,6 +76,6 @@ export default {
     skeleton({
       themes: { preset: ["modern"] },
     }),
-    require('@tailwindcss/typography'),
+    require("@tailwindcss/typography"),
   ],
 };

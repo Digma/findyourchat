@@ -29,10 +29,13 @@ export const postWritingStyleToDB = async (
   if (allQuestionAnswered) {
     const response = await fetch("/api/users/writing_styles", {
       method: "POST",
+      headers: {
+        'Content-Type': 'application/json'
+      },
       body: JSON.stringify({
         name: writingStyle.name,
         englishType: writingStyle.englishType,
-        questions: writingStyle.answers,
+        questions: [...writingStyle.answers],
       }),
     });
 
