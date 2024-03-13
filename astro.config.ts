@@ -7,7 +7,13 @@ import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [tailwind(), svelte(), sitemap()],
+  integrations: [
+    tailwind(),
+    svelte(),
+    sitemap({
+      filter: (page) => page !== 'https://www.findyourchat.ai/profile/',
+    })
+  ],
   site: "https://www.findyourchat.ai",
   output: "server",
   server: {
