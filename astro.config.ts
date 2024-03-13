@@ -8,18 +8,16 @@ import sitemap from "@astrojs/sitemap";
 // https://astro.build/config
 export default defineConfig({
   integrations: [tailwind(), svelte(), sitemap()],
-  renderers: ["@astrojs/renderer-svelte"],
   site: "https://www.findyourchat.ai",
-  output: "hybrid",
+  output: "server",
   server: {
     port: 3000,
   },
-  preview: {
-    port: 3000,
-  },
   adapter: vercel({
+    edgeMiddleware: true,
     webAnalytics: {
       enabled: true,
     },
+    maxDuration: 8,
   }),
 });

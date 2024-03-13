@@ -6,7 +6,7 @@
 <a href="/">
     <div class="text-black font-bold text-2xl inline-flex items-center">
         <img
-            src="/logo.svg"
+            src="/logo.png"
             alt="FindYourChat.ai logo"
             width="40"
             height="40"

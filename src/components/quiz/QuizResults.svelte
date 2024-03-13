@@ -135,7 +135,7 @@
         <div class="mt-2 flex flex-col sm:flex-row">
             <div class="max-w-72 flex flex-row">
                 <Tooltip tooltipText="This refers to the differences in the English language accross the world." position="top">
-                    <p class="text-purple-600 font-bold text-2xl">English Variety —</p>
+                    <p class="text-purple-600 font-bold text-2xl mr-2">English Variety</p>
                 </Tooltip>
             </div>
             <div class="rounded text-left text-sm sm:ml-2 mt-2.5">
@@ -178,9 +178,9 @@
             </div>
         {/if}
     </div>
-    <div class="w-full flex flex-col items-center justify-center mt-16">
-        <div class="w-full flex flex-col justify-center items-center gap-4">
-            <p class="text-md text-gray-800">Share your Writing Style with others</p>
+    <div class="w-full flex flex-col items-center justify-center mt-16 mb-16">
+        <div class="w-full flex flex-col justify-center items-center gap-2">
+            <p class="text-md text-gray-800 italic">Share your Writing Style</p>
             <div>
                 <Reddit class="share-button rounded-lg h-10" {title} {url} parameters={searchParamsString} />
                 <LinkedIn class="share-button rounded-lg h-10" {url} parameters={searchParamsString} />
