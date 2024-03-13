@@ -16,6 +16,6 @@
         <span class="{colorDefault} italic">Your<em/></span>
         <span class="text-yellow-accent ml-1.5">Chat</span>
         <span class="text-yellow-accent">.</span>
-        <span class="text-dark">ai</span>
+        <span class="{colorDefault}">ai</span>
     </div>
 </a>

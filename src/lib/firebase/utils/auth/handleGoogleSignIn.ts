@@ -14,7 +14,6 @@ async function handleGoogleSignIn() {
   try {
     const provider = new GoogleAuthProvider();
     const userCredential = await signInWithPopup(auth, provider);
-
     const idToken = await userCredential.user.getIdToken();
     const res = await fetch("/api/auth/signin", {
       method: "GET",

@@ -11,8 +11,8 @@ export default defineConfig({
     tailwind(),
     svelte(),
     sitemap({
-      filter: (page) => page !== 'https://www.findyourchat.ai/profile/',
-    })
+      filter: (page) => page !== "https://www.findyourchat.ai/profile/",
+    }),
   ],
   site: "https://www.findyourchat.ai",
   output: "server",
