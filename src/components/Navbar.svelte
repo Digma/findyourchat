@@ -12,12 +12,12 @@
 </script>
 
 <div
-    class="my-4 w-full flex justify-center z-30 transition-all"
+    class="my-4 w-full flex justify-center z-30 transition-all mb-12 sm:mb-2"
 >
-    <div class="mx-5 flex h-16 max-w-screen-xl items-left justify-between w-full">
+    <div class="mx-5 flex flex-col sm:flex-row h-16 max-w-screen-xl items-left justify-between w-full">
         <Logo black={logoBlack} />
-        <div class="flex flex-row align-middle">
-            <div class="py-2 px-6 mr-2">
+        <div class="flex flex-row align-middle justify-between">
+            <div class="py-2 px-2 sm:px-6 mr-2">
                 <div class="relative">
                     <button class="text-xl font-bold text-white rounded inline-flex relative gap-x-2" on:click={() => isOpen = !isOpen}>
                       Docs
