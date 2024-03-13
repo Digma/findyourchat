@@ -88,7 +88,7 @@
     };
 </script>
 
-<div class="w-full text-gray-800 px-6 max-w-[800px] m-auto rounded">
+<div class="w-full text-gray-800 px-6 max-w-[800px] m-auto rounded mt-8">
     {#if !writingStyleDefined}
         <div class="w-full flex flex-col items-center justify-center">
             <p class="text-lg text-gray-500">No writing style found</p>
@@ -101,12 +101,12 @@
         </div> -->
         <div class="mt-4 mb-4">
             <div class="w-full flex flex-col sm:flex-row md:flex-row lg:flex-row justify-between m-auto gap-4 align-top">
-                <div class="flex flex-col gap-4 align-top items-start">
+                <div class="flex flex-col gap-4 py-2 items-start">
                     <div class="flex flex-row group max-w-96">
                         <InlineInput 
                             value={profileName} 
                             on:blur={updateProfileName} 
-                            labelClasses="text-black font-bold text-2xl uppercase align-middle m-auto"
+                            labelClasses="text-purple-700 font-bold text-3xl uppercase align-middle m-auto"
                             inputClasses="text-black font-bold text-2xl uppercase align-middle m-auto"
                         />
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="mt-3 ml-2 h-5 w-5 text-white hidden group-hover:block" stroke="currentColor">
@@ -135,15 +135,15 @@
         <div class="mt-2 flex flex-col sm:flex-row">
             <div class="max-w-72 flex flex-row">
                 <Tooltip tooltipText="This refers to the differences in the English language accross the world." position="top">
-                    <p class="text-purple-600 font-bold text-2xl mr-2">English Variety</p>
+                    <p class="text-black font-bold text-2xl mr-2">English Variety</p>
                 </Tooltip>
             </div>
             <div class="rounded text-left text-sm sm:ml-2 mt-2.5">
-                <span class="bg-purple-100 border-purple-200 border text-purple-600 rounded-full text-md sm:text-lg font-bold px-3 py-1">{writingStyle.englishType} (English)</span>
+                <span class="bg-purple-100 border-purple-200 border text-gray-600 rounded-full text-md sm:text-lg font-bold px-3 py-1">{writingStyle.englishType} (English)</span>
             </div>
         </div>
     <div class="mt-2 mb-4">
-        <p class="text-purple-600  font-bold text-2xl">Personality Traits</p>
+        <p class="text-black  font-bold text-2xl">Personality Traits</p>
         <p>Your personality, a reflection of you, your personality</p>
     </div>
     <div class="grid sm:grid-cols-1 md:grid-cols-2 gap-4">
@@ -158,7 +158,7 @@
         {/each}
     </div>
     <div class="mt-8 mb-4">
-        <p class="text-left font-bold text-purple-600  text-2xl">Tone of Voice</p>
+        <p class="text-left font-bold text-black  text-2xl">Tone of Voice</p>
         <p>Your tone may vary based on the situation, it is shaped by your intent and who you are addressing</p>
     </div>
     <div class="grid sm:grid-cols-1 md:grid-cols-2 gap-4 mb-8">

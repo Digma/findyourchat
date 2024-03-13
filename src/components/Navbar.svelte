@@ -7,6 +7,9 @@
 
     export let user: User | null | undefined = null;
     export let logoBlack = false;
+    export let hideUser = false;
+
+    $: textColor = logoBlack ? "text-black" : "text-white";
 
     let isOpen = false;
 </script>
@@ -18,8 +21,12 @@
         <Logo black={logoBlack} />
         <div class="flex flex-row align-middle justify-between">
             <div class="py-2 px-2 sm:px-6 mr-2">
-                <div class="relative">
-                    <button class="text-xl font-bold text-white rounded inline-flex relative gap-x-2" on:click={() => isOpen = !isOpen}>
+                <div class="relative flex gap-4">
+                    <a href="/methodology/overview" class="text-xl {textColor}">
+                        Methodology
+                    </a>
+                    <p class="text-xl font-light {textColor} text-opacity-20">|</p>
+                    <button class="text-xl font-light {textColor} rounded inline-flex relative gap-x-2" on:click={() => isOpen = !isOpen}>
                       Docs
                       <svg class="hs-dropdown-open:rotate-180 size-4 mt-1.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
                     </button>
@@ -46,10 +53,12 @@
                   </div>
             </div>
             <div class="mt-1">
-            {#if user}
-                <UserDropdown {user} />
-            {:else}
-                <Button href="/signin" variant="rounded">Sign In</Button>
+            {#if !hideUser}
+                {#if user}
+                    <UserDropdown {user} />
+                {:else}
+                    <Button href="/signin" variant="rounded">Sign In</Button>
+                {/if}
             {/if}
             </div>
         </div>
