@@ -22,10 +22,13 @@
 <section class="snap-start h-screen w-full flex items-center justify-center p-4">
     <div class="w-full h-screen flex items-center justify-center p-4">
         <div class="w-full p-8 rounded-lg">
-            <div class="w-full flex text-black max-w-[1024px]">
-                <span class="font-semibold text-3xl mr-1 min-w-24 mt-0.5">11 →</span>
+            <div class="w-full flex flex-col sm:flex-row text-black max-w-[1024px]">
+                <div class="flex flex-row font-semibold text-lg sm:text-xl md:text-2xl lg:text-3xl mb-2 mr-1 mt-0.5 gap-1">
+                    <span class="">11</span>
+                    <span class="sm:min-w-24">→</span>
+                </div>
                 <div class="w-full">
-                    <h3 class="text-3xl font-semibold mb-8">Please choose your preferred variant of English</h3>
+                    <h3 class="text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold mb-8">Please choose your preferred variant of English</h3>
                     <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 justify-center mb-4 min-h-16 gap-2">
                         {#key answer}
                             {#each Object.entries(EnglishType) as [key, value]}

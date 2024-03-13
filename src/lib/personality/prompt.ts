@@ -36,11 +36,11 @@ export const answerToAttribute = (question: Question) => {
     case 1:
       return `Very ${attribute1Name}`;
     case 2:
-      return `Somewhat ${attribute1Name}`;
+      return `${attribute1Name}`;
     case 3:
       return `in-between ${attribute1Name} and ${attribute2Name}`;
     case 4:
-      return `Somewhat ${attribute2Name}`;
+      return `${attribute2Name}`;
     case 5:
       return `Very ${attribute2Name}`;
   }
