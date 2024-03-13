@@ -30,7 +30,7 @@ export const postWritingStyleToDB = async (
     const response = await fetch("/api/users/writing_styles", {
       method: "POST",
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         name: writingStyle.name,

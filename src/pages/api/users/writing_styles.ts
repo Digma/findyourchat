@@ -70,15 +70,11 @@ export const GET: APIRoute = async ({ cookies }) => {
 
 /* Save a new writing style */
 export const POST: APIRoute = async ({ request, cookies, redirect }) => {
-  
   /* Verify required fields */
   const { questions, name, englishType } = await request.json();
   if (!name || !questions || !englishType) {
-    console.info("Missing required fields");
     return MISSING_REQUIRED_FIELDS_RESPONSE;
   }
-
-  await new Promise(resolve => setTimeout(resolve, 1000));
 
   /* Verify cookie */
   const sessionCookie = cookies.get("session")?.value;
