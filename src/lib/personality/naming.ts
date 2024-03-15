@@ -9,7 +9,7 @@ export const createDefaultNameFromQuestion = (questions: Question[]) => {
     .map((q) => q.attribute2.title);
   const veryLowAndHighAnswers = veryLowAnswers.concat(veryHighAnswers);
   if (veryLowAndHighAnswers.length > 0) {
-    return veryLowAnswers.slice(0, 3).join(" ");
+    return veryLowAndHighAnswers.slice(0, 3).join(" ");
   }
 
   const mediumLowAnswers = questions
@@ -20,7 +20,7 @@ export const createDefaultNameFromQuestion = (questions: Question[]) => {
     .map((q) => q.attribute2.title);
   const mediumLowAndHighAnswers = mediumLowAnswers.concat(mediumHighAnswers);
   if (mediumLowAndHighAnswers.length > 0) {
-    return mediumLowAnswers.slice(0, 3).join(" ");
+    return mediumLowAndHighAnswers.slice(0, 3).join(" ");
   }
 
   return "Perfectly Balanced as all things should be.";
