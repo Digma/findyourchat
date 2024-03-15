@@ -51,10 +51,10 @@
         else console.error("No Id linked to profile to update");
     }
 
-    const deleteProfile = (idx: string|undefined) => async () => {
+    const deleteProfile = async () => {
         open = false;
-        if (idx){
-            await deleteWritingStyle(idx);
+        if (popupOriginIdx){
+            await deleteWritingStyle(popupOriginIdx);
             // Force a refresh of the table
             deleteIdx++;
         } else {
@@ -83,10 +83,12 @@
     }
 
     let open = false;
+    let popupOriginIdx: string | undefined = undefined;
     const closePopup = () => {
         open = false;
     };
-    const openPopup = () => {
+    const openPopup = (id: string| undefined) => () => {
+        popupOriginIdx = id;
         open = true;
     };
 </script>
@@ -134,9 +136,8 @@
                                                     <div class="flex flex-col items-center justify-center">
                                                         <h2 class="text-xl mb-4 align-center">Are you sure you want to delete this profile?</h2>
                                                         <div class="flex flex-row gap-4">
-                                                            <button class="text-white rounded justify-center bg-red-500 p-1 px-3" on:click={deleteProfile(style.id)}>
+                                                            <button class="text-white rounded justify-center bg-red-500 p-1 px-3" on:click={deleteProfile}>
                                                                 <p>Delete</p>
-                                                                <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="h-10 w-10" fill="currentColor"><path d="M576 128c0-35.3-28.7-64-64-64H205.3c-17 0-33.3 6.7-45.3 18.7L9.4 233.4c-6 6-9.4 14.1-9.4 22.6s3.4 16.6 9.4 22.6L160 429.3c12 12 28.3 18.7 45.3 18.7H512c35.3 0 64-28.7 64-64V128zM271 175c9.4-9.4 24.6-9.4 33.9 0l47 47 47-47c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-47 47 47 47c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-47-47-47 47c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l47-47-47-47c-9.4-9.4-9.4-24.6 0-33.9z"/></svg> -->
                                                             </button>
                                                             <button class="text-white rounded justify-center bg-gray-500 p-1 px-3" on:click={closePopup}>
                                                                 <p>Cancel</p>
@@ -156,7 +157,7 @@
                                                     </a>
                                                 </td>
                                             <td class="whitespace-nowrap px-2 py-2 md:m-auto mb-2">
-                                                <button class="text-white rounded justify-center bg-red-500 p-1 px-3" on:click={openPopup}>
+                                                <button class="text-white rounded justify-center bg-red-500 p-1 px-3" on:click={openPopup(style.id)}>
                                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="h-5 w-5" fill="currentColor"><path d="M576 128c0-35.3-28.7-64-64-64H205.3c-17 0-33.3 6.7-45.3 18.7L9.4 233.4c-6 6-9.4 14.1-9.4 22.6s3.4 16.6 9.4 22.6L160 429.3c12 12 28.3 18.7 45.3 18.7H512c35.3 0 64-28.7 64-64V128zM271 175c9.4-9.4 24.6-9.4 33.9 0l47 47 47-47c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-47 47 47 47c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-47-47-47 47c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l47-47-47-47c-9.4-9.4-9.4-24.6 0-33.9z"/></svg>
                                                 </button>
                                             </td>
