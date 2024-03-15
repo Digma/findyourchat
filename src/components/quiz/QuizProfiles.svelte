@@ -20,9 +20,13 @@
         if (user) {
             userRecord.set(user);
         }
+    });
 
-        // 2. Save profile to database if saveProfile==True
+    const saveToWritingProfileToDB = async () => {
+        // Questions will be saved on the profile page
+        // That avoids issues with redirecting for unlogged users
         if ($saveProfile === "true" && $currentWritingStyle) {
+            saveProfile.set("false");
             if ($editProfile === "true") {
                 // Update the profile
                 await updateWritingStyleAnswers($currentWritingStyle);
@@ -30,12 +34,10 @@
                 await postWritingStyleToDB($currentWritingStyle);
             }
         }
-
-        // 3. Reset the editing profile
+        // Reset the editing profile
         currentWritingStyle.set(undefined);
-        saveProfile.set("false");
         editProfile.set("false");
-    });
+    };
 
     // Use to signal a deleted entry to the table and force a refresh
     let deleteIdx = 0;
@@ -100,6 +102,9 @@
         <div class="flex w-full mb-8 mt-8">
             <h2 class="text-3xl font-bold text-white m-auto">Your Personalities</h2>
         </div>
+<!-- svelte-ignore empty-block -->
+        {#await saveToWritingProfileToDB()}
+        {:then}
         {#key deleteIdx}
         {#await createWritingStyleRows()}
             <p>Loading...</p>
@@ -174,6 +179,9 @@
             <p>{error.message} - Please Reload the page</p>
         {/await}
         {/key}
+        {:catch error}
+            <p>Could not save the profile. Please reload the page</p>
+        {/await}
         <div class="w-full flex flex-col mt-16">
             <a
                 class="w-88 text-lg font-bold m-auto text-center bg-orange-accent text-white px-6 py-2 rounded-lg"

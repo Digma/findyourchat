@@ -83,7 +83,6 @@ export const POST: APIRoute = async ({ request, cookies, redirect }) => {
   }
 
   const { uid } = await auth.verifySessionCookie(sessionCookie, true);
-
   try {
     const newEntry = writingStyleRef
       .doc(uid)
