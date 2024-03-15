@@ -1,15 +1,16 @@
 <script lang="ts">
-    import type { User } from "@/lib/firebase/utils/auth/type";
+    import { userRecord } from "../lib/store";
 
     import Logo from "./Logo.svelte";
     import { Button } from "@/components/base/button";
     import UserDropdown from "@/components/auth/UserDropdown.svelte";
 
-    export let user: User | null | undefined = null;
     export let logoBlack = false;
     export let hideUser = false;
-
     $: textColor = logoBlack ? "text-black" : "text-white";
+
+    // Load user from store
+    $: user = $userRecord
 
     let isOpen = false;
 </script>
