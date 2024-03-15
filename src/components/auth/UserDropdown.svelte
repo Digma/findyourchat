@@ -1,13 +1,19 @@
 <script lang="ts">
     import { Avatar } from "@skeletonlabs/skeleton"
+
     import { Popover } from "@/components/base/popover";
     import DashboardIcon from "../icons/DashboardIcon.svelte";
     import LogoutIcon from "../icons/LogoutIcon.svelte";
     import { Button } from "@/components/base/button";
     import type { User } from "@/lib/firebase/utils/auth/type";
+    import { userRecord } from  "@/lib/store";
 
     export let user: User;
     $: initials = user?.displayName?.split(" ").map((n) => n[0]).slice(0, 3).join("");
+
+    const emptyUserRecordStore = () => {
+        userRecord.set(undefined);
+    }
 </script>
 
 {#if user?.email}
@@ -40,7 +46,7 @@
                 <p class="text-sm">Profile</p>
             </Button>
 
-            <form action="/api/auth/signout">
+            <form action="/api/auth/signout" on:submit={emptyUserRecordStore}>
                 <Button type="submit" variant="ghost">
                     <LogoutIcon />
                     <p class="text-sm">Sign out</p>
