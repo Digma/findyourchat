@@ -7,26 +7,31 @@ interface Props {
 }
 
 const { name, job, date, post } = Astro.props;
-
 ---
 
 <div class="p-3 flex items-center justify-center">
-    <div class="bg-white-transparent shadow-md px-5 py-5 rounded-lg max-w-lg min-w-72">
-      <div class="flex items-center">
-        <slot />
-        <div class="ml-4">
-          <div class="text-sm ">
-            <span class="font-semibold">{name}</span>
-            <span class="text-gray-500"> • 1st</span>
-          </div>
+  <div
+    class="bg-white-transparent shadow-md px-5 py-5 rounded-lg max-w-lg min-w-72"
+  >
+    <div class="flex items-center">
+      <slot />
+      <div class="ml-4">
+        <div class="text-sm">
+          <span class="font-semibold">{name}</span>
+          <span class="text-gray-500"> • 1st</span>
         </div>
       </div>
-      <p class="text-gray-800 text-md mt-4 leading-normal md:leading-relaxed whitespace-pre">{post}</p>
-      <!-- <div class="text-gray-500 text-xs flex items-center mt-3">
+    </div>
+    <p
+      class="text-gray-800 text-md mt-4 leading-normal md:leading-relaxed whitespace-pre"
+    >
+      {post}
+    </p>
+    <!-- <div class="text-gray-500 text-xs flex items-center mt-3">
         <img class="mr-0.5" src="https://static-exp1.licdn.com/sc/h/d310t2g24pvdy4pt1jkedo4yb"/>
         <img class="mr-0.5" src="https://static-exp1.licdn.com/sc/h/5thsbmikm6a8uov24ygwd914f"/>
         <img class="mr-0.5" src="https://static-exp1.licdn.com/sc/h/7fx9nkd7mx8avdpqm5hqcbi97"/>
         <span class="ml-1">47 • 26 comments</span>
       </div> -->
-    </div>
   </div>
+</div>

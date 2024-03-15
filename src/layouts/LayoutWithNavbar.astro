@@ -3,17 +3,24 @@ import Layout from "./Layout.astro";
 import Navbar from "../components/Navbar.svelte";
 
 interface Props {
-	title: string;
-	description: string;
-	image?: string;
-	background?: string;
-	logoBlack?: boolean;
-	whiteGradient?: boolean;
+  title: string;
+  description: string;
+  image?: string;
+  background?: string;
+  logoBlack?: boolean;
+  whiteGradient?: boolean;
 }
-const { title, description, image, background, logoBlack = false, whiteGradient = false } = Astro.props;
+const {
+  title,
+  description,
+  image,
+  background,
+  logoBlack = false,
+  whiteGradient = false,
+} = Astro.props;
 ---
 
-<Layout {title} {description} {image} {background} {whiteGradient} >
-    <Navbar {logoBlack} client:only />
-    <slot />
+<Layout {title} {description} {image} {background} {whiteGradient}>
+  <Navbar {logoBlack} client:only />
+  <slot />
 </Layout>

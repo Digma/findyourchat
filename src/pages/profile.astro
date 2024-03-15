@@ -11,7 +11,7 @@ const auth = getAuth(app);
 
 /* Check current session */
 if (!Astro.cookies.has("session")) {
-    return Astro.redirect("/signin");
+  return Astro.redirect("/signin");
 }
 
 const sessionCookie = Astro.cookies.get("session")?.value;
@@ -19,18 +19,18 @@ const decodedCookie = await auth.verifySessionCookie(sessionCookie || "");
 const user = await auth.getUser(decodedCookie.uid);
 
 if (!user) {
-    return Astro.redirect("/signin");
+  return Astro.redirect("/signin");
 }
 ---
 
 <Layout
-    title="Profile"
-    description="Access your private Profile"
-    background="bg-blue-800"
-    whiteGradient={true}
-    logoBlack={false}
+  title="Profile"
+  description="Access your private Profile"
+  background="bg-blue-800"
+  whiteGradient={true}
+  logoBlack={false}
 >
-    <div class="flex flex-col mx-auto">
-        <QuizProfiles  client:only {user} />
-    </div>
+  <div class="flex flex-col mx-auto">
+    <QuizProfiles client:only {user} />
+  </div>
 </Layout>

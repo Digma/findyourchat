@@ -2,9 +2,12 @@
 export const prerender = true;
 
 import Layout from "../layouts/Layout.astro";
-import QuizPage from '../components/quiz/QuizPage.svelte';
+import QuizPage from "../components/quiz/QuizPage.svelte";
 ---
 
-<Layout title="FindYourChat.ai" description="Unlock the full potential of AI, customize ChatGPT to your unique writing style. Whether it's for emails, content creation, or casual conversations, we generate prompts to adapt ChatGPT's responses to match your tone, style, and personality nuances.">
-    <QuizPage client:only />
+<Layout
+  title="FindYourChat.ai"
+  description="Unlock the full potential of AI, customize ChatGPT to your unique writing style. Whether it's for emails, content creation, or casual conversations, we generate prompts to adapt ChatGPT's responses to match your tone, style, and personality nuances."
+>
+  <QuizPage client:only />
 </Layout>

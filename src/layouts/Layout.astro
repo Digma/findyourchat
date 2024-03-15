@@ -1,66 +1,76 @@
 ---
-import  SpeedInsights  from "@vercel/speed-insights/astro"
+import SpeedInsights from "@vercel/speed-insights/astro";
 import { ViewTransitions } from "astro:transitions";
 
 interface Props {
-	title: string;
-	description: string;
-	image?: string;
-	background?: string;
-	whiteGradient?: boolean;
+  title: string;
+  description: string;
+  image?: string;
+  background?: string;
+  whiteGradient?: boolean;
 }
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-const { title, description, image = "public/findyourchat_overview.png", background = "bg-blue-accent", whiteGradient = false} = Astro.props;
+const {
+  title,
+  description,
+  image = "public/findyourchat_overview.png",
+  background = "bg-blue-accent",
+  whiteGradient = false,
+} = Astro.props;
 ---
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-		<meta name="title" content={title} />
-		<meta name="description" content={description} />
-		<link rel="sitemap" href="/sitemap-index.xml" />
-		<!-- Canonical URL -->
-		<link rel="canonical" href={canonicalURL} />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <!-- Canonical URL -->
+    <link rel="canonical" href={canonicalURL} />
 
-		<!-- Open Graph / Facebook -->
-		<meta property="og:type" content="website" />
-		<meta property="og:url" content={Astro.url} />
-		<meta property="og:title" content={title} />
-		<meta property="og:description" content={description} />
-		<meta property="og:image" content={new URL(image, Astro.url)} />
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.url} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(image, Astro.url)} />
 
-		<!-- Twitter -->
-		<meta property="twitter:card" content="summary_large_image" />
-		<meta property="twitter:url" content={Astro.url} />
-		<meta property="twitter:title" content={title} />
-		<meta property="twitter:description" content={description} />
-		<meta property="twitter:image" content={new URL(image, Astro.url)} />
-		<ViewTransitions />
-	</head>
-	<body data-theme="modern" class=`${background} h-full`>
-		{whiteGradient ? 
-			<div class="min-h-screen h-full bg-gradient-to-r from-gray-400/0 from-50% to-white/25 pt-2">
-				<slot />
-				<SpeedInsights />
-			</div> 
-			: 
-			<slot />
-		<SpeedInsights />}
-	</body>
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={Astro.url} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={new URL(image, Astro.url)} />
+    <ViewTransitions />
+  </head>
+  <body data-theme="modern" class=`${background} h-full`>
+    {
+      whiteGradient ? (
+        <div class="min-h-screen h-full bg-gradient-to-r from-gray-400/0 from-50% to-white/25 pt-2">
+          <slot />
+          <SpeedInsights />
+        </div>
+      ) : (
+        <>
+          <slot />
+          <SpeedInsights />
+        </>
+      )
+    }
+  </body><style is:global>
+    /* Improve Page speed */
+    /* https://css-tricks.com/almanac/properties/c/content-visibility/ */
+    img {
+      content-visibility: auto;
+    }
+    body {
+      /* height: 100%; */
+    }
+  </style>
 </html>
-<style is:global>
-	/* Improve Page speed */
-	/* https://css-tricks.com/almanac/properties/c/content-visibility/ */
-	img {
-		content-visibility: auto;
-	}
-	body {
-		/* height: 100%; */
-	}
-</style>

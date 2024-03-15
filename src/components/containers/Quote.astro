@@ -1,22 +1,22 @@
 ---
 interface Props {
-    post: string;
+  post: string;
 }
 
 const { post } = Astro.props;
 ---
 
 <div class="p-3 flex items-center justify-center">
-    <div
-        class="flex flew-row bg-white-transparent space-x-4 shadow-md px-4 py-3 rounded-lg max-w-sm"
-    >
-        <div class="items-center max-h-48">
-            <slot />
-        </div>
-        <p
-            class="text-gray-800 text-md italic mt-2 leading-normal md:leading-relaxed whitespace-normal"
-        >
-            “{post}”
-        </p>
+  <div
+    class="flex flew-row bg-white-transparent space-x-4 shadow-md px-4 py-3 rounded-lg max-w-sm"
+  >
+    <div class="items-center max-h-48">
+      <slot />
     </div>
+    <p
+      class="text-gray-800 text-md italic mt-2 leading-normal md:leading-relaxed whitespace-normal"
+    >
+      “{post}”
+    </p>
+  </div>
 </div>

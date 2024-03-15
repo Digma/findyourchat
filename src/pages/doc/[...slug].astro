@@ -1,13 +1,14 @@
 ---
 export const prerender = true;
-import { getCollection } from 'astro:content';
-import LayoutBlog from '../../layouts/LayoutBlog.astro';
+import { getCollection } from "astro:content";
+import LayoutBlog from "../../layouts/LayoutBlog.astro";
 
 // 1. Generate a new path for every collection entry
 export async function getStaticPaths() {
-  const docEntries = await getCollection('doc');
-  return docEntries.map(entry => ({
-    params: { slug: entry.slug }, props: { entry },
+  const docEntries = await getCollection("doc");
+  return docEntries.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
   }));
 }
 // 2. For your template, you can get the entry directly from the prop
@@ -17,6 +18,13 @@ const background = "bg-gray-100";
 const whiteGradient = true;
 const logoBlack = true;
 ---
-<LayoutBlog title={entry.data.title} description={entry.data.description} {background} {logoBlack} {whiteGradient}>
-    <Content />
+
+<LayoutBlog
+  title={entry.data.title}
+  description={entry.data.description}
+  {background}
+  {logoBlack}
+  {whiteGradient}
+>
+  <Content />
 </LayoutBlog>
