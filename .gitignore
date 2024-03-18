@@ -133,7 +133,7 @@ dist
 .astro/
 
 # macOS-specific files
-.DS_Store
+**.DS_Store
 
 # Firebase service account to prevent accidentally commiting it
 service-account.json
