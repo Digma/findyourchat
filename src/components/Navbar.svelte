@@ -46,7 +46,7 @@
             >
           </button>
           {#if isOpen}
-            <div class="absolute z-10 right-0 mt-2 min-w-36">
+            <div class="absolute z-10 right-0 top-8 mt-2 min-w-36">
               <div
                 class="bg-white border-gray-200 rounded-md shadow-lg will-change-transform animate-slide-up-fade"
               >
