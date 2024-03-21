@@ -20,12 +20,13 @@
   let sections: any[] = [];
   let currentVisibleSectionIndex = 0;
 
-  $: writingStyle = $currentWritingStyle
+  let writingStyle = $currentWritingStyle
     ? cloneWritingStyle($currentWritingStyle)
     : new WritingStyleDocument(allQuestions);
   $: allQuestionsAnswered = checkIfAllQuestionsAnswered(writingStyle);
   $: englishTypeAnswered = writingStyle.englishType ? true : false;
   $: resultUrl = encodeAnswerToResultUrl(writingStyle);
+  $: profileExists = writingStyle.id && writingStyle.id !== "" ? true : false;
 
   const slideToColor = (slide: number) => {
     return backgroundColors[slide % backgroundColors.length];
@@ -82,7 +83,8 @@
   };
 
   const updateEnglishType = (e: CustomEvent<string>) => {
-    writingStyle.englishType = e.detail.valueOf();
+    console.log("English type picked", e.detail);
+    writingStyle.englishType = e.detail;
     // Force update of component
     writingStyle = writingStyle;
     scrollToSection(1);
@@ -144,7 +146,7 @@
           on:valuePicked={updateEnglishType}
         />
       </section>
-      {#if !($editProfile === "true")}
+      {#if !($editProfile === "true") || !profileExists}
         <section
           id="quiz-section-13"
           bind:this={sections[nbOfQuestions + 2]}

@@ -15,7 +15,14 @@ if (!Astro.cookies.has("session")) {
 }
 
 const sessionCookie = Astro.cookies.get("session")?.value;
-const decodedCookie = await auth.verifySessionCookie(sessionCookie || "");
+
+let decodedCookie;
+try {
+  decodedCookie = await auth.verifySessionCookie(sessionCookie || "");
+} catch (error) {
+  /* If the session is invalid, redirect to the login page */
+  return Astro.redirect("/signin");
+}
 const user = await auth.getUser(decodedCookie.uid);
 
 if (!user) {

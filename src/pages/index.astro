@@ -1,19 +1,17 @@
 ---
 export const prerender = true;
-import Hero from "../components/Hero.astro";
-import Feature1 from "../components/Feature1.astro";
-import Feature2 from "../components/Feature2.astro";
-import Feature3 from "../components/Feature3.astro";
+
+import Hero from '../components/Hero.astro';
+import Feature1 from '../components/Feature1.astro';
+import Feature2 from '../components/Feature2.astro';
+import Feature3 from '../components/Feature3.astro';
 
 import Layout from "../layouts/LayoutWithNavbar.astro";
 ---
 
-<Layout
-  title="FindYourChat.ai"
-  description="Unlock the full potential of AI, customize ChatGPT to your unique writing style. Whether it's for emails, content creation, or casual conversations, we generate prompts to adapt ChatGPT's responses to match your tone, style, and personality nuances."
->
-  <Hero />
-  <Feature1 />
-  <Feature2 />
-  <Feature3 />
+<Layout title="FindYourChat.ai" description="Unlock the full potential of AI, customize ChatGPT to your unique writing style. Whether it's for emails, content creation, or casual conversations, we generate prompts to adapt ChatGPT's responses to match your tone, style, and personality nuances.">
+    <Hero />
+    <Feature1 />
+    <Feature2 />
+    <Feature3 />
 </Layout>

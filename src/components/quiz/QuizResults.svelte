@@ -21,7 +21,6 @@
     const writingStyle = urlToWritingStyle(window.location.search);
     const writingStyleDefined = writingStyle && writingStyle.answers.every((a) => a.answer);
     const generatedPrompt = writingStyleDefined ? getWritingPromptFromQuestions(writingStyle) : "";
-    const profileExists = writingStyle.id && writingStyle.id !== "" ? true : false;
     const profileName =
         writingStyle.name && writingStyle.name !== ""
             ? writingStyle.name
@@ -130,17 +129,15 @@
                     </div>
                     <div class="flex flex-row gap-4">
                         <CopyButtonWithOptions tooltipText={generatedPrompt} />
-                        {#if profileExists}
-                            <div class="flex flex-row gap-2 place-self-end self-start">
-                                <EditButton on:edit={saveProfileToEdit} />
-                            </div>
-                        {/if}
+                        <div class="flex flex-row gap-2 place-self-end self-start">
+                            <EditButton on:edit={saveProfileToEdit} />
+                        </div>
                         <div class="flex flex-row gap-2 place-self-end self-start">
                             <SaveButton on:save={saveToProfile} />
                         </div>
                     </div>
                 </div>
-                <div class="mb-4 p-2 py-4 rounded bg-white/50 mt-4">
+                <div class="mb-4 p-2 py-4 rounded bg-white/25 mt-4">
                     <p class="text-sm">
                         To use it, <b>simply copy the prompt using the "Copy Prompt" button</b>
                         or <b>check our documentation</b> for

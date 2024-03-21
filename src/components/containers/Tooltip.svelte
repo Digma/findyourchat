@@ -6,11 +6,11 @@
 <div class="group relative py-2">
   {#if position === "bottom"}
     <div
-      class="absolute invisible top-10 group-hover:visible bg-white text-black px-4 mt-3 py-2 text-sm rounded-md m-auto z-20"
+      class="overflow-visible -ml-16 min-w-32 absolute invisible top-10 group-hover:visible bg-white text-black px-4 mt-3 py-2 text-sm rounded-md m-auto z-20"
     >
       <p class="leading-2 text-gray-600 pt-2 pb-2">{tooltipText}</p>
       <svg
-        class="absolute z-30 top-[-10px]"
+        class="absolute ml-16 z-30 top-[-10px]"
         width="16"
         height="10"
         viewBox="0 0 16 10"

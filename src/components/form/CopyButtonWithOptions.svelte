@@ -37,7 +37,7 @@
 
 <div class="group overflow-visible relative py-2">
     <div
-        class="absolute min-w-64 invisible top-10 -left-10 group-hover:visible delay-200 bg-white text-black mt-3 text-sm rounded-md m-auto z-200"
+        class="absolute min-w-64 invisible top-10 -left-10 group-hover:visible delay-200 bg-white text-black mt-3 text-sm rounded-md m-auto z-30"
     >
         <button class="w-full text-left p-2 hover:bg-gray-200" on:click={openAILink}
             >Copy Prompt & Go to <b>OpenAI</b></button
@@ -77,6 +77,6 @@
                 /></svg
             >
         </span>
-        <div class="">Use Profile</div>
+        <div class="">Copy Prompt</div>
     </div>
 </div>
