@@ -26,7 +26,7 @@ In the next section, we will explore how we can define a writing style and how w
 
 ## Crafting a Framework for Defining your Voice and Tone
 
-To craft a unique writing style, it is important to define our "Verbal Identity", a concept derived from and marketing. This often involves defining a “Voice” and a “Tone” — the former capture thes writer's identity and the latter reflecting a form, often influenced by the context (e.g. Formal vs Casual).
+To craft a unique writing style, it is important to define our "Verbal Identity", a concept derived from marketing. This often involves defining a “Voice” and a “Tone” — the former capture thes writer's identity and the latter reflecting a form, often influenced by the context (e.g. Formal vs Casual).
 
 ![An overview of our approach to provide a writing style to ChatGPT](../../assets/methodology/writingstyle-and-content-full.png)
 

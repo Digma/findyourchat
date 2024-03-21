@@ -77,6 +77,6 @@
                 /></svg
             >
         </span>
-        <div class="">Use Profile</div>
+        <div class="">Copy Prompt</div>
     </div>
 </div>
